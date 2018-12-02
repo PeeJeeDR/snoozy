@@ -3,11 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "node-sass-chokidar": "^1.3.4",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1"
   },
   "scripts": {
+    "watch-css": "node-sass-chokidar src/assets/sass/ -o public/style/ --watch",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

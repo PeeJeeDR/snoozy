@@ -1,0 +1,12 @@
+body {
+  background-color: #000000;
+  margin: 0;
+  padding: 0; }
+
+h1 {
+  margin: 0;
+  padding: 0; }
+
+.BigClock h1 {
+  font-family: 'Digital-7';
+  color: #C7C7C7; }
