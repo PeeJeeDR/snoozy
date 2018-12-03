@@ -36,3 +36,22 @@ h1, h3 {
   font-size: 1.5rem;
   font-weight: lighter;
   margin-top: 0.5rem; }
+
+.NotificationsOverview {
+  display: flex;
+  margin-top: 3rem; }
+
+.Notification {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.Notification img {
+  width: 2.5rem;
+  margin: 0 0.6rem; }
+
+.Notification p {
+  font-size: 18px;
+  font-family: 'Roboto';
+  color: #C7C7C7;
+  margin-top: 0.5rem; }

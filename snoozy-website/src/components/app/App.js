@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BigClock from '../clock/BigClock';
 import Alarm from '../clock/Alarm';
+import NotificationsOverview from '../notifications/NotificationsOverview';
 
 class App extends Component {
 	render() {
@@ -9,6 +10,7 @@ class App extends Component {
 				<div className="all">
 					<BigClock />
 					<Alarm />
+					<NotificationsOverview />
 				</div>
 			</div>
 		);

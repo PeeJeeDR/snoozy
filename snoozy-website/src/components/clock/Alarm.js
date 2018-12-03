@@ -5,7 +5,7 @@ class Alarm extends React.Component {
     render = () => {
         return (
             <div className='Alarm'>
-                <img src={ AlarmClock }/>
+                <img src={ AlarmClock } alt='Clock icon.'/>
                 <h3>07:39</h3>
             </div>
         )

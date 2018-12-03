@@ -1,49 +1,13 @@
 {
-  "icons": [
-    {
-      "type": "animal",
-      "url": "https://firebasestorage.googleapis.com/v0/b/kowloon-25cca.appspot.com/o/icons%2Fnavigation%2Fanimals%2Fdog.png?alt=media&token=08e0e162-8a72-467b-acdd-4085ac35e9c5",
-      "alt": "Dog icon."
-    },
-    {
-      "type": "animal",
-      "url": "https://firebasestorage.googleapis.com/v0/b/kowloon-25cca.appspot.com/o/icons%2Fnavigation%2Fanimals%2Fcat.png?alt=media&token=1e58598b-00dc-4684-a349-00e1f9161256",
-      "alt": "Cat icon."
-    },
-    {
-      "type": "animal",
-      "url": "https://firebasestorage.googleapis.com/v0/b/kowloon-25cca.appspot.com/o/icons%2Fnavigation%2Fanimals%2Ffish.png?alt=media&token=614d7867-2d43-48b7-a3ad-2680de6c7e10",
-      "alt": "Fish icon."
-    },
-    {
-      "type": "animal",
-      "url": "https://firebasestorage.googleapis.com/v0/b/kowloon-25cca.appspot.com/o/icons%2Fnavigation%2Fanimals%2Fbird.png?alt=media&token=a7020145-1a30-4728-a9bb-144716213e55",
-      "alt": "Bird icon."
-    },
-    {
-      "type": "animal",
-      "url": "https://firebasestorage.googleapis.com/v0/b/kowloon-25cca.appspot.com/o/icons%2Fnavigation%2Fanimals%2Fhamster.png?alt=media&token=2ee69ccc-ef55-4219-850f-7c0c384aafb6",
-      "alt": "Hamster icon."
-    },
-    {
-      "type": "general",
-      "url": "https://firebasestorage.googleapis.com/v0/b/kowloon-25cca.appspot.com/o/icons%2Fnavigation%2Fgeneral%2F0_hamburger.png?alt=media&token=96c8779f-e261-448c-abce-41449b527f1f",
-      "alt": "Burger icon."
-    },
-    {
-      "type": "general",
-      "url": "https://firebasestorage.googleapis.com/v0/b/kowloon-25cca.appspot.com/o/icons%2Fnavigation%2Fgeneral%2F1_search.png?alt=media&token=194afb95-fd57-4a48-acb0-63893c7111fa",
-      "alt": "Search icon."
-    },
-    {
-      "type": "general",
-      "url": "https://firebasestorage.googleapis.com/v0/b/kowloon-25cca.appspot.com/o/icons%2Fnavigation%2Fgeneral%2F2_faq.png?alt=media&token=08f1e338-4e2b-4d72-a88f-4bbabf903da3",
-      "alt": "Faq icon."
-    },
-    {
-      "type": "general",
-      "url": "https://firebasestorage.googleapis.com/v0/b/kowloon-25cca.appspot.com/o/icons%2Fnavigation%2Fgeneral%2F3_divider.png?alt=media&token=e7dddb6e-a241-4819-8a35-5facfaf45dab",
-      "alt": "Divider icon."
-    }
-  ]
+	"notifications": [
+		{
+			"name": "facebook"
+		},
+		{
+			"name": "twitter"
+		},
+		{
+			"name": "mail"
+		}
+	]
 }
