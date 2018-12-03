@@ -15,7 +15,7 @@ h1, h3 {
   flex-direction: column; }
 
 .BigClock h1 {
-  font-family: 'Digital-7';
+  font-family: 'Digital-7 Mono';
   color: #C7C7C7;
   font-size: 5.25rem;
   font-weight: lighter; }
@@ -31,7 +31,7 @@ h1, h3 {
   flex-grow: 1; }
 
 .Alarm h3 {
-  font-family: 'Digital-7';
+  font-family: 'Digital-7 Mono';
   color: #C7C7C7;
   font-size: 1.5rem;
   font-weight: lighter;
