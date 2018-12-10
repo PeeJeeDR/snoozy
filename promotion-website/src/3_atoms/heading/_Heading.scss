@@ -1,4 +1,25 @@
 .Heading 
 {
-    color: lightblue;
+    color: $snow;
+    font-family: 'Roboto', sans-serif;
+
+    &.h--darker 
+    {
+        color: $coal;
+    }
+
+    &.h--large 
+    {
+        font-size: $heading-l;
+    }
+
+    &.h--medium 
+    {
+        font-size: $heading-m;
+    }
+
+    &.h--small
+    {
+        font-size: $heading-s;
+    }
 }
