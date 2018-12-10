@@ -1,9 +1,12 @@
 import React from 'react';
+import Heading from '../Heading/Heading';
 
 const PrimaryButton = (props) => {
     return (
         <button className='PrimaryButton'>
-            { props.title } 
+            <Heading class='h--medium'>
+                { props.title } 
+            </Heading>
         </button>
     );
 }

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import Heading from '../../3_atoms/Heading/Heading';
-import PrimaryButton from '../../3_atoms/PrimaryButton/PrimaryButton';
+import { Route } from 'react-router-dom';
+import Header from '../../5_organisms/Header/Header';
+import HomePage from '../../7_pages/HomePage/HomePage';
 
 class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Heading class='h--darker'>Hello</Heading>
-				<PrimaryButton title='Discover'/>
+				<Header />
+
+				<Route exact path='/home' 	component={ HomePage }/>
 			</div>
 		);
 	}

@@ -1,0 +1,28 @@
+.Wrapper 
+{
+    margin: 0 auto;
+
+    // Phone
+    @media only screen and (max-width: 768px) 
+    {
+        width: 95%;
+    }
+
+    // Tablet
+    @media only screen and (min-width: 768px) 
+    {
+        width: 90%;
+    }
+
+    // Desktop
+    @media only screen and (min-width: 992px) 
+    {
+        width: 992px;
+    }
+
+    // Large desktop
+    @media only screen and (min-width: 1200px) 
+    {
+        width: 1200px;
+    }
+}

@@ -2,6 +2,9 @@
 {
     color: $snow;
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    display: inline-block;
+    transition: all 100ms ease-in-out;
 
     &.h--darker 
     {

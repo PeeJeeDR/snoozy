@@ -1,0 +1,12 @@
+.NavLink 
+{
+    margin-left: 50px;
+
+    &:hover, &.active
+    {
+        .Heading 
+        {
+            color: $pearl;
+        }
+    }
+}

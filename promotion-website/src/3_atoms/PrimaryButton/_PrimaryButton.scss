@@ -1,10 +1,8 @@
 .PrimaryButton 
 {
     background-color: $pearl;
-    padding: 30px;
-
-    button 
-    {
-        color: blue
-    }
+    padding: 25px 130px;
+    color: $snow;
+    border-radius: 200rem;
+    border: none;
 }
