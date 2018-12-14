@@ -5,4 +5,17 @@
     color: $snow;
     border-radius: 200rem;
     border: none;
+    transition: all 100ms ease-in-out;
+
+    &:hover 
+    {
+        background-color: darken( $pearl, 10% );
+        cursor: pointer;
+    }
+
+    &:focus 
+    {
+        outline: none;
+        background-color: darken( $pearl, 10% );
+    }
 }

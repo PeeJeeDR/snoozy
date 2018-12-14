@@ -640,6 +640,11 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@types/node@^9.6.39":
+  version "9.6.40"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.40.tgz#2d69cefbc090cb0bb824542a4c575b14dde7d3aa"
+  integrity sha512-M3HHoXXndsho/sTbQML2BJr7/uwNhMg8P0D4lb+UsM65JQZx268faiz9hKpY4FpocWqpwlLwa8vevw8hLtKjOw==
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"
@@ -998,6 +1003,13 @@ babel-jest@23.6.0, babel-jest@^23.6.0:
   dependencies:
     babel-plugin-istanbul "^4.1.6"
     babel-preset-jest "^23.2.0"
+
+babel-macros@^1.0.1:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/babel-macros/-/babel-macros-1.2.0.tgz#39e47ed6d286d4a98f1948d8bab45dac17e4e2d4"
+  integrity sha512-/GIwkOeNHQU9R27Bkt0jHrJgaXBX5KLKrIH5h/iGebvKppvL9e4wKCgrl4qwUj0qssBHQFeSavk3lG2lQgdq8w==
+  dependencies:
+    cosmiconfig "3.1.0"
 
 babel-messages@^6.23.0:
   version "6.23.0"
@@ -1536,6 +1548,16 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+
+cosmiconfig@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-3.1.0.tgz#640a94bf9847f321800403cd273af60665c73397"
+  integrity sha512-zedsBhLSbPBms+kE7AH4vHg6JsKDz6epSv2/+5XHs8ILHlgDciSJfSWf8sX9aQ52Jb7KI7VswUTsLpR/G0cr2Q==
+  dependencies:
+    is-directory "^0.3.1"
+    js-yaml "^3.9.0"
+    parse-json "^3.0.0"
+    require-from-string "^2.0.1"
 
 cosmiconfig@^5.0.5:
   version "5.0.7"
@@ -2491,6 +2513,13 @@ iconv-lite@0.4.24, iconv-lite@^0.4.17, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   integrity sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
+
+idx.macro@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/idx.macro/-/idx.macro-2.0.1.tgz#80b6bbb8e6c9e44b22c023ecdad3d556f8be082b"
+  integrity sha1-gLa7uObJ5EsiwCPs2tPVVvi+CCs=
+  dependencies:
+    babel-macros "^1.0.1"
 
 ignore-walk@^3.0.1:
   version "3.0.1"
@@ -4325,6 +4354,13 @@ parse-json@^2.2.0:
   dependencies:
     error-ex "^1.2.0"
 
+parse-json@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-3.0.0.tgz#fa6f47b18e23826ead32f263e744d0e1e847fb13"
+  integrity sha1-+m9HsY4jgm6tMvJj50TQ4ehH+xM=
+  dependencies:
+    error-ex "^1.3.1"
+
 parse-json@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-4.0.0.tgz#be35f5425be1f7f6c747184f98a788cb99477ee0"
@@ -4616,6 +4652,20 @@ react-devtools-core@^3.4.2:
   dependencies:
     shell-quote "^1.6.1"
     ws "^3.3.1"
+
+react-google-calendar-api@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-google-calendar-api/-/react-google-calendar-api-1.0.9.tgz#598d95d8caff4705aae84f0a349b7918940e04e7"
+  integrity sha512-UMpzc4UTq4tndQmE+re9YhgPQLM5wmwGAfnMmshn+goE6abQjF/VZxtNl8OtMwUhLhqO2+GZpleg3dv/OdvtsQ==
+  dependencies:
+    "@types/node" "^9.6.39"
+
+react-google-calendar-events-list@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-google-calendar-events-list/-/react-google-calendar-events-list-1.1.0.tgz#c1fcf3eb563beb3b44d0addaa2ef8fbbd4f2b441"
+  integrity sha1-wfzz61Y76ztE0K3aou+Pu9TytEE=
+  dependencies:
+    idx.macro "2.0.1"
 
 react-is@^16.6.1:
   version "16.6.3"
@@ -4911,6 +4961,11 @@ require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
   integrity sha1-jGStX9MNqxyXbiNE/+f3kqam30I=
+
+require-from-string@^2.0.1:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-2.0.2.tgz#89a7fdd938261267318eafe14f9c32e598c36909"
+  integrity sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==
 
 require-main-filename@^1.0.1:
   version "1.0.1"

@@ -4,11 +4,25 @@
 
     & > div 
     {
-        background-image: linear-gradient(to top, #fcd0a2, #f8d5a6, #f4dbab, #f0dfb0, #ece4b7);
-        min-height: calc(100vh - 75px - 2.4rem);
+        background-image: linear-gradient(
+            to top, 
+            #fcd0a2, 
+            #f8d5a6, 
+            #f4dbab, 
+            #f0dfb0, 
+            #ece4b7
+        );
+        min-height: calc(100vh - 75px - 8.4rem);
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
+        padding: 3rem;
+    }
+
+    .Heading 
+    {
+        text-align: center;
     }
 }

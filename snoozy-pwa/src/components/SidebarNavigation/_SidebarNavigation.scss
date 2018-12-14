@@ -1,0 +1,46 @@
+.SidebarNavigation 
+{
+    button 
+    {
+        color: '#000';
+        height: 70px;
+        width: 70px;
+        font-size: 1.3rem;
+        background: none;
+        border: none;
+        outline: none;
+    }
+
+    .bar 
+    {
+        background-color: #fff;
+        padding: 70px 0 5rem 0;
+    }
+
+    a 
+    {
+        color: rgb(32, 32, 32);
+        text-decoration: none;
+    }
+
+    li 
+    {
+        list-style-type: none;
+        padding: 1rem 7rem 1rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        &.active 
+        {
+            border-left: 3px solid $accent;
+            background-color: lighten($accent, 36%);
+        } 
+    }
+
+    img 
+    {
+        width: 1.4rem;
+        margin-right: 1rem;
+    }
+}

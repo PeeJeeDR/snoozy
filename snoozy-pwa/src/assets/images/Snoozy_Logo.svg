@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2027 670">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #72bfa5;
+      }
+
+      .cls-1 {
+        font-size: 558px;
+        font-family: Choplin-Medium-DEMO, Choplin;
+      }
+    </style>
+  </defs>
+  <g id="logo" transform="translate(-264 -360)">
+    <text id="Snoozy" class="cls-1" transform="translate(264 890)"><tspan x="0" y="0">Snoozy</tspan></text>
+    <g id="alarm-clock" transform="translate(963.837 531.762) rotate(-3)">
+      <g id="Group_1" data-name="Group 1" transform="translate(0 31.78) rotate(-5)">
+        <path id="Path_1" data-name="Path 1" class="cls-2" d="M35.185,129.684a177.932,177.932,0,0,1,106.866-75.41,10.952,10.952,0,0,0,6.712-16.464A80.5,80.5,0,1,0,17.418,130.486a10.978,10.978,0,0,0,17.767-.8Z" transform="translate(0 0)"/>
+        <path id="Path_2" data-name="Path 2" class="cls-2" d="M69.7,0A80.344,80.344,0,0,0,1.694,37.516a10.951,10.951,0,0,0,6.75,16.521,177.809,177.809,0,0,1,107.329,74.844,10.976,10.976,0,0,0,17.824.633A80.471,80.471,0,0,0,69.7,0Z" transform="translate(214.363 0)"/>
+      </g>
+    </g>
+  </g>
+</svg>

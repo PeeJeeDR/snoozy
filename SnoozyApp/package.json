@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "react": "16.6.1",
+    "react-google-calendar-api": "^1.0.9",
+    "react-google-calendar-events-list": "^1.1.0",
     "react-native": "0.57.7"
   },
   "devDependencies": {
