@@ -1,0 +1,19 @@
+.WarningBox 
+{
+    background-color: $warning;
+    padding: 1rem;
+
+    h2
+    {
+        color: rgb(131, 131, 131);
+        font-size: 18px;
+        font-size: 'Roboto-Bold', sans-serif;
+    }
+
+    p 
+    {
+        color: $alto;
+        font-size: 14px;
+        margin-top: 0.5rem;
+    }
+}

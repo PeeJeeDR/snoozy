@@ -98,6 +98,12 @@ h1, h2, p {
     -moz-box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.3); }
 
+.SwitchButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1rem; }
+
 .Appointment {
   -webkit-box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.3);
@@ -129,3 +135,15 @@ h1, h2, p {
     color: #A2A2A2;
     font-size: 12px;
     font-style: italic; }
+
+.WarningBox {
+  background-color: #FFE066;
+  padding: 1rem; }
+  .WarningBox h2 {
+    color: #838383;
+    font-size: 18px;
+    font-size: 'Roboto-Bold', sans-serif; }
+  .WarningBox p {
+    color: #A2A2A2;
+    font-size: 14px;
+    margin-top: 0.5rem; }
