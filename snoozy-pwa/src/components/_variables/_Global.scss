@@ -5,3 +5,14 @@ body, html
     margin: 0;
     font-family: 'Roboto', sans-serif;
 }
+
+h1, h2, p 
+{
+    margin: 0;
+}
+
+.page_wrapper 
+{
+    padding: 10px;
+    z-index: 100;
+}

@@ -23,7 +23,7 @@ class SidebarNavigation extends React.Component {
     renderItems = () => {
         return this.state.data.map((item, i) => (
             <Link key={ i } to={ item.link } onClick={ this.toggleBar }>
-                <li className='active'>
+                <li className={ window.location.pathname === item.link ? 'active' : '' }>
                     <img src={ `/images/icons/${ item.slug }.png` } alt={ `${ item.name } Logo.` }/>
                     <p>{ item.name }</p>
                 </li>

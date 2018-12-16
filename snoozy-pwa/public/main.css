@@ -4,6 +4,36 @@ body, html {
   margin: 0;
   font-family: 'Roboto', sans-serif; }
 
+h1, h2, p {
+  margin: 0; }
+
+.page_wrapper {
+  padding: 10px;
+  z-index: 100; }
+
+.Splash {
+  background-image: linear-gradient(to left top, #72bfa5, #6bc895, #72ce7d, #86d35c, #a2d531);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff; }
+  .Splash img {
+    width: 15rem; }
+  .Splash .clock {
+    padding-top: 50px;
+    text-align: center; }
+    .Splash .clock h1 {
+      font-size: 3rem;
+      margin-top: 0.5rem; }
+  .Splash .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 2rem 0 2rem; }
+
 .SidebarNavigation button {
   color: '#000';
   height: 70px;
@@ -46,3 +76,56 @@ body, html {
   box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.1); }
   .Header img {
     width: 6rem; }
+
+.GhostButton {
+  border: 2px solid #fff;
+  padding: 1rem 2rem;
+  width: 100%;
+  border-radius: 200rem;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  font-size: 1.1rem;
+  outline: none;
+  text-decoration: none;
+  transition: all 150ms ease-in-out; }
+  .GhostButton:last-child {
+    margin-top: 1rem; }
+  .GhostButton:hover {
+    background-color: #fff;
+    color: #72BFA5;
+    -webkit-box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.3); }
+
+.Appointment {
+  -webkit-box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.3);
+  border-radius: 10px; }
+  .Appointment header {
+    background-image: url("/images/backgrounds/work.jpg");
+    height: 10rem;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; }
+  .Appointment .content {
+    padding: 20px; }
+  .Appointment .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; }
+  .Appointment .info {
+    padding: 1rem 0; }
+    .Appointment .info div:last-child p {
+      margin-top: 0.5rem; }
+  .Appointment h2 {
+    color: #72BFA5;
+    font-size: 18px;
+    font-size: 'Roboto-Bold', sans-serif; }
+  .Appointment p {
+    color: #A2A2A2;
+    font-size: 12px;
+    font-style: italic; }

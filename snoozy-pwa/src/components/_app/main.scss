@@ -2,11 +2,19 @@
 @import '../_variables/Global';
 @import '../_variables/Colors';
 
+// Pages
+@import '../_pages/Splash';
+@import '../_pages/Dashboard';
+
 // Navigation
 @import '../SidebarNavigation/SidebarNavigation';
 
 // Header 
 @import '../Header/Header';
 
-// Pages
-@import '../_pages/Dashboard';
+// Buttons 
+@import '../buttons/GhostButton';
+@import '../buttons/SwitchButton';
+
+// Appointment 
+@import '../Appointment/Appointment';

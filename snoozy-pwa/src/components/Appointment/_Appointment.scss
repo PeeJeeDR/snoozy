@@ -1,0 +1,60 @@
+.Appointment 
+{
+    -webkit-box-shadow: 0px 5px 30px -5px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 5px 30px -5px rgba(0,0,0,0.3);
+    box-shadow: 0px 5px 30px -5px rgba(0,0,0,0.3);
+    border-radius: 10px;
+
+    header 
+    {
+        background-image: url('/images/backgrounds/work.jpg');
+        height: 10rem;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .content 
+    {
+        padding: 20px;
+    }
+
+    .top 
+    {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .info 
+    {
+        padding: 1rem 0;
+
+        div
+        {
+            &:last-child 
+            {
+                p 
+                {
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+    }
+
+    h2  
+    {
+        color: $accent;
+        font-size: 18px;
+        font-size: 'Roboto-Bold', sans-serif;
+    }
+
+    p 
+    {
+        color: $alto;
+        font-size: 12px;
+        font-style: italic;
+    }
+}

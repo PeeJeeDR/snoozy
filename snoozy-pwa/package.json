@@ -12,7 +12,8 @@
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
-    "react-sidebar": "^3.0.2"
+    "react-sidebar": "^3.0.2",
+    "react-switch": "^3.0.4"
   },
   "scripts": {
     "watch-css": "node-sass-chokidar ./src/components/_app/main.scss ./public/main.css --watch --skip-initial",
