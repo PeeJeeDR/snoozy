@@ -1,0 +1,17 @@
+.OkButton 
+{
+    background-color: $accent;
+    color: $white;
+    border: none;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    padding: 0.8rem 1rem;
+    border-radius: 3px;
+    outline: none;
+    transition: all 150ms ease-in-out;
+
+    &:hover, &:active
+    {
+        background-color: darken($accent, 20%);
+    }
+}

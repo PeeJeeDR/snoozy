@@ -102,7 +102,22 @@ h1, h2, p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 1rem; }
+  padding: 2rem 1rem 0 1rem; }
+  .SwitchButton span {
+    font-weight: bold; }
+
+.OkButton {
+  background-color: #72BFA5;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  padding: 0.8rem 1rem;
+  border-radius: 3px;
+  outline: none;
+  transition: all 150ms ease-in-out; }
+  .OkButton:hover, .OkButton:active {
+    background-color: #3f8c72; }
 
 .Appointment {
   -webkit-box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.3);
@@ -147,3 +162,42 @@ h1, h2, p {
     color: #A2A2A2;
     font-size: 14px;
     margin-top: 0.5rem; }
+
+.ManualBox {
+  padding: 1rem; }
+  .ManualBox input[type='time'] {
+    border: none;
+    border-bottom: 1px solid #72BFA5;
+    background: none;
+    color: #72BFA5;
+    width: 40%;
+    margin-top: 0.7rem;
+    outline: none;
+    font-size: 2rem;
+    font-weight: lighter;
+    font-family: 'Roboto', sans-serif; }
+  .ManualBox .inputContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; }
+  .ManualBox .days {
+    display: flex;
+    padding-top: 2rem;
+    justify-content: space-around;
+    font-weight: bold; }
+    .ManualBox .days p {
+      color: #72BFA5;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 200rem;
+      line-height: 0;
+      background-color: #fff;
+      transition: all 250ms ease-in-out; }
+      .ManualBox .days p.active {
+        background-color: #e2f2ed; }
+
+.SubTitle {
+  color: #000; }

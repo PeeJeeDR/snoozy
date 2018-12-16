@@ -1,0 +1,32 @@
+{
+    "days": [
+        {
+            "name": "monday",
+            "slug": "m"
+        },
+        {
+            "name": "tuesday",
+            "slug": "d"
+        },
+        {
+            "name": "wednesday",
+            "slug": "w"
+        },
+        {
+            "name": "thursday",
+            "slug": "d"
+        },
+        {
+            "name": "friday",
+            "slug": "v"
+        },
+        {
+            "name": "saturday",
+            "slug": "z"
+        },
+        {
+            "name": "sunday",
+            "slug": "z"
+        }
+    ]
+}

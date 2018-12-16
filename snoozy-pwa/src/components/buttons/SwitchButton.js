@@ -5,7 +5,7 @@ class SwitchButton extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            isOn: false,
+            isOn: true,
         };
     }   
     
@@ -17,11 +17,14 @@ class SwitchButton extends React.Component {
     render = () => {
         return (
             <label htmlFor="normal-switch" className='SwitchButton'>
-                <span>Turn Snoozy Off</span>
+                <span>{ this.props.labelName }</span>
                 <Switch
                     onChange={ this.toggleSwitch }
                     checked={ this.state.isOn }
                     id="normal-switch"
+                    onColor='#72BFA5'
+                    uncheckedIcon={ false }
+                    checkedIcon={ false }
                 />
             </label>
         )

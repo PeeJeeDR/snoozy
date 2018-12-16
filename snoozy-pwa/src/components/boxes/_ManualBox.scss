@@ -1,0 +1,52 @@
+.ManualBox 
+{
+    padding: 1rem;
+
+    input[type='time']
+    {
+        border: none;
+        border-bottom: 1px solid $accent;
+        background: none;
+        color: $accent;
+        width: 40%;
+        margin-top: 0.7rem;
+        outline: none;
+        font-size: 2rem;
+        font-weight: lighter;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .inputContainer 
+    {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .days 
+    {
+        display: flex;
+        padding-top: 2rem;
+        justify-content: space-around;
+        font-weight: bold;
+
+        p 
+        {
+            color: $accent;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 200rem;
+            line-height: 0;
+            background-color: $white;
+            transition: all 250ms ease-in-out;
+
+            &.active 
+            {
+                background-color: lighten($accent, 32%);
+            }
+        }
+    }
+}
