@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from '../../assets/images/Snoozy_Logo_white.png';
-import GhostButton from '../buttons/GhostButton';
+import GhostButton from '../Buttons/GhostButton';
 
 class Splash extends React.Component {
     render = () => {
@@ -15,7 +15,6 @@ class Splash extends React.Component {
 
                 <div className="buttons">
                     <GhostButton title='DASHBOARD' link='/dashboard'/>
-                    <GhostButton title='SETTINGS' link='/settings'/>
                 </div>
             </div>
         )

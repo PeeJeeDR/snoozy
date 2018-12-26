@@ -12,14 +12,16 @@ h1, h2, p {
   z-index: 100; }
 
 .Splash {
-  background-image: linear-gradient(to left top, #72bfa5, #6bc895, #72ce7d, #86d35c, #a2d531);
+  background-image: linear-gradient(-45deg, #72bfa5, #6bc895, #72ce7d, #86d35c, #a2d531);
   height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #fff; }
+  color: #fff;
+  background-size: 250% 250%;
+  animation: Gradient 8s ease infinite; }
   .Splash img {
     width: 15rem; }
   .Splash .clock {
@@ -33,6 +35,14 @@ h1, h2, p {
     flex-direction: column;
     align-items: center;
     padding: 5rem 2rem 0 2rem; }
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0% 50%; } }
 
 .SidebarNavigation button {
   color: '#000';
@@ -64,6 +74,66 @@ h1, h2, p {
 .SidebarNavigation img {
   width: 1.4rem;
   margin-right: 1rem; }
+
+.SideNavigation {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1; }
+  .SideNavigation.open ul {
+    width: 100%; }
+  .SideNavigation.open .overlay {
+    display: block;
+    opacity: 1; }
+  .SideNavigation .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    margin-top: 70px;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    display: none;
+    transition: opacity 500ms ease-in-out 3s; }
+  .SideNavigation button {
+    color: '#000';
+    height: 70px;
+    width: 70px;
+    font-size: 1.3rem;
+    background: none;
+    border: none;
+    outline: none; }
+  .SideNavigation ul {
+    background-color: #fff;
+    padding: 1rem 0 0 0.5rem;
+    margin: 0;
+    height: 100%;
+    z-index: 100;
+    overflow: hidden;
+    transition: all 200ms ease-in-out;
+    width: 0;
+    white-space: nowrap; }
+  .SideNavigation a {
+    color: #202020;
+    text-decoration: none; }
+  .SideNavigation li {
+    list-style-type: none;
+    padding: 1rem 5rem 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; }
+    .SideNavigation li.active {
+      border-left: 3px solid #72BFA5;
+      background-color: #f0f8f6; }
+  .SideNavigation img {
+    width: 1.4rem;
+    margin-right: 1rem; }
 
 .Header {
   z-index: 100;
@@ -103,6 +173,8 @@ h1, h2, p {
   align-items: center;
   justify-content: space-between;
   padding: 2rem 1rem 0 1rem; }
+  .SwitchButton label {
+    z-index: -10 !important; }
   .SwitchButton span {
     font-weight: bold; }
 

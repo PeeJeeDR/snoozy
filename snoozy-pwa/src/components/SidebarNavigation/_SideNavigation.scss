@@ -1,0 +1,91 @@
+.SideNavigation 
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+
+    &.open 
+    {
+        ul 
+        {
+            width: 100%;
+        }
+
+        .overlay 
+        {
+            display: block;
+            opacity: 1;
+        }
+    }
+
+    .overlay 
+    {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        margin-top: 70px;
+        background-color: rgba(0, 0, 0, 0.2);
+        width: 100vw;
+        height: 100%;
+        z-index: -1;
+        opacity: 0;
+        display: none;
+        transition: opacity 500ms ease-in-out 3s;
+    }
+
+    button 
+    {
+        color: '#000';
+        height: 70px;
+        width: 70px;
+        font-size: 1.3rem;
+        background: none;
+        border: none;
+        outline: none;
+    }
+
+    ul 
+    {
+        background-color: $white;
+        padding: 1rem 0 0 0.5rem;
+        margin: 0;
+        height: 100%;
+        z-index: 100;
+        overflow: hidden;
+        transition: all 200ms ease-in-out;
+        width: 0;
+        white-space: nowrap;
+    }
+
+    a 
+    {
+        color: rgb(32, 32, 32);
+        text-decoration: none;
+    }
+
+    li 
+    {
+        list-style-type: none;
+        padding: 1rem 5rem 1rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        &.active 
+        {
+            border-left: 3px solid $accent;
+            background-color: lighten($accent, 36%);
+        } 
+    }
+
+    img 
+    {
+        width: 1.4rem;
+        margin-right: 1rem;
+    }
+}

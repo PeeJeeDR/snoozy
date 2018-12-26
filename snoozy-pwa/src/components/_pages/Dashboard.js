@@ -1,10 +1,10 @@
 import React from 'react';
-import SidebarNavigation from '../SidebarNavigation/SidebarNavigation';
 import Header from '../Header/Header';
 import Appointment from '../Appointment/Appointment';
 import SwitchButton from '../buttons/SwitchButton';
 import WarningBox from '../boxes/WarningBox';
 import ManualBox from '../boxes/ManualBox';
+import SideNavigation from '../SidebarNavigation/SideNavigation';
 
 class Dashboard extends React.Component {
     constructor (props) {
@@ -12,6 +12,7 @@ class Dashboard extends React.Component {
         this.state = {
             snoozyIsOff: false,
             setToManual: false,
+            timeOnSubmit: '',
         };
     }
 
@@ -25,15 +26,20 @@ class Dashboard extends React.Component {
     renderManual = () => {
         if (this.state.setToManual)
         {
-            return <ManualBox />
+            return (
+                <ManualBox 
+                    onSubmit={ (time) => { this.setState({ timeOnSubmit: time }) } }
+                    timeAfterSubmit={ this.state.timeOnSubmit }     
+                />
+            )
         }
     }
     
     render = () => {
         return (
             <div className='Dashboard'>
-            	{/* <SidebarNavigation /> */}
 				<Header />
+                <SideNavigation />
 
                 { this.renderWarning() }
 

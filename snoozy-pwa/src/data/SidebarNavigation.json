@@ -1,6 +1,11 @@
 {
     "data": [
         {
+            "name": "Instellingen",
+            "link": "/settings",
+            "slug": "calendar"    
+        },
+        {
             "name": "Spotify",
             "link": "/spotify",
             "slug": "spotify"    

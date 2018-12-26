@@ -8,12 +8,14 @@ class ManualBox extends React.Component {
         super(props);
         this.state = {
             days: [],
-            dayActive: ''
+            dayActive: '',
         };
     }
     
     componentWillMount = () => {
-        this.setState({ days: Days.days });
+        this.setState({ 
+            days: Days.days,
+        });
     }
 
     renderDays = () => {
@@ -27,15 +29,35 @@ class ManualBox extends React.Component {
             </p>
         ))
     }
+
+    getTime = (e) => {
+        e.preventDefault();
+        let time    = e.target.time.value;
+        this.props.onSubmit(time);
+    }
+
+    timeChanged = (e) => {
+        // this.setState({ timeAfterSubmit: e.target.value })
+
+        // this.props.onSubmit( this.state.timeAfterSubmit )
+    }
     
     render = () => {
         return (
             <div className='ManualBox'>
                 <SubTitle>Handmatig instellen</SubTitle>
-                <div className='inputContainer'>
-                    <input type='time' min='00:00' max='23:59' />
+                <form className='inputContainer' onSubmit={ this.getTime }>
+                    <input 
+                        name='time' 
+                        type='time' 
+                        min='00:00' 
+                        max='23:59'
+                        value={ this.state.timeAfterSubmit }
+                        onChange={ this.timeChanged }
+                    />
+
                     <OkButton />
-                </div>
+                </form>
 
                 <div className="days">
                     { this.renderDays() }

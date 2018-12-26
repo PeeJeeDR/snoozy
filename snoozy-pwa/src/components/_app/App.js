@@ -5,6 +5,7 @@ import Calendar from '../_pages/Calendar';
 import Work from '../_pages/Work';
 import Splash from '../_pages/Splash';
 import Dashboard from '../_pages/Dashboard';
+import Settings from '../_pages/Settings';
 
 class App extends Component {
 	render() {
@@ -12,8 +13,8 @@ class App extends Component {
 			<div className="App">
 				<Route exact path='/' 			component={ Splash }/>
 				<Route exact path='/dashboard' 	component={ Dashboard }/>
-				<Route exact path='/calendar' 	component={ Calendar }/>
-				<Route exact path='/work' 		component={ Work }/>
+				<Route exact path='/settings' 	component={ Settings }/>
+				<Route exact path='/settings/snoozy' 	component={ Work }/>
 			</div>
 		);
 	}

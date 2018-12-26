@@ -2,7 +2,7 @@ import React from 'react';
 
 const OkButton = (props) => {
     return (
-        <button className='OkButton'>
+        <button className='OkButton' type='submit'>
             INSTELLEN 
         </button>
     );

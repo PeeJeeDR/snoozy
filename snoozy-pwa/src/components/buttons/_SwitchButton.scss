@@ -5,6 +5,11 @@
     justify-content: space-between;
     padding: 2rem 1rem 0 1rem;
 
+    label 
+    {
+        z-index: -10 !important;
+    }
+
     span 
     {
         font-weight: bold;
