@@ -5,13 +5,15 @@ class SwitchButton extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            isOn: props.defaultOn,
+            checked: this.props.defaultOn,
         };
     }   
     
-    toggleSwitch = (isOn) => {
-        this.setState({ isOn });
-        this.props.onClick();
+    toggleSwitch = (checked) => {
+        this.setState({ checked });
+
+        console.log('toggle: ', this.state.checked);
+        this.props.onClick( this.state.checked );
     }
 
     render = () => {
@@ -20,7 +22,7 @@ class SwitchButton extends React.Component {
                 <span>{ this.props.labelName }</span>
                 <Switch
                     onChange={ this.toggleSwitch }
-                    checked={ this.state.isOn }
+                    checked={ this.state.checked }
                     id="normal-switch"
                     onColor='#72BFA5'
                     uncheckedIcon={ false }
