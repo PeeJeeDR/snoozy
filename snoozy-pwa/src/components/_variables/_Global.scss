@@ -13,6 +13,14 @@ h1, h2, p
 
 .page_wrapper 
 {
-    padding: 10px;
+    padding: 0.5rem 0;
+    width: 95%;
+    margin: 0 auto;
     z-index: 100;
+}
+
+.content_wrapper 
+{
+    width: 85%;
+    margin: 0 auto;
 }

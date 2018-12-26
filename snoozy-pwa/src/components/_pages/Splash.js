@@ -1,8 +1,17 @@
 import React from 'react';
 import Logo from '../../assets/images/Snoozy_Logo_white.png';
 import GhostButton from '../Buttons/GhostButton';
+import { db } from '../../firebase/firebase';
 
 class Splash extends React.Component {
+    componentWillMount = () => {
+        db.collection('notifications').get().then(res => {
+            res.forEach(doc => {
+                console.log(doc.id, doc.data());
+            })
+        })
+    }
+    
     render = () => {
         return (
             <div className='Splash'>

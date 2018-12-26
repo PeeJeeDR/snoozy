@@ -5,9 +5,12 @@
     bottom: 0;
     left: 0;
     z-index: 1;
+    visibility: hidden;
 
     &.open 
     {
+        visibility: visible;
+
         ul 
         {
             width: 100%;
@@ -47,12 +50,13 @@
         background: none;
         border: none;
         outline: none;
+        visibility: visible;
     }
 
     ul 
     {
         background-color: $white;
-        padding: 1rem 0 0 0.5rem;
+        padding: 1rem 0 0 0;
         margin: 0;
         height: 100%;
         z-index: 100;

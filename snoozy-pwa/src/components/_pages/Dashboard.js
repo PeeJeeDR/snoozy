@@ -1,9 +1,9 @@
 import React from 'react';
 import Header from '../Header/Header';
 import Appointment from '../Appointment/Appointment';
-import SwitchButton from '../buttons/SwitchButton';
-import WarningBox from '../boxes/WarningBox';
-import ManualBox from '../boxes/ManualBox';
+import SwitchButton from '../Buttons/SwitchButton';
+import WarningBox from '../Boxes/WarningBox';
+import ManualBox from '../Boxes/ManualBox';
 import SideNavigation from '../SidebarNavigation/SideNavigation';
 
 class Dashboard extends React.Component {
@@ -49,6 +49,7 @@ class Dashboard extends React.Component {
                     <SwitchButton 
                         onClick={() => this.setState({ setToManual: !this.state.setToManual })}
                         labelName='Automatische wekker'
+                        defaultOn={ true }
                     />
 
                     { this.renderManual() }
@@ -56,6 +57,7 @@ class Dashboard extends React.Component {
                     <SwitchButton 
                         onClick={() => this.setState({ snoozyIsOff: !this.state.snoozyIsOff })}
                         labelName='Schakel je Snoozy in'
+                        defaultOn={ true }
                     />
                 </div>
             </div>

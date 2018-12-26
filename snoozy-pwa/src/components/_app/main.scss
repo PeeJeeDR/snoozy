@@ -5,27 +5,33 @@
 // Pages
 @import '../_pages/Splash';
 @import '../_pages/Dashboard';
-@import '../_pages/Settings';
-@import '../_pages/SettingsSnoozy';
+@import '../_pages/ExternalApps';
 
 // Navigation
-@import '../SidebarNavigation/SidebarNavigation';
 @import '../SidebarNavigation/SideNavigation';
 
 // Header 
 @import '../Header/Header';
 
 // Buttons 
-@import '../buttons/GhostButton';
-@import '../buttons/SwitchButton';
-@import '../buttons/OkButton';
+@import '../Buttons/GhostButton';
+@import '../Buttons/SwitchButton';
+@import '../Buttons/OkButton';
 
 // Appointment 
 @import '../Appointment/Appointment';
 
 // Boxes
-@import '../boxes/WarningBox';
-@import '../boxes/ManualBox';
+@import '../Boxes/WarningBox';
+@import '../Boxes/ManualBox';
 
 // Titles
-@import '../titles/SubTitle';
+@import '../Titles/SubTitle';
+@import '../Titles/SmallSectionTitle';
+@import '../Titles/Sectionheading';
+
+// Sections 
+@import '../Sections/GoogleCalendarSection';
+
+// Paragraphs 
+@import '../Paragraphs/Paragraph';

@@ -5,7 +5,7 @@ class SwitchButton extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            isOn: true,
+            isOn: props.defaultOn,
         };
     }   
     

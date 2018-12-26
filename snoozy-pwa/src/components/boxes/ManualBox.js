@@ -1,7 +1,7 @@
 import React from 'react';
-import SubTitle from '../titles/SubTitle';
+import SubTitle from '../Titles/SubTitle';
 import Days from '../../data/DayPicker.json';
-import OkButton from '../buttons/OkButton';
+import OkButton from '../Buttons/OkButton';
 
 class ManualBox extends React.Component {
     constructor (props) {

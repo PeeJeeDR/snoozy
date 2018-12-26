@@ -1,9 +1,14 @@
 {
     "data": [
         {
-            "name": "Instellingen",
-            "link": "/settings",
-            "slug": "calendar"    
+            "name": "Dashboard",
+            "link": "/dashboard",
+            "slug": "dashboard"    
+        },
+        {
+            "name": "Externe Apps",
+            "link": "/external-apps",
+            "slug": "external-apps"    
         },
         {
             "name": "Spotify",

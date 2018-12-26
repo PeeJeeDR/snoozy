@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Data from '../../data/SidebarNavigation.json';
+import Data from '../../data/Navigation.json';
 
 class SideNavigation extends React.Component {
     constructor (props) {
@@ -32,8 +32,8 @@ class SideNavigation extends React.Component {
     
     render = () => {
         return (
-            <nav className={ `SideNavigation ${ this.state.isOpen ? '' : 'open' }` }>
-                <div className="overlay"></div>
+            <nav className={ `SideNavigation ${ this.state.isOpen ? 'open' : '' }` }>
+                <div className="overlay" onClick={ this.toggleBar }></div>
 
                 <button onClick={ this.toggleBar }>
                     <i className="fas fa-bars"></i>
