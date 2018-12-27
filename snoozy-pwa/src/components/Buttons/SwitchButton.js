@@ -5,14 +5,16 @@ class SwitchButton extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            checked: this.props.defaultOn,
+            checked: false,
         };
-    }   
+    }  
     
+    componentDidMount = () => {
+        this.setState({ checked: this.props.defaultOn })
+    }
+
     toggleSwitch = (checked) => {
         this.setState({ checked });
-
-        console.log('toggle: ', this.state.checked);
         this.props.onClick( this.state.checked );
     }
 

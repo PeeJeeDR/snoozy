@@ -1,9 +1,10 @@
 import React from 'react';
+import { BounceLoader } from 'react-spinners';
 import SmallSectionTitle from '../Titles/SmallSectionTitle';
 import Paragraph from '../Paragraphs/Paragraph';
-// import SwitchButton from '../Buttons/SwitchButton';
+import SwitchButton from '../Buttons/SwitchButton';
 import * as CalendarConfig from '../../config/CalendarConfig';
-import Switch from 'react-switch';
+import { db } from '../../firebase/firebase';
 
 let gapi  = window.gapi;
 
@@ -12,8 +13,16 @@ class GoogleCalendarSection extends React.Component {
         super(props);
         this.state = {
             toggleIsOn: false,
+            signedIn: false,
             apiLoaded: false,
         };
+    }
+
+    componentWillMount = () => {
+        db.collection('api-data').doc('calendar-data').get()
+            .then(snap => {
+                console.log(snap.data());
+            })
     }
 
     componentDidMount = () => {
@@ -44,23 +53,16 @@ class GoogleCalendarSection extends React.Component {
         }).catch(err => {
             console.log(err);
         })
-
-        
     }
 
     updateSigninStatus = (isSignedIn) => {
-        console.log('Signed: ', isSignedIn);
-        this.setState({ apiLoaded: true })
+        console.log('sign_status: ', isSignedIn);
+
+        this.setState({ signedIn: isSignedIn, apiLoaded: true })
 
         if (isSignedIn)
         {
-            this.setState({ toggleIsOn: true })
             this.listUpcomingEvents();
-        } 
-
-        if (this.state.apiLoaded && !this.state.toggleIsOn)
-        {
-            this.handleSignoutClick();
         }
     }
 
@@ -74,32 +76,71 @@ class GoogleCalendarSection extends React.Component {
             'orderBy': 'startTime'
         }).then(res => {
             let events  = res.result.items;
-            console.log(events);
+            this.saveDataToFirebase(events);
         })
     }
 
-    toggleSwitch = () => {
-        this.setState({ toggleIsOn: !this.state.toggleIsOn })
+    saveDataToFirebase = (events) => {
+        const firstEvent    = events[0];
+
+        const eventData     = {
+            title: firstEvent.summary,
+            location: firstEvent.location,
+            start_time: firstEvent.start.dateTime.split('T')[1].split('+')[0],
+            start_date: firstEvent.start.dateTime.split('T')[0],
+            end_time: firstEvent.end.dateTime.split('T')[1].split('+')[0],
+            end_date: firstEvent.end.dateTime.split('T')[0],
+            login_status: true
+        }
+
+        db.collection('api-data').doc('calendar-data').set(eventData)
+            .then(res => {
+                console.log('Data posted successfully!');
+            })
+            .catch(err => {
+                console.log('Something went wrong!');
+            })
     }
 
-    checkLoginAfterToggle = () => {
+    toggleSwitch = () => {
+        if (this.state.signedIn)
+        {
+            console.log('logging_out');
+            this.setState({ signedIn: false })
+            this.handleSignoutClick();
+        }
+
+        if (!this.state.signedIn)
+        {
+            console.log('logging_in');
+            this.setState({ signedIn: true })
+            this.handleAuthClick();
+        }
+    }
+
+    renderSwitch = () => {
         if (this.state.apiLoaded)
         {
-            if (this.state.toggleIsOn)
-            {
-                this.handleAuthClick();
-            }
-
-            if (!this.state.toggleIsOn)
-            {
-                this.handleSignoutClick();
-            }
+            return (
+                <SwitchButton 
+                    onClick={ this.toggleSwitch } 
+                    defaultOn={ this.state.signedIn }
+                />
+            )
+        }
+        else 
+        {
+            return (
+                <BounceLoader 
+                    loading={ true }
+                    size={ 28 }
+                    color={ '#72BFA5' }
+                />
+            )
         }
     }
     
     render = () => {
-        this.checkLoginAfterToggle();
-        
         return (
             <div className='GoogleCalendarSection'>
                 <div className='titleSection'>
@@ -108,16 +149,7 @@ class GoogleCalendarSection extends React.Component {
                         <SmallSectionTitle title='Google Calendar'/>
                     </div>
 
-                    {/* <SwitchButton onClick={ this.toggleClick } defaultOn={ this.state.toggleIsOn }/> */}
-
-                    <Switch
-                        onChange={ this.toggleSwitch }
-                        checked={ this.state.toggleIsOn }
-                        id="normal-switch"
-                        onColor='#72BFA5'
-                        uncheckedIcon={ false }
-                        checkedIcon={ false }
-                    />
+                    { this.renderSwitch() }
                 </div>
 
                 <Paragraph>

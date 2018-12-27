@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import ExternalAppsReducer from './ExternalAppsReducer';
 
-const rootReducer = () => {
-    return [];
-}
+const rootReducer = combineReducers({
+    ExternalAppsReducer
+})
 
 export default rootReducer;
