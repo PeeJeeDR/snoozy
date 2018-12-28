@@ -201,6 +201,8 @@ h1, h2, p {
     color: #A2A2A2;
     font-size: 12px;
     font-style: italic; }
+  .Appointment .loaderBig {
+    width: 100%; }
 
 .WarningBox {
   background-color: #FFE066;
@@ -264,19 +266,22 @@ h1, h2, p {
   padding: 2rem;
   font-size: 1.3rem; }
 
-.GoogleCalendarSection .titleSection {
+.GoogleCalendarSection .titleSection, .GoogleMapsSection .titleSection {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0; }
-  .GoogleCalendarSection .titleSection img {
+  .GoogleCalendarSection .titleSection img, .GoogleMapsSection .titleSection img {
     width: 1.4rem;
     margin-right: 1rem; }
-  .GoogleCalendarSection .titleSection div {
+  .GoogleCalendarSection .titleSection div, .GoogleMapsSection .titleSection div {
     display: flex;
     align-items: center; }
-  .GoogleCalendarSection .titleSection label {
+  .GoogleCalendarSection .titleSection label, .GoogleMapsSection .titleSection label {
     padding: 0; }
+
+.GoogleMapsSection {
+  margin-top: 2rem; }
 
 .Paragraph {
   color: #A2A2A2;

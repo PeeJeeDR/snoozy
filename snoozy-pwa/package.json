@@ -4,7 +4,12 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
     "firebase": "^5.7.1",
+    "google-distance": "^1.0.1",
+    "google-distance-matrix": "^1.1.1",
+    "google-maps-react": "^2.0.2",
     "gulp": "3.9.1",
     "gulp-clean-css": "^4.0.0",
     "gulp-sass": "^4.0.2",

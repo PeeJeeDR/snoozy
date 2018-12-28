@@ -3,7 +3,7 @@ import { BounceLoader } from 'react-spinners';
 import SmallSectionTitle from '../Titles/SmallSectionTitle';
 import Paragraph from '../Paragraphs/Paragraph';
 import SwitchButton from '../Buttons/SwitchButton';
-import * as CalendarConfig from '../../config/CalendarConfig';
+import * as ApiConfig from '../../config/ApiConfig';
 import { db } from '../../firebase/firebase';
 
 let gapi  = window.gapi;
@@ -16,13 +16,6 @@ class GoogleCalendarSection extends React.Component {
             signedIn: false,
             apiLoaded: false,
         };
-    }
-
-    componentWillMount = () => {
-        db.collection('api-data').doc('calendar-data').get()
-            .then(snap => {
-                console.log(snap.data());
-            })
     }
 
     componentDidMount = () => {
@@ -43,10 +36,10 @@ class GoogleCalendarSection extends React.Component {
 
     initClient = () => {
         gapi.client.init({
-            apiKey: CalendarConfig.API_KEY,
-            discoveryDocs: CalendarConfig.DISCOVERY_DOCS,
-            clientId: CalendarConfig.CLIENT_ID,
-            scope: CalendarConfig.SCOPES
+            apiKey: ApiConfig.API_KEY,
+            discoveryDocs: ApiConfig.DISCOVERY_DOCS,
+            clientId: ApiConfig.CLIENT_ID,
+            scope: ApiConfig.SCOPES
         }).then(() => {
             gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
             this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
@@ -56,8 +49,6 @@ class GoogleCalendarSection extends React.Component {
     }
 
     updateSigninStatus = (isSignedIn) => {
-        console.log('sign_status: ', isSignedIn);
-
         this.setState({ signedIn: isSignedIn, apiLoaded: true })
 
         if (isSignedIn)
@@ -86,16 +77,16 @@ class GoogleCalendarSection extends React.Component {
         const eventData     = {
             title: firstEvent.summary,
             location: firstEvent.location,
-            start_time: firstEvent.start.dateTime.split('T')[1].split('+')[0],
+            start_time: firstEvent.start.dateTime.split('T')[1].split('+')[0].slice(0, -3),
             start_date: firstEvent.start.dateTime.split('T')[0],
-            end_time: firstEvent.end.dateTime.split('T')[1].split('+')[0],
+            end_time: firstEvent.end.dateTime.split('T')[1].split('+')[0].slice(0, -3),
             end_date: firstEvent.end.dateTime.split('T')[0],
             login_status: true
         }
 
         db.collection('api-data').doc('calendar-data').set(eventData)
             .then(res => {
-                console.log('Data posted successfully!');
+                return;
             })
             .catch(err => {
                 console.log('Something went wrong!');
@@ -105,14 +96,12 @@ class GoogleCalendarSection extends React.Component {
     toggleSwitch = () => {
         if (this.state.signedIn)
         {
-            console.log('logging_out');
             this.setState({ signedIn: false })
             this.handleSignoutClick();
         }
 
         if (!this.state.signedIn)
         {
-            console.log('logging_in');
             this.setState({ signedIn: true })
             this.handleAuthClick();
         }
