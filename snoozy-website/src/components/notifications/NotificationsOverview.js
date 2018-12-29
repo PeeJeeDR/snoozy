@@ -1,24 +1,28 @@
 import React from 'react';
-import { db } from '../../firebase';
+import { db } from '../../firebase/firebase';
 import Notification from './Notification';
 
 class NotificationsOverview extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            data: [],
+            notifications: [],
+            apiLoaded: false,
         };
     }
     
     componentWillMount = () => {
-        db.ref('notifications').on('value', snap => {
-            this.setState({ data: snap.val() });
-        })
+        db.collection('notifications').onSnapshot(docs => {
+            this.setState({ notifications: [] })
+            docs.forEach(doc => {
+                this.setState({ notifications: [...this.state.notifications, doc.data()] });
+            })
+        });
     }
 
     renderNotifications = () => {
-        return this.state.data.map((notification, i) => (
-            <Notification key={ i } name={ notification.name }/>
+        return this.state.notifications.map((notification, i) => (
+            <Notification key={ i } notification={ notification }/>
         ))
     }
     

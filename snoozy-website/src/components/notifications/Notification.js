@@ -2,10 +2,11 @@ import React from 'react';
 import Facebook from '../../assets/svg/facebook.png';
 import Twitter from '../../assets/svg/twitter.png';
 import Mail from '../../assets/svg/mail.png';
+import Warning from '../../assets/svg/warning.png'
 
 class Notification extends React.Component {
     renderIcon = () => {
-        switch (this.props.name)
+        switch (this.props.notification.name)
         {
             case 'facebook':
                 return <img src={ Facebook } alt="icon."/>
@@ -15,6 +16,9 @@ class Notification extends React.Component {
             
             case 'mail':
                 return <img src={ Mail } alt="icon."/>
+
+            default:
+                return <img src={ Warning } alt="Warning icon."/>
         }
 
     }
@@ -24,7 +28,7 @@ class Notification extends React.Component {
             <div className='Notification'>
                 { this.renderIcon() }
                 <p>
-                    3
+                    { this.props.notification.notifications }
                 </p>
             </div>
         )

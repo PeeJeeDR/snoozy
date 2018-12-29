@@ -20,22 +20,27 @@ h1, h3 {
   font-size: 5.25rem;
   font-weight: lighter; }
 
-.Alarm {
+.Alarm div {
   display: flex;
   flex-direction: column;
   align-items: center; }
 
 .Alarm img {
   width: 1.188rem;
-  margin-top: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
   flex-grow: 1; }
 
-.Alarm h3 {
+.Alarm h3, .Alarm h5 {
   font-family: 'Digital-7 Mono';
   color: #C7C7C7;
   font-size: 1.5rem;
   font-weight: lighter;
   margin-top: 0.5rem; }
+
+.Alarm h5 {
+  font-size: 1.5rem;
+  margin-bottom: 0rem; }
 
 .NotificationsOverview {
   display: flex;

@@ -10,20 +10,38 @@ const google  = window.google;
 class GoogleMapsSection extends React.Component {
     constructor (props) {
         super(props);
+        this.state = {
+            apiLoaded: false,
+            destination: '',
+            start_date: '',
+            start_time: '',
+        }
 
-        this.apiLoaded  = false;
         this.isEnabled  = false;
     }
 
     componentWillMount = () => {
+        this.getCalendarData();
         this.getFirebaseEnabledStatus();
+    }
+
+    getCalendarData = () => {
+        db.collection('api-data').doc('calendar-data').get()
+            .then(res => {
+                this.setState({ 
+                    destination: res.data().location,
+                    start_date: res.data().start_date,
+                    start_time: res.data().start_time,
+                })
+            })
     }
 
     getFirebaseEnabledStatus = () => {
         db.collection('api-data').doc('maps-data').get()
-            .then((res) => {
+            .then(res => {
                 this.isEnabled  = res.data().enabled;
-                this.apiLoaded  = true;
+                
+                this.setState({ apiLoaded: true });
 
                 if (res.data().enabled)
                 {
@@ -36,13 +54,18 @@ class GoogleMapsSection extends React.Component {
         db.collection('api-data').doc('maps-data').set({
             enabled: this.isEnabled,
         })
+
+        if (this.isEnabled) this.collectMapsData();
     }
 
     collectMapsData = () => {
-        var origin          = 'Flierenbos 20, 2370 Arendonk';
-        var destination     = 'Otto Veniusstraat 30, 2000 Antwerpen';
+        var origin          = 'Heilaar 16, 2370 Arendonk';
+        var destination     = this.state.destination;
 
         var service = new google.maps.DistanceMatrixService();
+
+        console.log(this.state.start_date);
+        console.log(new Date(this.state.start_date + 'T' + this.state.start_time + 'Z'));
 
         service.getDistanceMatrix({
             origins: [ origin ],
@@ -50,21 +73,26 @@ class GoogleMapsSection extends React.Component {
             travelMode: google.maps.TravelMode.DRIVING,
             unitSystem: google.maps.UnitSystem.METRIC,
             drivingOptions: {
-                departureTime: new Date(Date.now()),
+                departureTime: new Date(Date.now()), // Deze moet aangepast worden naar de start van de calendar
                 trafficModel: 'bestguess'
             }
         }, (response, status) => {
-            this.setState({ mapsData: response.rows[0].elements })
+            db.collection('api-data').doc('maps-data').set({
+                enabled: true,
+                distance: response.rows[0].elements[0].distance.text,
+                duration: response.rows[0].elements[0].duration.text,
+                duration_in_traffic: response.rows[0].elements[0].duration_in_traffic.text,
+            });
         });
     }
 
     toggleSwitch = () => {
         this.isEnabled  = !this.isEnabled;
-        this.setFirebaseEnabledStatus()
+        this.setFirebaseEnabledStatus();
     }
 
     renderSwitch = () => {
-        if (this.apiLoaded) return <SwitchButton onClick={ this.toggleSwitch } defaultOn={ this.isEnabled }/>
+        if (this.state.apiLoaded) return <SwitchButton onClick={ this.toggleSwitch } defaultOn={ this.isEnabled }/>
         return <BounceLoader loading={ true } size={ 28 } color={ '#72BFA5' } />
     }
     
@@ -74,7 +102,7 @@ class GoogleMapsSection extends React.Component {
                 <div className='titleSection'>
                     <div>
                         <img src="/images/icons/travel.png" alt="Google calendar icon."/>
-                        <SmallSectionTitle title='Tijdsafstand berkenen'/>
+                        <SmallSectionTitle title='Reistijd berkenen'/>
                     </div>
 
                     { this.renderSwitch() }
@@ -82,7 +110,8 @@ class GoogleMapsSection extends React.Component {
 
                 <Paragraph>
                     Door dit in te schakelen zal je Snoozy de tijd berekenen die er nodig is om 
-                    je te verplaatsen van jou thuis naar het werk.
+                    je te verplaatsen van jou thuis naar het werk. Deze functie werkt enkel na 
+                    het verbinden met je Google Calendar.
                 </Paragraph>
             </div>
         )

@@ -50,6 +50,9 @@ h1, h2, p {
   100% {
     background-position: 0% 50%; } }
 
+.Dashboard {
+  padding-bottom: 3rem; }
+
 .SideNavigation {
   position: absolute;
   top: 0;
