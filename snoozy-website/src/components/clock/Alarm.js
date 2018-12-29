@@ -12,7 +12,6 @@ class Alarm extends React.Component {
     
     componentWillMount = () => {
         db.collection('snoozy').doc('status').onSnapshot(field => {
-            console.log(field.data().power_status);
             this.setState({ powerStatus: field.data().power_status })
         })
     }

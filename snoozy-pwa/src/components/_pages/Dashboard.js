@@ -15,28 +15,31 @@ class Dashboard extends React.Component {
             setToManual: false,
             timeOnSubmit: '',
             ApiLoaded: false,
+
+            start_time: '',
+            start_date: '',
+            user_time: '',
         };
 
         this.powerStatus    = false;
     }
 
     componentWillMount = () => {
+        this.calculateAlarm();
         this.getSnoozyStatus();
     }
 
-    getSnoozyStatus = () => {
-        db.collection('snoozy').doc('status').get()
-            .then(res => {
-                this.powerStatus    = res.data().power_status
-                this.setState({ ApiLoaded: true, showWarningBox: this.powerStatus })
-            })
+    calculateAlarm = () => {
+        db.collection('snoozy').doc('status').onSnapshot(res => {
+            
+        });
     }
 
-    renderWarning = () => {
-        if (this.state.ApiLoaded && !this.state.showWarningBox)
-        {
-            return <WarningBox />;
-        }
+    getSnoozyStatus = () => {
+        db.collection('snoozy').doc('status').onSnapshot(res => {
+            this.powerStatus    = res.data().power_status
+            this.setState({ ApiLoaded: true, showWarningBox: this.powerStatus })
+        });
     }
 
     timeOnSubmit = (time) => {
@@ -61,9 +64,9 @@ class Dashboard extends React.Component {
 
         this.setState({ showWarningBox: this.powerStatus });
         
-        db.collection('snoozy').doc('status').set({
+        db.collection('snoozy').doc('status').update({
             power_status: this.powerStatus
-        }, { merge: true })
+        })
     }
     
     render = () => {
@@ -72,7 +75,7 @@ class Dashboard extends React.Component {
 				<Header />
                 <SideNavigation />
 
-                { this.renderWarning() }
+                { this.state.ApiLoaded && !this.state.showWarningBox ? <WarningBox /> : '' }
 
                 <div className="page_wrapper">
                     <Appointment />
