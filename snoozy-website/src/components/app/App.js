@@ -113,12 +113,12 @@ class App extends Component {
 				start_time: res.data().start_time,
 			});
 
-			this.calculateTraffic(res.data().location)
+			if (this.state.snoozyLocation !== '') this.calculateTraffic(res.data().location)
 		})
 	}
 
 
-	//converts IP or geolocation to address
+	// Converts IP or geolocation to address.
 	getAddress = (latitude, longitude) => {
 		const url 	= 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&key=' + GOOGLE_MAP_KEY;
 
