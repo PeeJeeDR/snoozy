@@ -5,6 +5,7 @@ import { db } from '../../firebase/firebase';
 import NotificationsOverview from '../notifications/NotificationsOverview';
 import Buzz from '../../assets/audio/buzz.mp3';
 import Sound from 'react-sound';
+import Overlay from '../overlay/Overlay';
 
 const google  = window.google;
 
@@ -23,25 +24,19 @@ class App extends Component {
 			alarmIsPlaying: false,
 			timeAlarmOn: 0,
 		};
-
-		this.firstRequest 	= false;
 	}
 
 	componentDidMount = () => {
-		const date 		= new Date(Date.now());
-		const curHour 	= date.getHours();
-		let counter 	= 0;
-
-
-		console.log(counter);
-
+		// Keep checking with a 1 minute interval
 		this.interval = setInterval(() => { 
 			this.getFirebaseData();
 		}, 60000);
 
 		this.tickInterval 	= setInterval(() => {
+			// Check if alarm time is the same as the current time.
 			this.CheckAlarm();
 
+			// Check if alarm is ringing and shut down after 8 seconds.
 			if (this.state.alarmIsPlaying)
 			{
 				this.setState({ timeAlarmOn: this.state.timeAlarmOn + 1 });
@@ -51,6 +46,7 @@ class App extends Component {
 			{
 				this.setState({ alarmIsPlaying: false });
 			}
+
 		}, 1000)
 	}
 
@@ -66,25 +62,28 @@ class App extends Component {
 	}
 
 	CheckAlarm = () => {
-		if (this.state.totalTime.toLocaleTimeString() == new Date().toLocaleTimeString())
+		if (this.state.totalTime.toLocaleTimeString() === new Date().toLocaleTimeString())
 		{
 			this.setState({ alarmIsPlaying: true });
 		}
 	}
 
 	getAutoStatus = () => {
+		// Check if auto alarm is enabled.
 		db.collection('api-data').doc('maps-data').onSnapshot(res => {
 			this.setState({ autoCalculateIsOn: res.data().enabled })
 		});
 	}
 
 	getFirebaseData = () => {
+		// Get departure time/
 		db.collection('api-data').doc('maps-data').onSnapshot(res => {
 			var date 	= new Date(1970, 0, 1);
 			date.setSeconds(res.data().departure_time.seconds);
 			this.setState({ departureTime: date });
 		});
 
+		// Get location, start_time and start_date
 		db.collection('api-data').doc('calendar-data').onSnapshot(res => {
 			this.setState({ 
 				destination: res.data().location,
@@ -102,6 +101,7 @@ class App extends Component {
 		const calendarStartDate     = new Date(this.state.start_date + 'T' + this.state.start_time + '');
 		const service               = new google.maps.DistanceMatrixService();
 
+		// Get traffic data.
 		service.getDistanceMatrix({
 			origins: [ origin ],
 			destinations: [ destination ],
@@ -112,8 +112,7 @@ class App extends Component {
 				trafficModel: 'bestguess'
 			}
 		}, (response, status) => {
-			console.log(response);
-
+			// Set traffic response to state.
 			if (status === 'OK')
 			{
 				db.collection('api-data').doc('maps-data').update({
@@ -128,6 +127,7 @@ class App extends Component {
 	
 				calendarStartDate.setMinutes(calendarStartDate.getMinutes() - parseInt(response.rows[0].elements[0].duration_in_traffic.text));
 	
+				// Set departure_time to Firebase.
 				db.collection('api-data').doc('maps-data').set({
 					departure_time: calendarStartDate,
 				}, { merge: true });
@@ -136,6 +136,7 @@ class App extends Component {
 	}
 
 	calculateTotalTime = () => {
+		// Calculate alarm time.
 		db.collection('user-data').onSnapshot(docs => {
 			docs.forEach(doc => {
 				const timeFromFb 	= doc.data().time_needed
@@ -155,6 +156,8 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
+				<Overlay />
+		
 				<div className="all">
 					<BigClock />
 					<Alarm time={ this.state.totalTime }/>

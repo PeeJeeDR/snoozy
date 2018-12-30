@@ -16,17 +16,39 @@ class Alarm extends React.Component {
         })
     }
 
+    returnHours = () => {
+        if (this.props.time.getHours() >= 0 && this.props.time.getHours() < 10)
+        {
+            return `0${ this.props.time.getHours() }`
+        }
+        else 
+        {
+            return this.props.time.getHours();
+        }
+    }
+
+    returnMinutes = () => {
+        if (this.props.time.getMinutes() >= 0 && this.props.time.getMinutes() < 10)
+        {
+            return `0${ this.props.time.getMinutes() }`
+        }
+        else 
+        {
+            return this.props.time.getMinutes();
+        }
+    }
+
     renderClock = () => {
         if (this.state.powerStatus)
         {
             return (
                 <div>
                     <img src={ AlarmClock } alt='Clock icon.'/>
-                    <h3>{ this.props.time.toLocaleTimeString().slice(0, -3) }</h3>
+                    <h3>{ `${ this.returnHours() }:${ this.returnMinutes() }` }</h3>
                 </div>
             )
         }
-        else 
+        else
         {
             return <h5>Snoozy is uitgeschakeld</h5>
         }
