@@ -5,7 +5,7 @@ import { db } from '../../firebase/firebase';
 import NotificationsOverview from '../notifications/NotificationsOverview';
 import Buzz from '../../assets/audio/buzz.mp3';
 import Sound from 'react-sound';
-// import Overlay from '../overlay/Overlay';
+import Overlay from '../overlay/Overlay';
 import axios from 'axios';
 
 const google  			= window.google;
@@ -28,6 +28,8 @@ class App extends Component {
 			timeAlarmOn: 0,
 
 			overlayIsPressed: false,
+
+			snoozyLocation: '',
 		};
 
 		this.counter 	= 0;
@@ -75,16 +77,13 @@ class App extends Component {
 	}
 	
 	componentWillMount = () => {
+		this.getOrigin();
 		this.getAutoStatus();
 		this.getFirebaseData();
 		this.calculateTotalTime();
-		//this.getOrigin();
 	}
 
 	CheckAlarm = () => {
-		//console.log(this.state.totalTime.toLocaleTimeString());
-		//console.log(new Date().toLocaleTimeString());
-
 		if (this.state.totalTime.toLocaleTimeString() === new Date().toLocaleTimeString())
 		{
 			this.setState({ alarmIsPlaying: true });
@@ -124,7 +123,7 @@ class App extends Component {
 		const url 	= 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&key=' + GOOGLE_MAP_KEY;
 
 		axios.get(url).then(res => {
-			console.log('User\'s Address Data is ', res);
+			this.setState({ snoozyLocation: res.data.results[0].formatted_address })
 		}).catch(err => {
 			console.log('Request failed.  Returned status of', err);
 		});
@@ -161,7 +160,7 @@ class App extends Component {
 	}
 
 	calculateTraffic = (from) => {
-		const origin                = 'Flierenbos 20, 2370 Arendonk';
+		const origin                = this.state.snoozyLocation;
 		const destination           = from;
 		const calendarStartDate     = new Date(this.state.start_date + 'T' + this.state.start_time + '');
 		const service               = new google.maps.DistanceMatrixService();
@@ -217,20 +216,14 @@ class App extends Component {
 			});
 		});
 	}
-
-	clickedOnOverlay = () => {
-		this.setState({ overlayIsPressed: true });
-	}
 	
 	render() {
 		return (
 			<div className="App">
-{/* 				<Overlay 
-					onOverlayPress={ this.clickedOnOverlay } 
+ 				<Overlay 
+					onOverlayPress={ () => { this.setState({ overlayIsPressed: true }) } } 
 					active={ this.state.overlayIsPressed }
-				/> */}
-
-				<button onClick={ this.getOrigin }>getOriginBtn</button>
+				/>
 		
 				<div className="all">
 					<BigClock />
