@@ -20,7 +20,7 @@ h1, h3 {
 
 .BigClock h1 {
   font-family: 'Digital';
-  color: #C7C7C7;
+  color: #FFF;
   font-size: 5.25rem;
   font-weight: lighter; }
 
@@ -37,7 +37,7 @@ h1, h3 {
 
 .Alarm h3, .Alarm h5 {
   font-family: 'Digital';
-  color: #C7C7C7;
+  color: #FFF;
   font-size: 1.5rem;
   font-weight: lighter;
   margin-top: 0.5rem; }
@@ -48,19 +48,30 @@ h1, h3 {
 
 .NotificationsOverview {
   display: flex;
-  margin-top: 3rem; }
+  margin-top: 2.5rem; }
 
 .Notification {
   display: flex;
   flex-direction: column;
   align-items: center; }
+  .Notification img {
+    width: 2.2rem;
+    margin: 0 0.6rem; }
+  .Notification p {
+    font-size: 18px;
+    font-family: 'Roboto',  sans-serif;
+    color: #FFF;
+    margin-top: 0.5rem; }
 
-.Notification img {
-  width: 2.5rem;
-  margin: 0 0.6rem; }
-
-.Notification p {
-  font-size: 18px;
-  font-family: 'Roboto', sans-serif;
-  color: #C7C7C7;
-  margin-top: 0.5rem; }
+.Overlay {
+  background-color: #000;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+  opacity: 0;
+  cursor: none; }
+  .Overlay.dark {
+    opacity: .5; }
