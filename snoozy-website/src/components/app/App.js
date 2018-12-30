@@ -3,6 +3,8 @@ import BigClock from '../clock/BigClock';
 import Alarm from '../clock/Alarm';
 import { db } from '../../firebase/firebase';
 import NotificationsOverview from '../notifications/NotificationsOverview';
+import Buzz from '../../assets/audio/buzz.mp3';
+import Sound from 'react-sound';
 
 const google  = window.google;
 
@@ -16,7 +18,10 @@ class App extends Component {
 
 			destination: '',
             start_date: '',
-            start_time: '',
+			start_time: '',
+			
+			alarmIsPlaying: false,
+			timeAlarmOn: 0,
 		};
 
 		this.firstRequest 	= false;
@@ -33,16 +38,41 @@ class App extends Component {
 		this.interval = setInterval(() => { 
 			this.getFirebaseData();
 		}, 60000);
+
+		this.tickInterval 	= setInterval(() => {
+			this.CheckAlarm();
+
+			if (this.state.alarmIsPlaying)
+			{
+				this.setState({ timeAlarmOn: this.state.timeAlarmOn + 1 });
+			}
+
+			if (this.state.timeAlarmOn === 8)
+			{
+				this.setState({ alarmIsPlaying: false });
+			}
+		}, 1000)
 	}
 
 	componentWillUnmount = () => {
 		clearInterval(this.interval);
+		clearInterval(this.tickInterval);
 	}
 	
 	componentWillMount = () => {
 		this.getAutoStatus();
 		this.getFirebaseData();
 		this.calculateTotalTime();
+	}
+
+	CheckAlarm = () => {
+		console.log(this.state.totalTime.toLocaleTimeString());
+		console.log(new Date().toLocaleTimeString());
+
+		if (this.state.totalTime.toLocaleTimeString() == new Date().toLocaleTimeString())
+		{
+			this.setState({ alarmIsPlaying: true });
+		}
 	}
 
 	getAutoStatus = () => {
@@ -70,7 +100,7 @@ class App extends Component {
 	}
 
 	calculateTraffic = (from) => {
-		const origin                = 'Otto veniusstraat 30, 2000 Antwerpen';
+		const origin                = 'Flierenbos 20, 2370 Arendonk';
 		const destination           = from;
 		const calendarStartDate     = new Date(this.state.start_date + 'T' + this.state.start_time + '');
 		const service               = new google.maps.DistanceMatrixService();
@@ -87,21 +117,24 @@ class App extends Component {
 		}, (response, status) => {
 			console.log(response);
 
-			db.collection('api-data').doc('maps-data').update({
-				to: destination,
-				from: origin,
-				enabled: true,
-				arrival_time: calendarStartDate,
-				distance: response.rows[0].elements[0].distance.text,
-				duration: response.rows[0].elements[0].duration.text,
-				duration_in_traffic: response.rows[0].elements[0].duration_in_traffic.text,
-			});
-
-			calendarStartDate.setMinutes(calendarStartDate.getMinutes() - parseInt(response.rows[0].elements[0].duration_in_traffic.text));
-
-			db.collection('api-data').doc('maps-data').set({
-				departure_time: calendarStartDate,
-			}, { merge: true });
+			if (status === 'OK')
+			{
+				db.collection('api-data').doc('maps-data').update({
+					to: destination,
+					from: origin,
+					enabled: true,
+					arrival_time: calendarStartDate,
+					distance: response.rows[0].elements[0].distance.text,
+					duration: response.rows[0].elements[0].duration.text,
+					duration_in_traffic: response.rows[0].elements[0].duration_in_traffic.text,
+				});
+	
+				calendarStartDate.setMinutes(calendarStartDate.getMinutes() - parseInt(response.rows[0].elements[0].duration_in_traffic.text));
+	
+				db.collection('api-data').doc('maps-data').set({
+					departure_time: calendarStartDate,
+				}, { merge: true });
+			}
 		});
 	}
 
@@ -129,6 +162,12 @@ class App extends Component {
 					<BigClock />
 					<Alarm alarmOn={ false }/>
 					<NotificationsOverview />
+
+					<Sound 
+						url={ Buzz }
+						playStatus={ this.state.alarmIsPlaying ? Sound.status.PLAYING : Sound.status.STOPPED }
+						loop={ true }
+					/>
 				</div>
 			</div>
 		);
