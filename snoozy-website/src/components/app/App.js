@@ -5,12 +5,11 @@ import { db } from '../../firebase/firebase';
 import NotificationsOverview from '../notifications/NotificationsOverview';
 import Buzz from '../../assets/audio/buzz.mp3';
 import Sound from 'react-sound';
-import Overlay from '../overlay/Overlay';
-import $ from 'jquery'; 
+// import Overlay from '../overlay/Overlay';
 import axios from 'axios';
 
-const google  = window.google;
-const GOOGLE_MAP_KEY = 'AIzaSyDe2RQwYRxTmKXBFkr6d9oQqNOrT9K95hg';
+const google  			= window.google;
+const GOOGLE_MAP_KEY 	= 'AIzaSyDe2RQwYRxTmKXBFkr6d9oQqNOrT9K95hg';
 
 
 class App extends Component {
@@ -86,7 +85,6 @@ class App extends Component {
 		//console.log(this.state.totalTime.toLocaleTimeString());
 		//console.log(new Date().toLocaleTimeString());
 
-		if (this.state.totalTime.toLocaleTimeString() == new Date().toLocaleTimeString())
 		if (this.state.totalTime.toLocaleTimeString() === new Date().toLocaleTimeString())
 		{
 			this.setState({ alarmIsPlaying: true });
@@ -123,70 +121,44 @@ class App extends Component {
 
 	//converts IP or geolocation to address
 	getAddress = (latitude, longitude) => {
-		/*$.ajax('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&key=' + GOOGLE_MAP_KEY)
-		.then(
-			function success (response) {
-				console.log('User\'s Address Data is ', response)
-			},
-			function fail (status) {
-				console.log('Request failed.  Returned status of', status)
-			}
-		)*/
+		const url 	= 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&key=' + GOOGLE_MAP_KEY;
 
-		axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&key=' + GOOGLE_MAP_KEY)
-		.then(res => {
+		axios.get(url).then(res => {
 			console.log('User\'s Address Data is ', res);
-		})
-		.catch(err => {
+		}).catch(err => {
 			console.log('Request failed.  Returned status of', err);
 		});
 	}
 	
 
 	getOriginWithIp = () => {
-		/*$.ajax('http://ip-api.com/json')
-		.then(
-			function success(response) {
-				console.log('User\'s Location Data is ', response);
-				console.log('User\'s Country ', response.country);
-				this.getAdress(response.lat, response.lon)
-			},
-
-			function fail(data, status) {
-				console.log('Request failed.  Returned status of ', status);
-			}
-		);*/
-
 		axios.get('http://ip-api.com/json')
-		.then(res => {
+			.then(res => {
+				console.log(res);
 				console.log('User\'s Location Data is ', res);
 				console.log('User\'s Country ', res.country);
 				this.getAdress(res.lat, res.lon);
-		})
-		.catch(err => {
-			console.log('Request failed.  Returned status of ', err);
-		});
+			})
+			.catch(err => {
+				console.log('Request failed.  Returned status of ', err);
+			});
 	}
 
 	getOrigin = () => {
 		if ("geolocation" in navigator) {
-			navigator.geolocation.getCurrentPosition(
-				function success(position) {
-					console.log('latitude', position.coords.latitude, 'longitude', position.coords.longitude);
-					//this.getOriginWithIp();
-					this.getAddress(position.coords.latitude, position.coords.longitude);
-				},
-				function error(error_message) {
-					console.error('An error has occured while retrieving location', error_message);
-					this.getOriginWithIp();
-				}
-			);
+			navigator.geolocation.getCurrentPosition((res) => {
+				const lat 	= res.coords.latitude;
+				const long 	= res.coords.longitude
+
+				this.getAddress(lat, long);
+			}, (err) => {
+				console.log(err);
+			})
 		} else {
 			console.log('geolocation is not enabled')
 			this.getOriginWithIp();
 		}
 	}
-
 
 	calculateTraffic = (from) => {
 		const origin                = 'Flierenbos 20, 2370 Arendonk';
@@ -251,13 +223,16 @@ class App extends Component {
 	}
 	
 	render() {
-		console.log(this.state.overlayIsPressed);
 		return (
 			<div className="App">
-				<Overlay onOverlayPress={ this.clickedOnOverlay } active={ this.state.overlayIsPressed }/>
+{/* 				<Overlay 
+					onOverlayPress={ this.clickedOnOverlay } 
+					active={ this.state.overlayIsPressed }
+				/> */}
+
+				<button onClick={ this.getOrigin }>getOriginBtn</button>
 		
 				<div className="all">
-					<button onClick={this.getOrigin}>getOriginBtn</button>
 					<BigClock />
 					<Alarm time={ this.state.totalTime }/>
 					
