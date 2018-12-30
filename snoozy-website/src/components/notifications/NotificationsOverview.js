@@ -28,7 +28,7 @@ class NotificationsOverview extends React.Component {
     
     render = () => {
         return (
-            <div className='NotificationsOverview'>
+            <div className={ `NotificationsOverview ${ this.props.active ? 'show' : '' }`}>
                 { this.renderNotifications() }
             </div>
         )

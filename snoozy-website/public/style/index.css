@@ -48,7 +48,13 @@ h1, h3 {
 
 .NotificationsOverview {
   display: flex;
-  margin-top: 2.5rem; }
+  margin-top: 2.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 500ms ease-in-out 500ms; }
+  .NotificationsOverview.show {
+    max-height: 4rem;
+    opacity: 1; }
 
 .Notification {
   display: flex;
@@ -72,6 +78,7 @@ h1, h3 {
   margin: auto;
   position: absolute;
   opacity: 0;
-  cursor: none; }
+  cursor: none;
+  transition: all 1s ease-in-out; }
   .Overlay.dark {
     opacity: .5; }

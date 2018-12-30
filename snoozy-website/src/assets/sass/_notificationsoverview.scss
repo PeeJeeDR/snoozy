@@ -1,8 +1,14 @@
 .NotificationsOverview
 {
-    & 
-    { 
-        display: flex; 
-        margin-top: 2.5rem; 
+    display: flex; 
+    margin-top: 2.5rem; 
+    max-height: 0;
+    overflow: hidden;
+    transition: all 500ms ease-in-out 500ms;
+
+    &.show 
+    {
+        max-height: 4rem;
+        opacity: 1;
     }
 }

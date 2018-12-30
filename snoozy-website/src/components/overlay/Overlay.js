@@ -1,12 +1,15 @@
 import React from 'react';
 
-window.addEventListener('touchstart', () => {
-    console.log('pressed');
-})
-
 const Overlay = (props) => {
+/*     window.addEventListener('touchstart', () => {
+        props.onOverlayPress();
+    }); */
+
     return (
-        <div className='Overlay dark'>
+        <div 
+            className={ `Overlay ${ props.active ? '' : 'dark' }` }
+            onClick={ () => props.onOverlayPress() }
+        >
             
         </div>
     );

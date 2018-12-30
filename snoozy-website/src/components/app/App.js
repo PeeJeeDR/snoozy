@@ -23,7 +23,11 @@ class App extends Component {
 			
 			alarmIsPlaying: false,
 			timeAlarmOn: 0,
+
+			overlayIsPressed: false,
 		};
+
+		this.counter 	= 0;
 	}
 
 	componentDidMount = () => {
@@ -47,7 +51,19 @@ class App extends Component {
 				this.setState({ alarmIsPlaying: false });
 			}
 
-		}, 1000)
+			// Handling overlay timer 
+			if (this.state.overlayIsPressed)
+			{
+				this.counter++;
+
+				if (this.counter === 8)
+				{
+					this.counter 	= 0;
+					this.setState({ overlayIsPressed: false })
+				}
+			}
+
+		}, 1000);
 	}
 
 	componentWillUnmount = () => {
@@ -152,16 +168,22 @@ class App extends Component {
 			});
 		});
 	}
+
+	clickedOnOverlay = () => {
+		this.setState({ overlayIsPressed: true });
+	}
 	
 	render() {
+		console.log(this.state.overlayIsPressed);
 		return (
 			<div className="App">
-				<Overlay />
+				<Overlay onOverlayPress={ this.clickedOnOverlay } active={ this.state.overlayIsPressed }/>
 		
 				<div className="all">
 					<BigClock />
 					<Alarm time={ this.state.totalTime }/>
-					<NotificationsOverview />
+					
+					<NotificationsOverview active={ this.state.overlayIsPressed }/>
 
 					<Sound 
 						url={ Buzz }
