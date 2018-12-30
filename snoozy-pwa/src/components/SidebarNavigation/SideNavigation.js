@@ -20,14 +20,32 @@ class SideNavigation extends React.Component {
     }
     
     renderItems = () => {
-        return this.state.data.map((item, i) => (
-            <Link to={ item.link } key={ i } onClick={ this.onClick }>
-                <li className={ window.location.pathname === item.link ? 'active' : '' }>
-                    <img src={ `/images/icons/${ item.slug }.png` } alt={ `${ item.name } Logo.` }/>
-                    <p>{ item.name }</p>
-                </li>
-            </Link>
-        ))
+        let items = this.state.data.map((item, i) => {
+            if (!(item.slug === 'external-apps'))
+            {
+                return (
+                    <Link to={ item.link } key={ i }>
+                        <li className={ window.location.pathname === item.link ? 'active' : '' }>
+                            <img src={ `/images/icons/${ item.slug }.png` } alt={ `${ item.name } Logo.` }/>
+                            <p>{ item.name }</p>
+                        </li>
+                    </Link>
+                )
+            }
+            else 
+            {
+                return (
+                    <a href={ item.link } key={ i }>
+                        <li className={ window.location.pathname === item.link ? 'active' : '' }>
+                            <img src={ `/images/icons/${ item.slug }.png` } alt={ `${ item.name } Logo.` }/>
+                            <p>{ item.name }</p>
+                        </li>
+                    </a>
+                )
+            }
+        });
+
+        return items;
     }
     
     render = () => {

@@ -19,14 +19,23 @@ class Dashboard extends React.Component {
             start_time: '',
             start_date: '',
             user_time: '',
+
+            autoCalculateIsOn: false
         };
 
         this.powerStatus    = false;
     }
 
     componentWillMount = () => {
+        this.getAutoClock();
         this.calculateAlarm();
         this.getSnoozyStatus();
+    }
+
+    getAutoClock = () => {
+        db.collection('api-data').doc('maps-data').onSnapshot(res => {
+			this.setState({ autoCalculateIsOn: res.data().enabled })
+		})
     }
 
     calculateAlarm = () => {
@@ -80,11 +89,17 @@ class Dashboard extends React.Component {
                 <div className="page_wrapper">
                     <Appointment />
 
-                    <SwitchButton 
-                        onClick={() => this.setState({ setToManual: !this.state.setToManual })}
-                        labelName='Automatische wekker'
-                        defaultOn={ true }
-                    />
+                    {
+                        this.state.ApiLoaded
+                        ?
+                        <SwitchButton 
+                            onClick={() => this.setState({ setToManual: !this.state.setToManual })}
+                            labelName='Automatische wekker'
+                            defaultOn={ this.state.autoCalculateIsOn }
+                        />
+                        : 
+                        ''
+                    }
 
                     { this.renderManual() }
 
