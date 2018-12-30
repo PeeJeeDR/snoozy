@@ -22,7 +22,7 @@ class Alarm extends React.Component {
             return (
                 <div>
                     <img src={ AlarmClock } alt='Clock icon.'/>
-                    <h3>07:39</h3>
+                    <h3>{ this.props.time.toLocaleTimeString().slice(0, -3) }</h3>
                 </div>
             )
         }

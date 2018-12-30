@@ -66,9 +66,6 @@ class App extends Component {
 	}
 
 	CheckAlarm = () => {
-		console.log(this.state.totalTime.toLocaleTimeString());
-		console.log(new Date().toLocaleTimeString());
-
 		if (this.state.totalTime.toLocaleTimeString() == new Date().toLocaleTimeString())
 		{
 			this.setState({ alarmIsPlaying: true });
@@ -160,7 +157,7 @@ class App extends Component {
 			<div className="App">
 				<div className="all">
 					<BigClock />
-					<Alarm alarmOn={ false }/>
+					<Alarm time={ this.state.totalTime }/>
 					<NotificationsOverview />
 
 					<Sound 
