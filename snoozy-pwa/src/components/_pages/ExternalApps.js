@@ -4,6 +4,7 @@ import SideNavigation from '../SidebarNavigation/SideNavigation';
 import Sectionheading from '../Titles/Sectionheading';
 import GoogleCalendarSection from '../Sections/GoogleCalendarSection';
 import GoogleMapsSection from '../Sections/GoogleMapsSection';
+import SpotifySection from '../Sections/SpotifySection';
 
 class ExternalApps extends React.Component {
     render = () => {
@@ -18,6 +19,7 @@ class ExternalApps extends React.Component {
                     <div className="content_wrapper">
                         <GoogleCalendarSection />
                         <GoogleMapsSection />
+                        <SpotifySection />
                     </div>
                 </div>
             </div>
