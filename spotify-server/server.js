@@ -14,7 +14,7 @@ const CLIENT_SECRET     = config.CLIENT_SECRET;
 const REDIRECT          = config.REDIRECT;
 
 app.get('/login', (req, res) => {
-    const scopes    = 'user-read-private user-read-email';
+    const scopes    = 'user-read-private user-read-email playlist-read-private user-read-currently-playing user-read-playback-state user-library-read';
 
     const base_url      = 'https://accounts.spotify.com/authorize';
     const res_type      = '?response_type=code';

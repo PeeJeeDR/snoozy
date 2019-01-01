@@ -269,21 +269,24 @@ h1, h2, p {
   padding: 2rem;
   font-size: 1.3rem; }
 
-.GoogleCalendarSection .titleSection, .GoogleMapsSection .titleSection {
+.GoogleCalendarSection .titleSection, .GoogleMapsSection .titleSection, .SpotifySection .titleSection {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0; }
-  .GoogleCalendarSection .titleSection img, .GoogleMapsSection .titleSection img {
+  .GoogleCalendarSection .titleSection img, .GoogleMapsSection .titleSection img, .SpotifySection .titleSection img {
     width: 1.4rem;
     margin-right: 1rem; }
-  .GoogleCalendarSection .titleSection div, .GoogleMapsSection .titleSection div {
+  .GoogleCalendarSection .titleSection div, .GoogleMapsSection .titleSection div, .SpotifySection .titleSection div {
     display: flex;
     align-items: center; }
-  .GoogleCalendarSection .titleSection label, .GoogleMapsSection .titleSection label {
+  .GoogleCalendarSection .titleSection label, .GoogleMapsSection .titleSection label, .SpotifySection .titleSection label {
     padding: 0; }
 
 .GoogleMapsSection {
+  margin-top: 2rem; }
+
+.SpotifySection {
   margin-top: 2rem; }
 
 .Paragraph {
