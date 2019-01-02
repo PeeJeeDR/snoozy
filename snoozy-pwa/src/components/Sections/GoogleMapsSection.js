@@ -13,6 +13,7 @@ class GoogleMapsSection extends React.Component {
         }
 
         this.isEnabled  = false;
+        this.dbRef  = db.collection('api-data').doc('maps-data');
     }
 
     componentWillMount = () => {
@@ -20,15 +21,16 @@ class GoogleMapsSection extends React.Component {
     }
 
     getFirebaseEnabledStatus = () => {
-        db.collection('api-data').doc('maps-data').get()
-            .then(res => {
-                this.isEnabled  = res.data().enabled;
-                this.setState({ apiLoaded: true });
-            })
+        this.dbRef.onSnapshot(snap => {
+            this.isEnabled  = snap.data().enabled;
+            this.setState({ apiLoaded: true });
+        }, (err) => {
+            console.log(err);
+        })
     }
 
     setFirebaseEnabledStatus = () => {
-        db.collection('api-data').doc('maps-data').update({
+        this.dbRef.update({
             enabled: this.isEnabled,
         });
     }
@@ -39,8 +41,12 @@ class GoogleMapsSection extends React.Component {
     }
 
     renderSwitch = () => {
-        if (this.state.apiLoaded) return <SwitchButton onClick={ this.toggleSwitch } defaultOn={ this.isEnabled }/>
-        return <BounceLoader loading={ true } size={ 28 } color={ '#72BFA5' } />
+        if (!this.state.apiLoaded) 
+        {
+            return <BounceLoader loading={ true } size={ 28 } color={ '#72BFA5' } />
+        }
+        
+        return <SwitchButton onClick={ this.toggleSwitch } defaultOn={ this.isEnabled }/>
     }
     
     render = () => {

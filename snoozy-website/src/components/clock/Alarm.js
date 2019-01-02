@@ -8,10 +8,12 @@ class Alarm extends React.Component {
         this.state = {
             powerStatus: false
         };
+
+        this.dbRef  = db.collection('snoozy').doc('status');
     }
     
     componentWillMount = () => {
-        db.collection('snoozy').doc('status').onSnapshot(field => {
+        this.dbRef.onSnapshot(field => {
             this.setState({ powerStatus: field.data().power_status })
         })
     }
