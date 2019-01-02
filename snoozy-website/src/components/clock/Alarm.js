@@ -1,10 +1,15 @@
 import React from 'react';
 import AlarmClock from '../../assets/svg/alarm-clock.svg';
 import { db } from '../../firebase/firebase';
+import Buzz from '../../assets/audio/buzz.mp3';
+import Sound from 'react-sound';
 
 const snoozyRef     = db.collection('snoozy').doc('status');
 const userRef       = db.collection('snoozy').doc('user-data');
 const mapsRef       = db.collection('api-data').doc('maps-data');
+
+const test_alarm    = new Date();
+test_alarm.setSeconds(test_alarm.getSeconds() + 5)
 
 class Alarm extends React.Component {
     constructor (props) {
@@ -14,7 +19,43 @@ class Alarm extends React.Component {
             timeNeeded: null,
             alarm: null,
             apiLoaded: false,
+            alarmIsPlaying: null,
+            alarmTime: 3, 
         };
+
+        this.counter    = 0;
+    }
+
+    componentDidMount = () => {
+        this.secondsInterval    = setInterval(() => {
+            if (this.state.alarm !== null)
+            {
+                const temp_date     = new Date(0)
+                const cur_seconds   = Math.floor(new Date().getTime() / 1000);
+                // const alarm_seconds = Math.floor(this.state.alarm.getTime() / 1000);
+                const alarm_seconds = Math.floor(this.state.alarm.getTime() / 1000);
+                
+                if (cur_seconds === Math.floor(test_alarm.getTime() / 1000))
+                {
+                    this.setState({ alarmIsPlaying: true })
+                }
+
+                if (this.state.alarmIsPlaying)
+                {
+                    this.counter++;
+
+                    if (this.counter === this.state.alarmTime)
+                    {
+                        this.counter    = 0;
+                        this.setState({ alarmIsPlaying: false })
+                    }
+                }
+            }
+        }, 1000)
+    }
+
+    componentWillUnmount = () => {
+        clearInterval(this.secondsInterval)
     }
     
     componentWillMount = () => {
@@ -94,6 +135,12 @@ class Alarm extends React.Component {
         return (
             <div className='Alarm'>
                 { this.renderClock() }
+
+                <Sound 
+                    url={ Buzz }
+                    playStatus={ this.state.alarmIsPlaying ? Sound.status.PLAYING : Sound.status.STOPPED }
+                    loop={ true }
+                />
             </div>
         )
     }
