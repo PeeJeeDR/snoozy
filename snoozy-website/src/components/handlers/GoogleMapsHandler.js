@@ -57,8 +57,9 @@ const calculateTraffic = (location, start_date, snoozy_location) => {
             let traffic_hours       = 0;
             let traffic_minutes     = 0;
             let date_changed        = false;
+            let total_seconds       = 0;
 
-            const departure_date        = new Date();
+            const departure_date        = new Date(0);
 
             if (traffic_data.length === 4 && traffic_data.indexOf('day') > -1 && traffic_data.indexOf('hours') > -1 && traffic_data.indexOf('mins') === -1)
             {
@@ -78,20 +79,15 @@ const calculateTraffic = (location, start_date, snoozy_location) => {
                 traffic_hours       = parseInt(traffic_data[0]);
                 traffic_minutes     = parseInt(traffic_data[2]);
 
-                departure_date.setUTCDate(arrival_date.getUTCDate() - traffic_days);
-                departure_date.setUTCHours(arrival_date.getUTCHours() - traffic_hours);
-                departure_date.setUTCMinutes(arrival_date.getUTCMinutes() - traffic_minutes);
+                departure_date.setDate(arrival_date.Date() - traffic_days);
+                departure_date.setHours(arrival_date.getHours() - traffic_hours);
+                departure_date.setMinutes(arrival_date.getMinutes() - traffic_minutes);
 
                 date_changed    = true;
             }
             else if (traffic_data.length === 2)
             {
-                traffic_days        = arrival_date.getUTCDate();
-                traffic_hours       = arrival_date.getUTCHours();
-                traffic_minutes     = parseInt(traffic_data[0]);
-
-                departure_date.setMinutes(arrival_date.getMinutes() - traffic_minutes);
-
+                total_seconds     = (arrival_date.getTime() / 1000) - (Math.floor(parseInt(traffic_data[0]) * 60));
                 date_changed    = true;
             }
             else 
@@ -103,7 +99,7 @@ const calculateTraffic = (location, start_date, snoozy_location) => {
                 date_changed    = true;
             }
 
-            departure_date.setUTCSeconds(0);
+            departure_date.setSeconds(total_seconds);
             
             if (date_changed)
             {

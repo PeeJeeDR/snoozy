@@ -34,7 +34,7 @@ class App extends Component {
 		
 				<div className="all">
 					<BigClock />
-					{/* <Alarm time={ this.state.totalTime }/> */}
+					<Alarm />
 					
 					<NotificationsOverview active={ this.state.overlayIsActive }/>
 
