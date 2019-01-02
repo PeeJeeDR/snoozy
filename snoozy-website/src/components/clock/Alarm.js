@@ -1,8 +1,9 @@
 import React from 'react';
-import AlarmClock from '../../assets/svg/alarm-clock.svg';
-import { db } from '../../firebase/firebase';
 import Buzz from '../../assets/audio/buzz.mp3';
 import Sound from 'react-sound';
+import AlarmClock from '../../assets/svg/alarm-clock.svg';
+import { db } from '../../firebase/firebase';
+import axios from 'axios';
 
 const snoozyRef     = db.collection('snoozy').doc('status');
 const userRef       = db.collection('snoozy').doc('user-data');
@@ -20,7 +21,7 @@ class Alarm extends React.Component {
             alarm: null,
             apiLoaded: false,
             alarmIsPlaying: null,
-            alarmTime: 3, 
+            alarmTime: 5, 
         };
 
         this.counter    = 0;
@@ -30,10 +31,9 @@ class Alarm extends React.Component {
         this.secondsInterval    = setInterval(() => {
             if (this.state.alarm !== null)
             {
-                const temp_date     = new Date(0)
                 const cur_seconds   = Math.floor(new Date().getTime() / 1000);
+                // MOET LATER TERUG ENABLED WORDEN!!
                 // const alarm_seconds = Math.floor(this.state.alarm.getTime() / 1000);
-                const alarm_seconds = Math.floor(this.state.alarm.getTime() / 1000);
                 
                 if (cur_seconds === Math.floor(test_alarm.getTime() / 1000))
                 {
@@ -44,10 +44,22 @@ class Alarm extends React.Component {
                 {
                     this.counter++;
 
+                    axios.get('http://192.168.1.4:8081/light-on').then(res => {
+                        console.log(res);
+                    }).catch(err => {
+                        console.log('Something went wrong...', err);
+                    });
+
                     if (this.counter === this.state.alarmTime)
                     {
                         this.counter    = 0;
-                        this.setState({ alarmIsPlaying: false })
+                        this.setState({ alarmIsPlaying: false });
+
+                        axios.get('http://192.168.1.4:8081/light-off').then(res => {
+                            console.log(res);
+                        }).catch(err => {
+                            console.log('Something went wrong...', err);
+                        });
                     }
                 }
             }
@@ -136,11 +148,13 @@ class Alarm extends React.Component {
             <div className='Alarm'>
                 { this.renderClock() }
 
-                <Sound 
-                    url={ Buzz }
-                    playStatus={ this.state.alarmIsPlaying ? Sound.status.PLAYING : Sound.status.STOPPED }
-                    loop={ true }
-                />
+                {
+/*                     <Sound 
+                        url={ Buzz }
+                        playStatus={ this.state.alarmIsPlaying ? Sound.status.PLAYING : Sound.status.STOPPED }
+                        loop={ true }
+                    /> */
+                }
             </div>
         )
     }

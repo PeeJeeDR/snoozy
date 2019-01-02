@@ -8,9 +8,6 @@ import SpotifyHandler from '../handlers/SpotifyHandler';
 import GoogleMapsHandler from '../handlers/GoogleMapsHandler';
 import LocationHandler from '../handlers/LocationHandler';
 import GoogleCalendarHandler from '../handlers/GoogleCalendarHandler';
-import Buzz from '../../assets/audio/buzz.mp3';
-import Sound from 'react-sound';
-
 
 class App extends Component {
 	constructor (props) {
