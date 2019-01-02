@@ -25,3 +25,5 @@ yarn-error.log*
 # Firebase
 firebase/data/
 firebase_config.js
+
+ApiConfig.js

@@ -3,25 +3,34 @@ import { db } from '../../firebase/firebase';
 const google  			= window.google;
 const calendarRef       = db.collection('api-data').doc('calendar-data');
 const mapsRef           = db.collection('api-data').doc('maps-data');
+const snoozyRef         = db.collection('snoozy').doc('status');
 
 const GoogleMapsHandler = () => {
-    getCalendarDate();
+    getSnoozyLocation();
 }
 
-const getCalendarDate = () => {
+const getSnoozyLocation = () => {
+    snoozyRef.onSnapshot(snap => {
+        getCalendarDate(snap.data().location)
+    }, err => {
+        console.log('Something went wrong...', err);
+    });
+}
+
+const getCalendarDate = (snoozy_location) => {
     calendarRef.onSnapshot(snap => {
         const result        = snap.data();
         const location      = result.location;
         const start_date    = new Date(result.start_date + 'T' + result.start_time + '');
 
-        calculateTraffic(location, start_date)
+        calculateTraffic(location, start_date, snoozy_location)
+    }, err => {
+        console.log('Something went wrong...', err);
     }); 
 }
 
-const calculateTraffic = (location, start_date) => {
-    const origin                = 'Flierenbos 20, 2370 Arendonk';
-    // const origin                = 'Yaroslavl';
-    // const origin                = 'Berlijn';
+const calculateTraffic = (location, start_date, snoozy_location) => {
+    const origin                = snoozy_location;
     const service               = new google.maps.DistanceMatrixService();
 
     service.getDistanceMatrix({
@@ -93,6 +102,8 @@ const calculateTraffic = (location, start_date) => {
 
                 date_changed    = true;
             }
+
+            departure_date.setUTCSeconds(0);
             
             if (date_changed)
             {
