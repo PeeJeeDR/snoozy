@@ -7,6 +7,7 @@ import * as ApiConfig from '../../config/ApiConfig';
 import { db } from '../../firebase/firebase';
 
 let gapi  = window.gapi;
+const snoozyRef     = db.collection('snoozy').doc('status');
 
 class GoogleCalendarSection extends React.Component {
     constructor (props) {
@@ -23,11 +24,19 @@ class GoogleCalendarSection extends React.Component {
     }
 
     handleAuthClick = () => {
-        gapi.auth2.getAuthInstance().signIn();
+        if (gapi.auth2.getAuthInstance().signIn())
+        {
+            snoozyRef.update({ calendar_enabled: true })
+                .catch(err => console.log('Something went wrong...', err));
+        }
     }
 
     handleSignoutClick = () => {
-        gapi.auth2.getAuthInstance().signOut();
+        if (gapi.auth2.getAuthInstance().signOut())
+        {
+            snoozyRef.update({ calendar_enabled: false })
+                .catch(err => console.log('Something went wrong...', err));
+        }
     }
 
     handleClientLoad = () => {

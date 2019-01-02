@@ -9,7 +9,7 @@ class SwitchButton extends React.Component {
         };
     }  
     
-    componentDidMount = () => {
+    componentWillMount = () => {
         this.setState({ checked: this.props.defaultOn })
     }
 

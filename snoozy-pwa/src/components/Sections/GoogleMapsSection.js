@@ -5,6 +5,9 @@ import SwitchButton from '../Buttons/SwitchButton';
 import { db } from '../../firebase/firebase';
 import Paragraph from '../Paragraphs/Paragraph';
 
+const mapsRef   = db.collection('api-data').doc('maps-data');
+const snoozyRef = db.collection('snoozy').doc('status');
+
 class GoogleMapsSection extends React.Component {
     constructor (props) {
         super(props);
@@ -13,7 +16,6 @@ class GoogleMapsSection extends React.Component {
         }
 
         this.isEnabled  = false;
-        this.dbRef  = db.collection('api-data').doc('maps-data');
     }
 
     componentWillMount = () => {
@@ -21,17 +23,18 @@ class GoogleMapsSection extends React.Component {
     }
 
     getFirebaseEnabledStatus = () => {
-        this.dbRef.onSnapshot(snap => {
-            this.isEnabled  = snap.data().enabled;
-            this.setState({ apiLoaded: true });
+        snoozyRef.onSnapshot(snap => {
+            this.isEnabled  = snap.data().maps_enabled;
         }, (err) => {
             console.log(err);
-        })
+        });
+
+        this.setState({ apiLoaded: true });
     }
 
     setFirebaseEnabledStatus = () => {
-        this.dbRef.update({
-            enabled: this.isEnabled,
+        snoozyRef.update({
+            maps_enabled: this.isEnabled,
         });
     }
 
@@ -41,12 +44,12 @@ class GoogleMapsSection extends React.Component {
     }
 
     renderSwitch = () => {
-        if (!this.state.apiLoaded) 
+        if (this.state.apiLoaded) 
         {
-            return <BounceLoader loading={ true } size={ 28 } color={ '#72BFA5' } />
+            return <SwitchButton onClick={ this.toggleSwitch } defaultOn={ this.isEnabled }/>
         }
-        
-        return <SwitchButton onClick={ this.toggleSwitch } defaultOn={ this.isEnabled }/>
+
+        return <BounceLoader loading={ true } size={ 28 } color={ '#72BFA5' } />
     }
     
     render = () => {
