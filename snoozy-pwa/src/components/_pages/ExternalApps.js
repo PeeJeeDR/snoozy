@@ -24,6 +24,7 @@ class ExternalApps extends React.Component {
                         <GoogleMapsSection />
                         <SpotifySection />
                         <OutlookSection />
+                        <TwitterSection />
                     </div>
                 </div>
             </div>
