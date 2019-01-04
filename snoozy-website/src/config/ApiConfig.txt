@@ -4,3 +4,4 @@ export const CLIENT_ID          = '748044395205-ifodd394i0ab2rphn261eojk4613k4po
 export const API_KEY            = 'AIzaSyDe2RQwYRxTmKXBFkr6d9oQqNOrT9K95hg';
 export const DISCOVERY_DOCS     = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 export const SCOPES             = "https://www.googleapis.com/auth/calendar.readonly";
+export const GOOGLE_MAP_KEY 	= 'AIzaSyDe2RQwYRxTmKXBFkr6d9oQqNOrT9K95hg';
