@@ -1,0 +1,7 @@
+// export const CLIENT_ID          = '514863142177-jes7hie9kklodrmgst7rr0150vfjhun2.apps.googleusercontent.com';
+// export const API_KEY            = 'AIzaSyBdu-G_HhCgB4tuF9qgSYRKqxq8mTxkn60';
+export const CLIENT_ID          = '748044395205-ifodd394i0ab2rphn261eojk4613k4po.apps.googleusercontent.com';
+export const API_KEY            = 'AIzaSyDe2RQwYRxTmKXBFkr6d9oQqNOrT9K95hg';
+export const DISCOVERY_DOCS     = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+export const SCOPES             = "https://www.googleapis.com/auth/calendar.readonly";
+export const GOOGLE_MAP_KEY 	= 'AIzaSyDe2RQwYRxTmKXBFkr6d9oQqNOrT9K95hg';
