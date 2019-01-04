@@ -8,4 +8,4 @@ const Paragraph = (props) => {
     );
 }
 
-export default Paragraph
+export default Paragraph;
