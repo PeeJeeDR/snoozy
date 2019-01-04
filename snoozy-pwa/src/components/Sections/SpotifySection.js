@@ -40,7 +40,7 @@ class SpotifySection extends React.Component {
 
             if (this.enabledOnFirebase)
             {
-                window.location     = 'http://localhost:8080/login';
+                //window.location     = 'http://localhost:8080/login';
             }
         }
         else 

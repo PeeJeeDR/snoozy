@@ -5,8 +5,9 @@ import Paragraph from '../Paragraphs/Paragraph';
 import SwitchButton from '../Buttons/SwitchButton';
 import * as ApiConfig from '../../config/ApiConfig';
 import { db } from '../../firebase/firebase';
-
 import FacebookLogin from 'react-facebook-login';
+
+const app_id = '222602775326063';
 
 
 class FacebookSection extends React.Component {
@@ -26,7 +27,7 @@ class FacebookSection extends React.Component {
         <h1>LOGIN WITH FACEBOOK</h1>
 
       <FacebookLogin
-        appId="222602775326063"
+        appId={app_id}
         fields="name,picture,unread"
         callback={responseFacebook}
       />
