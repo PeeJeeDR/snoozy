@@ -10,6 +10,14 @@ gulp.task('css', function () {
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(gulp.dest('public/css'))
 });
+ 
+gulp.task('sass', () => 
+  gulp.src('src/0_loader/main.scss')
+  	.pipe(sassGlob())
+    .pipe(sass())
+    .pipe(cleanCSS({ compatibility: 'ie8' }))
+    .pipe(gulp.dest('public/style'))
+);
 
 gulp.task('watch', function () {
     gulp.watch('src/components/**/_*.scss', ['css'])
