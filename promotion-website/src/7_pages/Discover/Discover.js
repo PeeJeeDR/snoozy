@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Clock from '../../3_atoms/Clock/Clock';
-import PrimaryButton from '../../3_atoms/PrimaryButton/PrimaryButton';
-import Heading from '../../3_atoms/Heading/Heading';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import Header from '../../5_organisms/Header/Header';
+import Footer from '../../5_organisms/Footer/Footer';
 
 
 class Discover extends Component {
@@ -20,22 +19,7 @@ class Discover extends Component {
 		
 		return (
         <div className='Discover'>
-            <nav className="navbar">
-				<Link to={`home`} className="logo"><img src="img/logo.svg" alt="Snoozy" /></Link>
-				<span className="navbar-toggle" id="js-navbar-toggle" onClick={this.toggleClass.bind(this)}>
-					<span className="hamburger ham-l"></span>
-					<span className="hamburger ham-l"></span>
-					<span className="hamburger ham-s"></span>
-				</span>
-				<ul className={this.state.mainnav} id="js-menu" ref="jsmenu">
-			      	<li>
-			    		<Link to={`home`} className="nav-links">Home</Link>
-			      	</li>
-			      	<li>
-			    		<Link to={`discover`} className="nav-links">Discover</Link>
-			      	</li>
-				</ul>
-			</nav>
+        	<Header />
 		    <div className="main">
 		        <h1>DISCOVER</h1>
 		        <span className="underline"></span>
@@ -67,26 +51,9 @@ class Discover extends Component {
 					</div>
 		        </div>
 		    </div>
-		    <footer className="footer">
-		    	<h2 className="footer-title">Snoozy</h2>
-		    	<div className="main-footer">
-			    	<div className="footer-list">
-			    		<h4 className="footer-list-title">Links</h4>
-			    		<a href="#" className="f-link">Home</a>
-			    		<a href="#" className="f-link">Discover</a>
-			    	</div>
-			    	<div className="footer-list">
-			    		<h4 className="footer-list-title">Socials</h4>
-			    		<a href="#" className="f-link">Facebook</a>
-			    		<a href="#" className="f-link">Twitter</a>
-			    	</div>
-			    	<div className="footer-list">
-			    		<h4 className="footer-list-title">Contact</h4>
-			    		<a href="#" className="f-link">Contact</a>
-			    	</div>
-			    </div>
-		    </footer>
-        </div>);
+		    <Footer />
+        </div>
+        );
 	}
 	toggleClass() {
 		console.log('toggle');
