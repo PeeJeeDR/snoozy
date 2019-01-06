@@ -1,14 +1,130 @@
-.Header
-{
-    -webkit-box-shadow: 0px 5px 18px 2px rgba(0,0,0,0.08);
-    -moz-box-shadow: 0px 5px 18px 2px rgba(0,0,0,0.08);
-    box-shadow: 0px 5px 18px 2px rgba(0,0,0,0.08);
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.03),0 6px 20px 0 rgba(0,0,0,0.03) !important;
+    display: flex;
+    flex-flow: row wrap;
+    line-height: 100px;
+    justify-content: space-between;
 
-    .Wrapper 
-    {
+    .logo {
+        margin-left: 10%;
+        height: 100px;
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        height: 75px;
+    }
+
+    .navbar-toggle {
+        cursor: pointer;
+        margin-right: 10%;
+        color: $snoozy_green;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        user-select: none;
+
+        .hamburger {
+            display: block;
+            margin: 4px;
+            height: 2px;
+            background-color: $snoozy_green;
+        }
+
+        .ham-s {
+            width: 16px;
+        }
+
+        .ham-m {
+            width: 33px;
+        }
+
+        .ham-l {
+            width: 28px;
+        }
+    }
+
+    .main-nav {
+        display: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: block;
+            list-style: none;
+            line-height: 100px;
+
+            .nav-links {
+                text-decoration: none;
+                color: $midnight_green;
+                height: 100px;
+                display: block;
+                font-size: 24px;
+                font-weight: 600;
+                user-select: none;
+            }
+
+            .nav-active {
+                color: $snoozy_green;
+            }
+        }
+    }
+
+    .active {
+        display: flex;
+        flex-flow: column wrap;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        .main-nav {
+            width: 100%;
+
+            li {
+                width: 100%;
+
+                .nav-links {
+                    width: 100% !important;
+                }
+
+                .nav-links:hover {
+                    background-color: $snoozy_green;
+                    color: #fff;
+                }
+            }
+        }
+
+        .logo img {
+            height: 60%;
+        }
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .navbar {
+        .main-nav {
+            margin-right: 10%;
+            display: flex;
+            flex-direction: row;
+
+            li {
+                .nav-links {
+                    margin-left: 50px;
+                }
+
+                .nav-links:hover {
+                    color: $snoozy_green;
+                }
+            }
+        }
+
+        .navbar-toggle {
+            display: none;
+        }
+
+        .logo img {
+            height: 70%;
+        }
     }
 }

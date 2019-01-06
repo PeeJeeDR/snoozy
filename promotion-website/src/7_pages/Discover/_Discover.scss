@@ -1,307 +1,114 @@
-/* 
+.Discover {
+    .main {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
 
-////////////////////        COLORS      ////////////////////
+        h1 {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 50px;
+            font-family: 'Roboto Slab', sans-serif;
+            font-weight: 700;
+            color: $midnight_green;
+        }
 
-GREEN SHEEN (Snoozy green)  #72BFA5
-MIDNIGHT GREEN              #0F5257
-ORANGE-YELLOW               #F4D06F
-BRASS                       #B39C4D
-RUSTY RED                   #DA2C38
+        .underline {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #0F5257 25%,#72BFA5 25%, #72BFA5 50%, #0F5257 50%, #0F5257 75%, #72BFA5 75%);
+        }
+        .all-discover-cards {
+            margin: 50px 0;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
 
-*/
+            .discover-card {
+                max-width: 240px;
+                padding: 50px 30px;
+                height: 325px;
+                margin: 30px 20px;
+                background-color: #fff;
+                box-shadow: 0 10px 16px 0 rgba(0,0,0,0.02),0 6px 20px 0 rgba(0,0,0,0.02) !important;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+                background-color: #fff;
+                color: black;
+                border-radius: 5px;
 
-body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: #F8F8F8;
+                .card-logo {
+                    max-width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    top: 0;
+                    height: 50%;
+
+                    img {
+                        display: inline-block;
+                        position: relative;
+                        bottom: 0;
+                        width: 50%;
+                    }
+                }
+
+                .card-title {
+                    margin: 20px 0 20px 0;
+                    font-size: 32px;
+                    font-weight: 500;
+                    height: 25%;
+                    color: $midnight_green;
+                }
+
+                .card-text {
+                    margin-top: 0;
+                    height: 20%;
+                }
+            }
+        }
+    }
 }
 
-/* ////////// NAVBAR ////////// */
-
-.navbar {
-    background-color: #fff;
-
-    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.03),0 6px 20px 0 rgba(0,0,0,0.03) !important;
-    display: flex;
-    flex-flow: row wrap;
-    line-height: 100px;
-    justify-content: space-between;
+.discover-wrapper {
+    margin: 1.2rem;
+    padding: 3rem;
+    border-radius: 10px;
+    background-color: $background_grey;
 }
 
-.logo {
-    margin-left: 10%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-}
-
-.main-nav {
-    display: none;
-    margin: 0;
-    padding: 0;
-}
-
-.main-nav li {
-    display: block;
-    list-style: none;
-    line-height: 100px;
-}
-
-.nav-links {
-    text-decoration: none;
-    color: #0F5257;
-    height: 100px;
-    display: block;
-    font-size: 24px;
-    font-weight: 600;
-    user-select: none;
-}
-
-.active {
-    display: flex;
-    flex-flow: column wrap;
-    text-align: center;
-}
-
-.navbar-toggle {
-    cursor: pointer;
-    margin-right: 10%;
-    color: #72BFA5;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    user-select: none;
-}
-
-
-/* Hamburger icon responsive nav */
-.hamburger {
-    display: block;
-    margin: 4px;
-    height: 2px;
-    background-color: #0F5257;
-}
-
-.ham-s {
-    width: 16px;
-}
-
-.ham-m {
-    width: 33px;
-}
-
-.ham-l {
-    width: 28px;
-}
-
-
-/* ////////// MAIN ////////// */
-
-.large-card {
-    width: 100% !important;
-}
-
-.main {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-}
-
-h1 {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 42px;
-    font-family: 'Roboto Slab', sans-serif;
-    font-weight: 700;
-    color: #0F5257;
-}
-
-.underline {
-    width: 100px;
-    /*border-bottom: solid 2px #72BFA5;*/
-    height: 4px;
-    background: linear-gradient(to right, #0F5257 25%,#72BFA5 25%, #72BFA5 50%, #0F5257 50%, #0F5257 75%, #72BFA5 75%);
-}
-.underline:after {
-    
-    height: 2px;
-}
-
-.all-discover-cards {
-    margin: 50px 0;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-}
-
-.discover-card {
-    max-width: 240px;
-    padding: 50px 30px;
-    height: 325px;
-    margin: 30px 1.56%;
-    background-color: #fff;
-    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.02),0 6px 20px 0 rgba(0,0,0,0.02) !important;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    background-color: #fff;
-    color: black;
-    border-radius: 5px;
-}
-
-.card-logo {
-    max-width: 100%;
-   
-    display: flex;
-    justify-content: center;
-    top: 0;
-    height: 50%;
-}
-
-.card-logo img {
-    display: inline-block;
-    position: relative;
-    bottom: 0;
-    width: 50%;
-}
-
-.card-title {
-    margin: 40px 0 0px 0;
-    font-size: 32px;
-    font-weight: 500;
-    height: 25%;
-    color: #0F5257;
-}
-
-.card-text {
-    margin-top: 0;
-    height: 20%;
-}
-
-
-/* ////////// FOOTER ////////// */
-
-.footer {
-    margin-top: 100px;
-    color: white;
-    background-color: #0F5257;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    padding: 100px 0;
-}
-
-.main-footer {
-    width: 50%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-}
-
-.footer-list {
-    flex-flow: column wrap;
-    margin-right: 40px;
-}
-
-.footer-title {
-    font-size: 48px;
-    margin: 0 40px 40px 0;
-}
-
-.footer-list-title {
-    font-size: 32px;
-    margin: 20px 0;
-    color: #F4D06F;
-}
-
-.footer-list-title:hover {
-    color: #F4D06F;
-}
-
-.footer-links {
-    display: flex;
-    flex-flow: row wrap;
-    margin-bottom: 50px;
-}
-
-.f-link:hover {
-    color: #B39C4D;
-}
-
-.f-link {
-    text-decoration: none;
-    color: #fff;
-    display: block;
-    font-size: 24px;
-    font-weight: 600;
-    user-select: none;
-    margin: 15px 0;
-}
 
 
 /* ////////// MEDIA SCREENS ////////// */
 
-@media screen and (min-width: 1224px) {
-    .all-discover-cards {
-        flex-wrap: nowrap;
+@media screen and (max-width: 1424px) {
+    .Discover {
+        .main {
+            .all-discover-cards {
+                flex-wrap: wrap;
+
+                .discover-card {
+                    margin: 30px 20px;
+                }
+            }
+        }
     }
 }
 
-@media screen and (min-width: 769px) {
-    .main-nav {
-        margin-right: 10%;
-        display: flex;
-        flex-direction: row;
-    }
+@media screen and (min-width: 1424px) {
+    .Discover {
+        .main {
+            .all-discover-cards {
+                flex-wrap: nowrap;
 
-    .navbar-toggle {
-        display: none;
-    }
-
-    .nav-links {
-        margin-left: 50px;
-    }
-
-    .nav-links:hover {
-        color: #72BFA5;
-    }
-
-    .logo img {
-        height: 70%;
-    }
-}
-
-@media screen and (max-width: 1224px) {
-    .all-discover-cards {
-        flex-wrap: wrap;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .main-nav {
-        width: 100%;
-    }
-
-    .main-nav li {
-        width: 100%;
-    }
-
-    .nav-links {
-        width: 100% !important;
-    }
-
-    .nav-links:hover {
-        background-color: #0F5257;
-        color: #fff;
-    }
-
-    .logo img {
-        height: 60%;
+                .discover-card {
+                    margin: 30px 1.56%;
+                }
+            }
+        }
     }
 }
 
