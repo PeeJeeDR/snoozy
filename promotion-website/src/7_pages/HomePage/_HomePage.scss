@@ -1,9 +1,10 @@
 .HomePage 
 {
     padding: 1.2rem;
-
+    
     & > div 
-    {
+    {   
+        
         background-image: linear-gradient(
             to top, 
             #fcd0a2, 
@@ -12,17 +13,31 @@
             #f0dfb0, 
             #ece4b7
         );
-        min-height: calc(100vh - 75px - 8.4rem);
+        /*min-height: calc(100vh - 75px - 8.4rem);*/
         border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 3rem;
+        height: 680px;
+    }
+    .title-header {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        padding: 3rem;
+        margin-bottom: 150px;
+
+        h1,h5 {
+            margin-top: 0;
+        }
     }
 
     .Heading 
     {
         text-align: center;
     }
+    
+
 }

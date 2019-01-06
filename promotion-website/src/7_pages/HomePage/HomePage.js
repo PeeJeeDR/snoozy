@@ -19,13 +19,21 @@ class HomePage extends Component {
 		return (
         	<div>
 	    		<Header discover={this.state.discover} home={this.state.home} />
-			        <div className='HomePage'>
-			            <div>
-			                <Heading class='h--darker h--large'>The alarm clock of <br/> your dreams</Heading>
-			                <Clock />
-			                <Link to={`discover`}><PrimaryButton title='Discover'/></Link>
-			            </div>
-		        	</div>
+		        <div className='HomePage'>
+		            <div>
+		            	<div className='title-header'>
+		            		<h1>SNOOZY</h1>
+		            		<h5>The alarm clock that will never let you down</h5>
+		            	</div>
+		            	{/*
+		            	<!--
+		                <Heading class='h--darker h--large'>The alarm clock of <br/> your dreams</Heading>
+		                <Clock />
+		                <Link to={`discover`}><PrimaryButton title='Discover'/></Link>-->
+		                */}
+		                <Link to={`discover`}><PrimaryButton title='Discover'/></Link>
+		            </div>
+	        	</div>
 		      	<Footer />
 		    </div>
         );
