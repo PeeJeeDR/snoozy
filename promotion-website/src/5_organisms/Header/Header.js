@@ -9,7 +9,7 @@ class Header extends Component {
 	constructor(props){
 	    super(props);
 	    this.state = {
-	      mainnav: "main-nav"
+	      mainnav: "main-nav",
 	    };
 	}
 
@@ -24,10 +24,10 @@ class Header extends Component {
 				</span>
 				<ul className={this.state.mainnav} id="js-menu" ref="jsmenu">
 			      	<li>
-			    		<Link to={`home`} className="nav-links">Home</Link>
+			    		<Link to={`home`} className={this.props.home}>Home</Link>
 			      	</li>
 			      	<li>
-			    		<Link to={`discover`} className="nav-links">Discover</Link>
+			    		<Link to={`discover`} className={this.props.discover}>Discover</Link>
 			      	</li>
 				</ul>
 			</nav>

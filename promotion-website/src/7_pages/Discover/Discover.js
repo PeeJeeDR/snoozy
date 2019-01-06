@@ -9,17 +9,15 @@ class Discover extends Component {
 	constructor(props){
 	    super(props);
 	    this.state = {
-	      mainnav: "main-nav"
+	      discover: "nav-links nav-active",
+	      home: "nav-links",
 	    };
 	}
-
-
-
 	render() {
 		
 		return (
         <div className='Discover'>
-        	<Header />
+        	<Header discover={this.state.discover} home={this.state.home} />
 		    <div className="main">
 		        <h1>DISCOVER</h1>
 		        <span className="underline"></span>
@@ -54,11 +52,6 @@ class Discover extends Component {
 		    <Footer />
         </div>
         );
-	}
-	toggleClass() {
-		console.log('toggle');
-	    var css = (this.state.mainnav === "main-nav") ? "main-nav active" : "main-nav";
-	    this.setState({"mainnav":css});
 	}
 }
 
