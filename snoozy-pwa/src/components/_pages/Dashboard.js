@@ -7,57 +7,48 @@ import ManualBox from '../Boxes/ManualBox';
 import SideNavigation from '../SidebarNavigation/SideNavigation';
 import { db } from '../../firebase/firebase';
 
+const snoozyRef     = db.collection('snoozy').doc('status');
+
 class Dashboard extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
             showWarningBox: false,
-            setToManual: false,
+            autoMode: false,
             timeOnSubmit: '',
-            ApiLoaded: false,
-
-            start_time: '',
-            start_date: '',
-            user_time: '',
-
-            autoCalculateIsOn: false
+            apiLoaded: false,
+            powerStatus: false,
         };
-
-        this.powerStatus    = false;
     }
 
     componentWillMount = () => {
+        console.log(this.state.apiLoaded);
         this.getAutoClock();
-        this.calculateAlarm();
         this.getSnoozyStatus();
     }
 
-    getAutoClock = () => {
-        db.collection('api-data').doc('maps-data').onSnapshot(res => {
-			this.setState({ autoCalculateIsOn: res.data().enabled })
-		})
+    componentDidMount = () => {
+        console.log(this.state.apiLoaded);        
     }
 
-    calculateAlarm = () => {
-        db.collection('snoozy').doc('status').onSnapshot(res => {
-            
-        });
+    getAutoClock = () => {
+        snoozyRef.onSnapshot(snap => {
+            this.setState({ autoMode: snap.data().autoMode });
+        })
     }
 
     getSnoozyStatus = () => {
-        db.collection('snoozy').doc('status').onSnapshot(res => {
-            this.powerStatus    = res.data().power_status
-            this.setState({ ApiLoaded: true, showWarningBox: this.powerStatus })
-        });
+        snoozyRef.onSnapshot(res => {
+            this.setState({ powerStatus: res.data().power_status })
+        }, () => { this.setState({ apiLoaded: true })})
     }
 
     timeOnSubmit = (time) => {
-        console.log(time);
         this.setState({ timeOnSubmit: time });
     }
 
     renderManual = () => {
-        if (this.state.setToManual)
+        if (this.state.autoMode)
         {
             return (
                 <ManualBox 
@@ -69,12 +60,10 @@ class Dashboard extends React.Component {
     }
 
     togglePowerSnoozy = () => {
-        this.powerStatus    = !this.powerStatus;
-
-        this.setState({ showWarningBox: this.powerStatus });
-        
-        db.collection('snoozy').doc('status').update({
-            power_status: this.powerStatus
+        snoozyRef.update({
+            power_status: this.state.powerStatus
+        }).then(() => { 
+            this.setState({ powerStatus: !this.state.powerStatus}) 
         })
     }
     
@@ -84,32 +73,32 @@ class Dashboard extends React.Component {
 				<Header />
                 <SideNavigation />
 
-                { this.state.ApiLoaded && !this.state.showWarningBox ? <WarningBox /> : '' }
+                { this.state.apiLoaded && !this.state.showWarningBox ? <WarningBox /> : '' }
 
                 <div className="page_wrapper">
                     <Appointment />
 
                     {
-                        this.state.ApiLoaded
+                        this.state.apiLoaded
                         ?
                         <SwitchButton 
                             onClick={() => this.setState({ setToManual: !this.state.setToManual })}
                             labelName='Automatische wekker'
-                            defaultOn={ this.state.autoCalculateIsOn }
+                            defaultOn={ this.state.autoMode }
                         />
                         : 
-                        ''
+                        <p>Loading...</p>
                     }
 
                     { this.renderManual() }
 
                     {
-                        this.state.ApiLoaded
+                        this.state.apiLoaded
                         ?
                         <SwitchButton 
                             onClick={ this.togglePowerSnoozy }
                             labelName='Schakel je Snoozy in'
-                            defaultOn={ this.powerStatus }
+                            defaultOn={ this.state.powerStatus }
                         />
                         :
                         ''

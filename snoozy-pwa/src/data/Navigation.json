@@ -9,21 +9,6 @@
             "name": "Externe Apps",
             "link": "/external-apps",
             "slug": "external-apps"    
-        },
-        {
-            "name": "Spotify",
-            "link": "/spotify",
-            "slug": "spotify"    
-        },
-        {
-            "name": "Google calendar",
-            "link": "/calendar",
-            "slug": "calendar"  
-        },
-        {
-            "name": "Work Address",
-            "link": "/work",
-            "slug": "work"  
         }
     ]   
 }
