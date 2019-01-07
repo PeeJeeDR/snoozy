@@ -3,13 +3,34 @@ import Logo from '../../assets/images/Snoozy_Logo_white.png';
 import GhostButton from '../Buttons/GhostButton';
 import { db } from '../../firebase/firebase';
 
+const notificationsRef  = db.collection('notifications');
+const snoozyRef         = db.collection('snoozy').doc('status');
+
 class Splash extends React.Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            alarm_seconds: 0,
+        };
+    }
+    
     componentWillMount = () => {
-        db.collection('notifications').get().then(res => {
+        notificationsRef.get().then(res => {
             res.forEach(doc => {
                 console.log(doc.id, doc.data());
             })
-        })
+        });
+
+        snoozyRef.onSnapshot(snap => {
+            this.setState({ alarm_seconds: snap.data().alarm.seconds });
+        });
+    }
+
+    renderAlarm = () => {
+        const date  = new Date(0);
+        date.setSeconds(this.state.alarm_seconds);
+
+        return <h1>{ `${ date.getHours() }:${ date.getMinutes() }` }</h1>
     }
     
     render = () => {
@@ -19,7 +40,7 @@ class Splash extends React.Component {
 
                 <div className="clock">
                     <p>Your alarm will ring at</p>
-                    <h1>06:45</h1>
+                    { this.renderAlarm() }
                 </div>
 
                 <div className="buttons">

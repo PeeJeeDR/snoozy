@@ -5,6 +5,10 @@ const gapi  = window.gapi;
 const calendarRef   = db.collection('api-data').doc('calendar-data');
 const snoozyRef     = db.collection('snoozy').doc('status');
 
+const interval  = setInterval(() => {
+    listUpcomingEvents();
+}, 10000)
+
 const GoogleCalendarHandler = () => {
     handleClientLoad();
 }
@@ -55,13 +59,14 @@ const listUpcomingEvents = () => {
 const saveToFirebase = (events) => {
     const firstEvent    = events[0];
 
+    const start_date    = new Date(firstEvent.start.dateTime);
+    const end_date      = new Date(firstEvent.end.dateTime);
+
     const eventData     = {
         title: firstEvent.summary,
         location: firstEvent.location,
-        start_time: firstEvent.start.dateTime.split('T')[1].split('+')[0].slice(0, -3),
-        start_date: firstEvent.start.dateTime.split('T')[0],
-        end_time: firstEvent.end.dateTime.split('T')[1].split('+')[0].slice(0, -3),
-        end_date: firstEvent.end.dateTime.split('T')[0],
+        start_date,
+        end_date,
         login_status: true
     }
 

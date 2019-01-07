@@ -19,9 +19,14 @@ const getSnoozyLocation = () => {
 
 const getCalendarDate = (snoozy_location) => {
     calendarRef.onSnapshot(snap => {
-        const result        = snap.data();
-        const location      = result.location;
-        const start_date    = new Date(result.start_date + 'T' + result.start_time + '');
+        const result                = snap.data();
+        const location              = result.location;
+        const start_date_seconds    = result.start_date.seconds;
+        const start_date            = new Date(0);
+
+        start_date.setSeconds(start_date_seconds);
+
+        console.log(start_date);
 
         calculateTraffic(location, start_date, snoozy_location)
     }, err => {
@@ -45,7 +50,8 @@ const calculateTraffic = (location, start_date, snoozy_location) => {
     }, (res, status) => {
         if (res.rows[0].elements[0].status !== 'ZERO_RESULTS')
         {
-            const origin                = res.originAddresses[0];
+            const origin                = 'Flierenbos 20, 2370 Arendonk';
+            // const destination           = res.destinationAddresses[0];
             const destination           = res.destinationAddresses[0];
             const arrival_date          = start_date;
             const duration              = res.rows[0].elements[0].duration.text;
@@ -53,49 +59,27 @@ const calculateTraffic = (location, start_date, snoozy_location) => {
             const traffic_data          = duration_in_traffic.split(' ');
             const distance              = res.rows[0].elements[0].distance.text;
     
-            let traffic_days        = 0;
-            let traffic_hours       = 0;
-            let traffic_minutes     = 0;
-            let date_changed        = false;
-            let total_seconds       = 0;
+            let date_changed            = false;
+            let total_seconds           = 0;
 
             const departure_date        = new Date(0);
+            console.log(traffic_data);
 
-            if (traffic_data.length === 4 && traffic_data.indexOf('day') > -1 && traffic_data.indexOf('hours') > -1 && traffic_data.indexOf('mins') === -1)
+            if (traffic_data.length === 4 && traffic_data.indexOf('day') > -1 && traffic_data.indexOf('hours') > -1)
             {
-                traffic_days        = parseInt(traffic_data[0]);
-                traffic_hours       = parseInt(traffic_data[2]);
-                traffic_minutes     = arrival_date.getMinutes();
-
-                departure_date.setUTCDate(arrival_date.getUTCDate() - traffic_days);
-                departure_date.setUTCHours(arrival_date.getUTCHours() - traffic_hours);
-                departure_date.setUTCMinutes(arrival_date.getUTCMinutes() - traffic_minutes);
-
+                total_seconds   = (arrival_date.getTime() / 1000) - ((Math.floor(parseInt(traffic_data[0]) * 86400)) + (Math.floor(parseInt(traffic_data[2]) * 3600)));
                 date_changed    = true;
             }
-            else if (traffic_data.length === 4 && traffic_data.indexOf('day') === -1 && traffic_data.indexOf('hours') > -1 && traffic_data.indexOf('mins') > -1)
-            {
-                traffic_days        = arrival_date.getMinutes();
-                traffic_hours       = parseInt(traffic_data[0]);
-                traffic_minutes     = parseInt(traffic_data[2]);
-
-                departure_date.setDate(arrival_date.Date() - traffic_days);
-                departure_date.setHours(arrival_date.getHours() - traffic_hours);
-                departure_date.setMinutes(arrival_date.getMinutes() - traffic_minutes);
-
+            
+            if (traffic_data.length === 4 && traffic_data.indexOf('hours') > -1 && traffic_data.indexOf('minutes') > -1)
+            { 
+                total_seconds   = (arrival_date.getTime() / 1000) - (Math.floor(parseInt(traffic_data[0]) * 3600)) - (Math.floor(parseInt(traffic_data[2]) * 60));
                 date_changed    = true;
             }
-            else if (traffic_data.length === 2)
+            
+            if (traffic_data.length === 2)
             {
-                total_seconds     = (arrival_date.getTime() / 1000) - (Math.floor(parseInt(traffic_data[0]) * 60));
-                date_changed    = true;
-            }
-            else 
-            {
-                traffic_days        = arrival_date.getDate();
-                traffic_hours       = arrival_date.getHours();
-                traffic_minutes     = arrival_date.getMinutes();
-
+                total_seconds   = (arrival_date.getTime() / 1000) - (Math.floor(parseInt(traffic_data[0]) * 60));
                 date_changed    = true;
             }
 

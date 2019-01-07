@@ -1,16 +1,14 @@
 import React from 'react';
-import Buzz from '../../assets/audio/buzz.mp3';
 import AlarmClock from '../../assets/svg/alarm-clock.svg';
 import { db } from '../../firebase/firebase';
 import axios from 'axios';
-import { Howl } from 'howler';
 
 const snoozyRef     = db.collection('snoozy').doc('status');
 const userRef       = db.collection('snoozy').doc('user-data');
 const mapsRef       = db.collection('api-data').doc('maps-data');
 
 const test_alarm    = new Date();
-test_alarm.setSeconds(test_alarm.getSeconds() + 7)
+test_alarm.setSeconds(test_alarm.getSeconds() + 4)
 
 class Alarm extends React.Component {
     constructor (props) {
@@ -28,30 +26,23 @@ class Alarm extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log('reloaded');
         this.secondsInterval    = setInterval(() => {
             if (this.state.alarm !== null)
             {
                 const cur_seconds   = Math.floor(new Date().getTime() / 1000);
                 // MOET LATER TERUG ENABLED WORDEN!!
-                // const alarm_seconds = Math.floor(this.state.alarm.getTime() / 1000);
+                const alarm_seconds = Math.floor(this.state.alarm.getTime() / 1000);
                 
-                if (cur_seconds === Math.floor(test_alarm.getTime() / 1000))
+/*              if (cur_seconds === Math.floor(test_alarm.getTime() / 1000))
                 {
                     this.setState({ alarmIsPlaying: true });
-                    this.ringAlarm(true, this.state.alarmTime);
-                }
+                    this.ringAlarm();
+                } */
 
-                if (this.state.alarmIsPlaying)
+                if (cur_seconds === alarm_seconds)
                 {
-                    this.counter++;
-
-                    if (this.counter === this.state.alarmTime)
-                    {
-                        this.counter    = 0;
-                        this.setState({ alarmIsPlaying: false });
-                        this.ringAlarm(false);
-                    }
+                    this.setState({ alarmIsPlaying: true });
+                    this.ringAlarm();
                 }
             }
         }, 1000)
@@ -73,37 +64,18 @@ class Alarm extends React.Component {
         });
     }
 
-    ringAlarm = (state) => {
-        const audio 	= new Howl({ 
-            src: [ Buzz ],
-            loop: false,
-            volume: 1,
-        });
-
-		if (state) 
-		{
-            audio.play();
-            
-            axios.post('http://192.168.1.184:8081/blink').then(res => {
-                console.log(res);
-            }).catch(err => {
-                console.log('Something went wrong...', err);
+    ringAlarm = async () => {
+        if (this.counter === 0)
+        { 
+            const res   = await axios.post('http://192.168.43.196:8081/blink', { 
+                led_color: 'green' 
             });
-		}
-        
-        if (!state)
-		{
-            audio.stop();
-            
-            if (!this.state.alarmIsPlaying)
+
+            if (res.data.status === 'OFF')
             {
-                axios.post('http://192.168.1.184:8081/light-off').then(res => {
-                    console.log(res);
-                }).catch(err => {
-                    console.log('Something went wrong...', err);
-                });
+                this.setState({ alarmIsPlaying: false, })
             }
-		}
+        }
     }
 
     calculateAlarm = (time_needed) => {
@@ -152,14 +124,20 @@ class Alarm extends React.Component {
     }
 
     renderClock = () => {
-        if (this.state.powerStatus && this.state.apiLoaded)
+        let playing     = false;
+
+        if (this.state.powerStatus && this.state.apiLoaded && !this.state.alarmIsPlaying)
         {
             return (
-                <div>
+                <div className={ `${ playing }` }>
                     <img src={ AlarmClock } alt='Clock icon.'/>
                     <h3>{ `${ this.returnHours() }:${ this.returnMinutes() }` }</h3>
                 </div>
             )
+        }
+        else if (this.state.alarmIsPlaying)
+        {
+            return <h5>ALARM GAAT AF!</h5>
         }
         else
         {
