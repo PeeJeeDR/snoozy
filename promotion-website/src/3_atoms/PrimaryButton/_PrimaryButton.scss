@@ -19,13 +19,13 @@
         /*
         background-color: darken( $snoozy-green, 10% );
         */
-        color: $snoozy-green;
-        border: 2px solid $snoozy-green;
-        background: none;
+        color: $midnight-green;
+        border: 2px solid $midnight-green;
+        background-color: $midnight-green;
         cursor: pointer;
 
         h1 {
-            color: $snoozy-green;
+            color: white;
         }
     }
 
