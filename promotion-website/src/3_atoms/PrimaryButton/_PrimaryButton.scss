@@ -1,21 +1,47 @@
 .PrimaryButton 
 {
-    background-color: $pearl;
+    color: white;
+    border: 2px solid $snoozy-green;
+    background-color: $snoozy-green;
     padding: 25px 130px;
-    color: $snow;
+    border-radius: 200rem;
+    transition: all 100ms ease-in-out;
+    /*
+    background-color: $snoozy-green;
+    padding: 25px 130px;
+    color: white;
     border-radius: 200rem;
     border: none;
     transition: all 100ms ease-in-out;
-
+    */
     &:hover 
     {
-        background-color: darken( $pearl, 10% );
+        /*
+        background-color: darken( $snoozy-green, 10% );
+        */
+        color: $snoozy-green;
+        border: 2px solid $snoozy-green;
+        background: none;
         cursor: pointer;
+
+        h1 {
+            color: $snoozy-green;
+        }
     }
 
     &:focus 
     {
         outline: none;
-        background-color: darken( $pearl, 10% );
+        background-color: darken( $snoozy-green, 10% );
     }
+
+    h1 {
+        margin: 0;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.6rem;
+    }
+
+    
+    
 }
