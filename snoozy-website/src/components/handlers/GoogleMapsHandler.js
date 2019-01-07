@@ -26,8 +26,6 @@ const getCalendarDate = (snoozy_location) => {
 
         start_date.setSeconds(start_date_seconds);
 
-        console.log(start_date);
-
         calculateTraffic(location, start_date, snoozy_location)
     }, err => {
         console.log('Something went wrong...', err);
@@ -58,12 +56,10 @@ const calculateTraffic = (location, start_date, snoozy_location) => {
             const duration_in_traffic   = res.rows[0].elements[0].duration_in_traffic.text;
             const traffic_data          = duration_in_traffic.split(' ');
             const distance              = res.rows[0].elements[0].distance.text;
-    
-            let date_changed            = false;
-            let total_seconds           = 0;
-
             const departure_date        = new Date(0);
-            console.log(traffic_data);
+    
+            let date_changed    = false;
+            let total_seconds   = 0;
 
             if (traffic_data.length === 4 && traffic_data.indexOf('day') > -1 && traffic_data.indexOf('hours') > -1)
             {
@@ -71,9 +67,9 @@ const calculateTraffic = (location, start_date, snoozy_location) => {
                 date_changed    = true;
             }
             
-            if (traffic_data.length === 4 && traffic_data.indexOf('hours') > -1 && traffic_data.indexOf('minutes') > -1)
+            if (traffic_data.length === 4 && traffic_data.indexOf('hours') > -1 && traffic_data.indexOf('mins') > -1)
             { 
-                total_seconds   = (arrival_date.getTime() / 1000) - (Math.floor(parseInt(traffic_data[0]) * 3600)) - (Math.floor(parseInt(traffic_data[2]) * 60));
+                total_seconds   = (arrival_date.getTime() / 1000) - ((Math.floor(parseInt(traffic_data[0]) * 3600)) + (Math.floor(parseInt(traffic_data[2]) * 60)));
                 date_changed    = true;
             }
             
