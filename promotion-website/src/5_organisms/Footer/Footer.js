@@ -17,7 +17,7 @@ const Footer = (props) => {
                 </div>
                 <div className="footer-list">
                     <h6 className="footer-list-title">Contact</h6>
-                    <a href="#" className="f-link">Email</a>
+                    <a href="mailto:snoozyinc@gmail.com" className="f-link">Send us an email</a> 
                 </div>
             </div>
         </footer>
