@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `gulp sass`
+
+Compiles main.scss (where all scss scripts are imported) in src/0_loader/ to main.css in public/style/
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
