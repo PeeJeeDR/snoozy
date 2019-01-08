@@ -45,9 +45,9 @@ class Discover extends Component {
 							<p className="card-text">Set up your perfect amount of snoozes</p>
 						</div>
 						<div className="discover-card">
-							<span className="card-logo"><img id="spotify" src="/img/spotify.svg" alt="Spotify"/></span>
-							<h3 className="card-title">Spotify</h3>
-							<p className="card-text">Choose your wake-up song with Spotify</p>
+							<span className="card-logo"><img id="spotify" src="/img/music.svg" alt="Music"/></span>
+							<h3 className="card-title">Music</h3>
+							<p className="card-text">Choose a Snoozy alarm theme and wake-up with a smile on your face</p>
 						</div>
 			        </div>
 			    </div>

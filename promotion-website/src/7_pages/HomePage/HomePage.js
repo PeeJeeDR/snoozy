@@ -18,24 +18,23 @@ class HomePage extends Component {
 	render() {
 		
 		return (
-        	<div>
+        	<div className='HomePage'>
 	    		<Header discover={this.state.discover} home={this.state.home} purchase={this.state.purchase} />
-		        <div className='HomePage'>
-		            <div>
-		            	<div className='title-header'>
-		            		<h1>SNOOZY</h1>
-		            		<h5>The alarm clock that will never let you down</h5>
-		            	</div>
-		            	{/*
-		            	<!--
-		                <Heading className='h--darker h--large'>The alarm clock of <br/> your dreams</Heading>
-		                <Clock />
-		                <Link to={`discover`}><PrimaryButton title='Discover'/></Link>-->
-		                */}
+	            <div className="main">
+	            	<div className='title-header'>
+	            		<h1>SNOOZY</h1>
+	            		<h5>The alarm clock that will never let you down</h5>
+	            	</div>
+	            	{/*
+	            	<!--
+	                <Heading className='h--darker h--large'>The alarm clock of <br/> your dreams</Heading>
+	                <Clock />
+	                <Link to={`discover`}><PrimaryButton title='Discover'/></Link>-->
+	                */}
 
-		                <Link to={`discover`}><PrimaryButton title='Discover'/></Link>
-		            </div>
-	        	</div>
+	                <Link to={`discover`}><PrimaryButton title='Discover'/></Link>
+	            </div>
+
 		      	<Footer />
 		    </div>
         );

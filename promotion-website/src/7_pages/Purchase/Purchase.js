@@ -18,12 +18,14 @@ class Purchase extends Component {
 	render() {
 		
 		return (
-        	<div>
+        	<div className='Purchase'>
 	    		<Header discover={this.state.discover} home={this.state.home} purchase={this.state.purchase} />
-		        <div className='Purchase'>
+	    		
+	        	<div className="main">
 		            <h1>PURCHASE</h1>
 			        <span className="underline"></span>
-	        	</div>
+		        </div>
+		        
 		      	<Footer />
 		    </div>
         );
