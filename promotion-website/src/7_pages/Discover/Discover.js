@@ -11,13 +11,14 @@ class Discover extends Component {
 	    this.state = {
 	      discover: "nav-links nav-active",
 	      home: "nav-links",
+	      purchase: "nav-links",
 	    };
 	}
 	render() {
 		
 		return (
         <div className='Discover'>
-        	<Header discover={this.state.discover} home={this.state.home} />
+        	<Header discover={this.state.discover} home={this.state.home} purchase={this.state.purchase} />
         	<div className="discover-wrapper">
 			    <div className="main">
 			        <h1>DISCOVER</h1>

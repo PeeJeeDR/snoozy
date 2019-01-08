@@ -29,6 +29,9 @@ class Header extends Component {
 			      	<li>
 			    		<Link to={`discover`} className={this.props.discover}>Discover</Link>
 			      	</li>
+			      	<li>
+			    		<Link to={`purchase`} className={this.props.purchase}>Purchase</Link>
+			      	</li>
 				</ul>
 			</nav>
 			);
