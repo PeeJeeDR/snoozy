@@ -6,22 +6,25 @@
     .main
     {   
         
-        background-image: linear-gradient(
+        background-image: url("/img/snoozy_banner.jpg");  /*linear-gradient(
             to top, 
             #fcd0a2, 
             #f8d5a6, 
             #f4dbab, 
             #f0dfb0, 
             #ece4b7
-        );
+        );*/
         /*min-height: calc(100vh - 75px - 8.4rem);*/
         /*border-radius: 10px;*/
+        background-size: cover;
+        background-position: 50%;
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-direction: column;
         /*padding: 3rem;*/
         height: 680px;
+        padding: 3rem;
     
         .title-header {
             display: flex;
