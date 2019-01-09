@@ -20,7 +20,10 @@ class Purchase extends Component {
 		return (
         	<div className='Purchase'>
 	    		<Header discover={this.state.discover} home={this.state.home} purchase={this.state.purchase} />
-	    		
+	    		{/* design voor deze pagina vind je hier:
+					Desktop: https://drive.google.com/open?id=1KL7o6ixZDz3TBGVEYp6A4XjxQKVFjEQO
+					Mobile: https://drive.google.com/open?id=1GLwH_q7mqfLWNaCbZIR_kgc2PwTeWiOz
+	    		*/}
 	        	<div className="main">
 		            <h1>PURCHASE</h1>
 			        <span className="underline"></span>
