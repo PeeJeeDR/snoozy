@@ -1,4 +1,6 @@
 .Discover {
+  background-color: $background_grey;
+
     .main {
         display: flex;
         flex-flow: column nowrap;
@@ -74,10 +76,11 @@
 }
 
 .discover-wrapper {
+  /*
     margin: 1.2rem;
     padding: 3rem;
     border-radius: 10px;
-    background-color: $background_grey;
+    background-color: $background_grey;*/
 }
 
 
@@ -135,13 +138,13 @@
     transform: scale(0, 0, 0);
 }
 
-#calendar {
-    transition: transform 1s;
-}
-
 #calendar:hover {
-    transform: translateY(-20px);
+    animation: click 0.42s cubic-bezier(.36,.07,.19,.97) both;
 }
+/*
+#calendar:hover {
+    transform: scale(0.95);
+}*/
 
 
 /* ////////// KEYFRAMES ////////// */
@@ -219,5 +222,16 @@
 
   40%, 60% {
     transform: rotate(10deg,10deg);
+  }
+}
+
+@keyframes click {
+  30% {
+    transform: scale(0.95);
+  }
+  
+  100% {
+    transform: scale(1);
+
   }
 }

@@ -1,36 +1,41 @@
 .HomePage 
 {
-    padding: 1.2rem;
+    /*padding: 1.2rem;*/
+    background-color: $background_grey;
     
-    & > div 
+    .main
     {   
         
-        background-image: linear-gradient(
+        background-image: url("/img/snoozy_banner-min.jpg");  /*linear-gradient(
             to top, 
             #fcd0a2, 
             #f8d5a6, 
             #f4dbab, 
             #f0dfb0, 
             #ece4b7
-        );
+        );*/
         /*min-height: calc(100vh - 75px - 8.4rem);*/
-        border-radius: 10px;
+        /*border-radius: 10px;*/
+        background-size: cover;
+        background-position: 50%;
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-direction: column;
-        padding: 3rem;
+        /*padding: 3rem;*/
         height: 680px;
-    }
-    .title-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        margin-bottom: 150px;
+        padding: 3rem;
+    
+        .title-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 150px;
 
-        h1,h5 {
-            margin-top: 0;
+            h5 {
+                margin-top: 0;
+            }
         }
     }
 
