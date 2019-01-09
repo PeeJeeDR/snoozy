@@ -110,7 +110,7 @@ class Alarm extends React.Component {
                     sound: this.state.song
                 }, (err) => { return err });
 
-                console.log(res);
+                //console.log(res);
 
                 this.setState({ alarmIsPlaying: true });
 
@@ -152,7 +152,7 @@ class Alarm extends React.Component {
         snoozyRef.update({
             alarm: date
         }).catch(err => {
-            console.log('Something went wrong...', err);
+            //console.log('Something went wrong...', err);
         })
     }
 
@@ -178,6 +178,28 @@ class Alarm extends React.Component {
         }
     }
 
+    returnDate = () => {
+        const date      = this.state.alarm;
+        let result      = '';
+
+        //console.log(this.state.alarm);
+
+        if (date) {
+            date.setSeconds(this.state.alarm_seconds);
+
+            let dateStr     = date.toString();
+
+            let weekday     = dateStr.substring(0,3);
+            let month       = dateStr.substring(4,7);
+            let day         = dateStr.substring(8,10);
+            let year        = dateStr.substring(11,15);
+
+            result          = {weekday} + ' ' + {day} + ' ' + {month};
+        }
+
+        return <p>{ result }}</p>
+    }
+
     renderClock = () => {
         let playing     = false;
 
@@ -193,6 +215,8 @@ class Alarm extends React.Component {
                     <div className={ `${ playing }` }>
                         <img src={ AlarmClock } alt='Clock icon.'/>
                         <h3>{ `${ this.returnHours() }:${ this.returnMinutes() }` }</h3>
+                        { this.returnDate() }
+                        
                     </div>
                 )
             }
