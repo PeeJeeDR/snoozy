@@ -5,7 +5,7 @@ const gapi  = window.gapi;
 const calendarRef   = db.collection('api-data').doc('calendar-data');
 const snoozyRef     = db.collection('snoozy').doc('status');
 
-const interval  = setInterval(() => {
+setInterval(() => {
     listUpcomingEvents();
 }, 10000)
 

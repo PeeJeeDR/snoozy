@@ -61,7 +61,6 @@ class Alarm extends React.Component {
                 // For test purposes. Comment next if when uncommenting this one.
                 if (cur_seconds === (Math.floor(test_alarm.getTime() / 1000) + 2))
                 {
-                    this.setState({ alarmIsPlaying: true });
                     this.ringAlarm();
                 }
 
@@ -101,11 +100,6 @@ class Alarm extends React.Component {
     ringAlarm = async () => {
         if (this.counter === 0)
         {
-            console.log(this.state.song);
-
-            console.log('always', this.state.alwaysOnColor);
-            console.log('alarm', this.state.alarmColor);
-
             if (this.state.song !== null) 
             {
                 axios.post('http://192.168.43.196:8081/ambi-light-off');
@@ -114,9 +108,11 @@ class Alarm extends React.Component {
                     led_color: this.state.alarmColor,
                     audio: 'true',
                     sound: this.state.song
-                });
+                }, (err) => { return err });
 
-                // this.setState({ alarmIsPlaying: true });
+                console.log(res);
+
+                this.setState({ alarmIsPlaying: true });
 
                 if (res.data === 'POWER_OFF')
                 {
@@ -184,8 +180,6 @@ class Alarm extends React.Component {
 
     renderClock = () => {
         let playing     = false;
-
-        console.log(this.state.snoozed);
 
         if (this.state.powerStatus && this.state.apiLoaded && !this.state.alarmIsPlaying)
         {
