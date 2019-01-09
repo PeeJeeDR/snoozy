@@ -49,7 +49,7 @@ class Dashboard extends React.Component {
     // TOGGLE POWER SWITCH
     togglePowerSnoozy = () => {
         this.setState({ power_status: !this.state.power_status });
-        console.log(this.state.power_status);
+        
     }
 
     // LOAD POWER SWITCH
