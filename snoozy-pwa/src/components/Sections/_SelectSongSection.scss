@@ -1,0 +1,17 @@
+.SelectSongSection 
+{
+    @extend .GoogleCalendarSection;
+
+    select 
+    {
+        width: 100%;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 2px solid $accent;
+        background: none;
+        margin-top: 1rem;
+        border-radius: 0;
+        padding: 0.5rem 0 0.5rem 0.6rem;
+    }
+}

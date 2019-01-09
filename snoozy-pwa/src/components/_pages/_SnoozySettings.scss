@@ -1,0 +1,19 @@
+.SnoozySettings 
+{
+    .ok 
+    {
+        background-color: $accent;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border-radius: 200rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 2rem;
+    }
+}

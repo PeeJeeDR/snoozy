@@ -3,12 +3,10 @@ import AlarmClock from '../../assets/svg/alarm-clock.svg';
 import { db } from '../../firebase/firebase';
 import axios from 'axios';
 
-const snoozyRef     = db.collection('snoozy').doc('status');
-const userRef       = db.collection('snoozy').doc('user-data');
-const mapsRef       = db.collection('api-data').doc('maps-data');
-
-const test_alarm    = new Date();
-test_alarm.setSeconds(test_alarm.getSeconds() + 4)
+const snoozyRef             = db.collection('snoozy').doc('status');
+const snoozySettingsRef     = db.collection('snoozy').doc('settings');
+const userRef               = db.collection('snoozy').doc('user-data');
+const mapsRef               = db.collection('api-data').doc('maps-data');
 
 class Alarm extends React.Component {
     constructor (props) {
@@ -20,30 +18,56 @@ class Alarm extends React.Component {
             apiLoaded: false,
             alarmIsPlaying: null,
             alarmTime: 8,
+            snoozed: false,
+            song: null,
         };
 
-        this.counter    = 0;
+        this.counter        = 0;
+        this.times_snoozed  = 0;
+        this.snooze_counter = 0;
     }
 
     componentDidMount = () => {
+        const test_alarm    = new Date();
+        test_alarm.setSeconds(test_alarm.getSeconds() + 4);
+
         this.secondsInterval    = setInterval(() => {
+            if (this.state.snoozed)
+            {
+                // SET HOW MANY TIMES SNOOZED
+                this.snooze_counter++;
+
+                // SHUT ALARM AFTER 3 TIMES SNOOZED
+                if (this.times_snoozed === 3)
+                {
+                    console.log('END OF SNOOZE');
+                    this.setState({ alarmIsPlaying: false, snoozed: false })
+                }
+                
+                // IF 5 MINUTES ARE OVER
+                if (this.snooze_counter === 5) 
+                {
+                    this.ringAlarm();
+                }
+            }
+
             if (this.state.alarm !== null)
             {
                 const cur_seconds   = Math.floor(new Date().getTime() / 1000);
-                // MOET LATER TERUG ENABLED WORDEN!!
                 const alarm_seconds = Math.floor(this.state.alarm.getTime() / 1000);
                 
-/*              if (cur_seconds === Math.floor(test_alarm.getTime() / 1000))
-                {
-                    this.setState({ alarmIsPlaying: true });
-                    this.ringAlarm();
-                } */
-
-                if (cur_seconds === alarm_seconds)
+                // For test purposes. Comment next if when uncommenting this one.
+                if (cur_seconds === (Math.floor(test_alarm.getTime() / 1000) + 2))
                 {
                     this.setState({ alarmIsPlaying: true });
                     this.ringAlarm();
                 }
+
+                /* if (cur_seconds === alarm_seconds)
+                {
+                    this.setState({ alarmIsPlaying: true });
+                    this.ringAlarm();
+                } */
             }
         }, 1000)
     }
@@ -62,19 +86,42 @@ class Alarm extends React.Component {
         snoozyRef.onSnapshot(snap => {
             this.setState({ powerStatus: snap.data().power_status })
         });
+
+        /* snoozySettingsRef.get().then(res => {
+            this.setState({ song: res.data().song })
+        }) */
     }
 
-    ringAlarm = async () => {
+    ringAlarm = () => {
         if (this.counter === 0)
-        { 
-            const res   = await axios.post('http://192.168.43.196:8081/blink', { 
-                led_color: 'green' 
-            });
+        {
+            // console.log(this.state.song);
 
-            if (res.data.status === 'OFF')
-            {
-                this.setState({ alarmIsPlaying: false, })
-            }
+            // if (this.state.song !== null) 
+            //{
+                const res   = axios.post('http://192.168.43.196:8081/blink', { 
+                    led_color: 'green',
+                    audio: 'true',
+                    sound: 'buzz'
+                });
+
+                console.log(res.data);
+
+                // this.setState({ alarmIsPlaying: true });
+
+                if (res.data === 'POWER_OFF')
+                {
+                    this.times_snoozed  = 0;
+                    this.setState({ alarmIsPlaying: false, snoozed: false })
+                }
+    
+                if (res.data === 'SNOOZE')
+                {
+                    this.snooze_counter     = 0;
+                    this.times_snoozed++;
+                    this.setState({ snoozed: true, alarmIsPlaying: false });
+                }
+            // }
         }
     }
 
@@ -82,7 +129,7 @@ class Alarm extends React.Component {
         const hours     = parseInt(time_needed.split(':')[0]);
         const minutes   = parseInt(time_needed.split(':')[1]);
 
-        const time_needed_to_seconds  = (Math.floor(hours * 3600)) + (Math.floor(minutes * 60));
+        const time_needed_to_seconds  = ((Math.floor(parseInt(hours) * 3600)) + (Math.floor(parseInt(minutes) * 60)));
 
         mapsRef.onSnapshot(snap => {
             const date  = new Date(0);
@@ -126,14 +173,23 @@ class Alarm extends React.Component {
     renderClock = () => {
         let playing     = false;
 
+        console.log(this.state.snoozed);
+
         if (this.state.powerStatus && this.state.apiLoaded && !this.state.alarmIsPlaying)
         {
-            return (
-                <div className={ `${ playing }` }>
-                    <img src={ AlarmClock } alt='Clock icon.'/>
-                    <h3>{ `${ this.returnHours() }:${ this.returnMinutes() }` }</h3>
-                </div>
-            )
+            if (this.state.snoozed)
+            {
+                return <h5>ALARM GESNOOZED</h5>
+            }
+            else 
+            {
+                return (
+                    <div className={ `${ playing }` }>
+                        <img src={ AlarmClock } alt='Clock icon.'/>
+                        <h3>{ `${ this.returnHours() }:${ this.returnMinutes() }` }</h3>
+                    </div>
+                )
+            }
         }
         else if (this.state.alarmIsPlaying)
         {

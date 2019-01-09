@@ -53,6 +53,21 @@ h1, h2, p {
 .Dashboard {
   padding-bottom: 3rem; }
 
+.SnoozySettings .ok {
+  background-color: #72BFA5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 200rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 2rem; }
+
 .SideNavigation {
   position: absolute;
   top: 0;
@@ -269,18 +284,18 @@ h1, h2, p {
   padding: 2rem;
   font-size: 1.3rem; }
 
-.GoogleCalendarSection .titleSection, .GoogleMapsSection .titleSection, .SpotifySection .titleSection, .OutlookSection .titleSection, .FacebookSection .titleSection, .TwitterSection .titleSection {
+.GoogleCalendarSection .titleSection, .GoogleMapsSection .titleSection, .SpotifySection .titleSection, .OutlookSection .titleSection, .FacebookSection .titleSection, .TwitterSection .titleSection, .SelectSongSection .titleSection {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0; }
-  .GoogleCalendarSection .titleSection img, .GoogleMapsSection .titleSection img, .SpotifySection .titleSection img, .OutlookSection .titleSection img, .FacebookSection .titleSection img, .TwitterSection .titleSection img {
+  .GoogleCalendarSection .titleSection img, .GoogleMapsSection .titleSection img, .SpotifySection .titleSection img, .OutlookSection .titleSection img, .FacebookSection .titleSection img, .TwitterSection .titleSection img, .SelectSongSection .titleSection img {
     width: 1.4rem;
     margin-right: 1rem; }
-  .GoogleCalendarSection .titleSection div, .GoogleMapsSection .titleSection div, .SpotifySection .titleSection div, .OutlookSection .titleSection div, .FacebookSection .titleSection div, .TwitterSection .titleSection div {
+  .GoogleCalendarSection .titleSection div, .GoogleMapsSection .titleSection div, .SpotifySection .titleSection div, .OutlookSection .titleSection div, .FacebookSection .titleSection div, .TwitterSection .titleSection div, .SelectSongSection .titleSection div {
     display: flex;
     align-items: center; }
-  .GoogleCalendarSection .titleSection label, .GoogleMapsSection .titleSection label, .SpotifySection .titleSection label, .OutlookSection .titleSection label, .FacebookSection .titleSection label, .TwitterSection .titleSection label {
+  .GoogleCalendarSection .titleSection label, .GoogleMapsSection .titleSection label, .SpotifySection .titleSection label, .OutlookSection .titleSection label, .FacebookSection .titleSection label, .TwitterSection .titleSection label, .SelectSongSection .titleSection label {
     padding: 0; }
 
 .GoogleMapsSection {
@@ -297,6 +312,17 @@ h1, h2, p {
 
 .TwitterSection {
   margin-top: 2rem; }
+
+.SelectSongSection select {
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid #72BFA5;
+  background: none;
+  margin-top: 1rem;
+  border-radius: 0;
+  padding: 0.5rem 0 0.5rem 0.6rem; }
 
 .Paragraph {
   color: #A2A2A2;

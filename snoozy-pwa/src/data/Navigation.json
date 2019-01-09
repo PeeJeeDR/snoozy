@@ -1,6 +1,11 @@
 {
     "data": [
         {
+            "name": "Start scherm",
+            "link": "/",
+            "slug": "home"    
+        },
+        {
             "name": "Dashboard",
             "link": "/dashboard",
             "slug": "dashboard"    
@@ -9,6 +14,11 @@
             "name": "Externe Apps",
             "link": "/external-apps",
             "slug": "external-apps"    
+        },
+        {
+            "name": "Snoozy instellingen",
+            "link": "/snoozy-settings",
+            "slug": "snoozy-settings"    
         }
     ]   
 }
