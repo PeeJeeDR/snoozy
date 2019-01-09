@@ -210,12 +210,23 @@ h1, h2, p {
   border-radius: 10px; }
   .Appointment header {
     background-image: url("/images/backgrounds/work.jpg");
-    height: 10rem;
     width: 100%;
     background-size: cover;
     background-position: center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px; }
+    @media only screen and (max-width: 768px) {
+      .Appointment header {
+        height: 18rem; } }
+    @media only screen and (min-width: 768px) {
+      .Appointment header {
+        height: 20rem; } }
+    @media only screen and (min-width: 992px) {
+      .Appointment header {
+        height: 25rem; } }
+    @media only screen and (min-width: 1200px) {
+      .Appointment header {
+        height: 25rem; } }
   .Appointment .content {
     padding: 20px; }
   .Appointment .top {

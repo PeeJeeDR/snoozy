@@ -8,12 +8,37 @@
     header 
     {
         background-image: url('/images/backgrounds/work.jpg');
-        height: 10rem;
         width: 100%;
         background-size: cover;
         background-position: center;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+
+        // Phone
+        @media only screen and (max-width: 768px) 
+        {
+            height: 18rem;            
+        }
+
+        // Tablet
+        @media only screen and (min-width: 768px) 
+        {
+            
+            height: 20rem;            
+        }
+
+        // Desktop
+        @media only screen and (min-width: 992px) 
+        {
+            
+            height: 25rem;
+        }
+
+        // Large desktop
+        @media only screen and (min-width: 1200px) 
+        {
+            height: 25rem;
+        }
     }
 
     .content 
