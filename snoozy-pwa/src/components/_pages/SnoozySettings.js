@@ -5,6 +5,7 @@ import Sectionheading from '../Titles/Sectionheading';
 import SideNavigation from '../SidebarNavigation/SideNavigation';
 import SelectSongSection from '../Sections/SelectSongSection';
 import posed from 'react-pose';
+import LedColors from '../Sections/LedColors';
 
 const OK    = posed.div({
     hidden: { 
@@ -75,13 +76,8 @@ class SnoozySettings extends React.Component {
         this.playOkAnimation();
     }
 
-    renderSelectBox = () => {
-        return (
-            <SelectSongSection 
-                onClick={ this.onSoundSelect } 
-                defaultSong={ localStorage.getItem('SelectedSong') }
-            />
-        )
+    onColorSelect = () => {
+        this.playOkAnimation();
     }
 
     render = () => {
@@ -97,7 +93,14 @@ class SnoozySettings extends React.Component {
 
                 <div className="page_wrapper">
                     <div className="content_wrapper">
-                        { this.renderSelectBox() }
+                        <SelectSongSection 
+                            onClick={ this.onSoundSelect } 
+                            defaultSong={ localStorage.getItem('SelectedSong') }
+                        />
+
+                        <LedColors 
+                            onClick={ this.onColorSelect }
+                        />
                     </div>
                 </div>
             </div>

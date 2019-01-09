@@ -87,22 +87,22 @@ class Alarm extends React.Component {
             this.setState({ powerStatus: snap.data().power_status })
         });
 
-        /* snoozySettingsRef.get().then(res => {
+        snoozySettingsRef.get().then(res => {
             this.setState({ song: res.data().song })
-        }) */
+        })
     }
 
-    ringAlarm = () => {
+    ringAlarm = async () => {
         if (this.counter === 0)
         {
-            // console.log(this.state.song);
+            console.log(this.state.song);
 
-            // if (this.state.song !== null) 
-            //{
-                const res   = axios.post('http://192.168.43.196:8081/blink', { 
+            if (this.state.song !== null) 
+            {
+                const res   = await axios.post('http://192.168.43.196:8081/blink', { 
                     led_color: 'green',
                     audio: 'true',
-                    sound: 'buzz'
+                    sound: this.state.song
                 });
 
                 console.log(res.data);
@@ -121,7 +121,7 @@ class Alarm extends React.Component {
                     this.times_snoozed++;
                     this.setState({ snoozed: true, alarmIsPlaying: false });
                 }
-            // }
+            }
         }
     }
 

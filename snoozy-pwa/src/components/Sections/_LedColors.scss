@@ -1,0 +1,25 @@
+.LedColors 
+{
+    @extend .SelectSongSection;
+    margin-top: 2rem;
+
+    .select_container 
+    {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    h6 
+    {
+        margin: 0 1rem 0 0;
+        width: 7rem;
+        font-size: 13px;
+        color: $accent;
+    }
+
+    select 
+    {
+        margin: 0;
+    }
+}

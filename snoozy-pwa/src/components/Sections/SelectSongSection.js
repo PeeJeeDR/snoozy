@@ -19,7 +19,7 @@ class SelectSongSection extends React.Component {
                 </div>
 
                 <Paragraph>
-                    Selecteer een alarmgeluidje om s'ochtends mee wakker te worden?
+                    Selecteer een alarmgeluidje in om s'ochtends mee wakker te worden.
                 </Paragraph>
 
                 <select name="song" id="song" onChange={ this.onSelect } defaultValue={ this.props.defaultSong }>
