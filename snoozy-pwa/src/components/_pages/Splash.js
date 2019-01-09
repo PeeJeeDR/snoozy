@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from '../../assets/images/Snoozy_Logo_white.png';
 import GhostButton from '../Buttons/GhostButton';
 import { db } from '../../firebase/firebase';
+import { formatTime } from '../../global_functions/GlobalFunctions';
 
 const notificationsRef  = db.collection('notifications');
 const snoozyRef         = db.collection('snoozy').doc('status');
@@ -30,7 +31,10 @@ class Splash extends React.Component {
         const date  = new Date(0);
         date.setSeconds(this.state.alarm_seconds);
 
-        return <h1>{ `${ date.getHours() }:${ date.getMinutes() }` }</h1>
+        const hours     = formatTime(date.getHours());
+        const minutes   = formatTime(date.getMinutes())
+
+        return <h1>{ `${ hours }:${ minutes }` }</h1>
     }
     
     render = () => {
