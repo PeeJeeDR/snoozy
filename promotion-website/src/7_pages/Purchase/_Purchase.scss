@@ -8,7 +8,7 @@
         justify-content: center;
         align-items: center;
 
-        h1 {
+        .page-title {
             margin-top: 50px;
             text-align: center;
             font-size: 50px;
@@ -21,6 +21,75 @@
             width: 100px;
             height: 4px;
             background: linear-gradient(to right, #0F5257 25%,#72BFA5 25%, #72BFA5 50%, #0F5257 50%, #0F5257 75%, #72BFA5 75%);
+        }
+
+        .purchase-card {
+            margin: 50px 0;
+            padding: 5px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 1000px;
+            background-color: white;
+            box-shadow: 0 10px 16px 0 rgba(0,0,0,.02),0 6px 20px 0 rgba(0,0,0,.02)!important;
+        }
+
+        .card-product {
+            background-image: url("/img/snoozy_banner-min.jpg");
+            background-position: center center;
+            background-size: cover;
+            min-height: 300px;
+            height: 60vh;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 3px;
+        }
+
+        .card-info {
+            margin: 50px;
+        }
+
+        .card-about {
+            width: 50%;
+            min-width: 500px;
+            float: left;
+
+            h3 {
+                margin: 0;
+            }
+        }
+        .card-right {
+            min-width: 25%;
+            float: right;
+        }
+    }
+}
+/* ////////// MEDIA SCREENS ////////// */
+
+@media screen and (max-width: 1250px) {
+    .Purchase {
+        .main {
+            .card-about {
+                float: none;
+
+                h3 {
+                    margin: 0;
+                }
+            }
+            .card-right {
+                margin-top: 10vh;
+                float: none;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .Purchase {
+        .main {
+            .card-info {
+                margin: 20px;
+            }
         }
     }
 }
