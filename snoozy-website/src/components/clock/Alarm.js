@@ -20,6 +20,8 @@ class Alarm extends React.Component {
             alarmTime: 8,
             snoozed: false,
             song: null,
+            alwaysOnColor: null,
+            alarmColor: null,
         };
 
         this.counter        = 0;
@@ -51,7 +53,7 @@ class Alarm extends React.Component {
                 }
             }
 
-            if (this.state.alarm !== null)
+            if (this.state.alarm !== null && this.state.powerStatus)
             {
                 const cur_seconds   = Math.floor(new Date().getTime() / 1000);
                 const alarm_seconds = Math.floor(this.state.alarm.getTime() / 1000);
@@ -88,7 +90,11 @@ class Alarm extends React.Component {
         });
 
         snoozySettingsRef.get().then(res => {
-            this.setState({ song: res.data().song })
+            this.setState({ 
+                song: res.data().song,
+                alwaysOnColor: res.data().always_on_color,
+                alarmColor: res.data().alarm_color
+            })
         })
     }
 
@@ -97,15 +103,18 @@ class Alarm extends React.Component {
         {
             console.log(this.state.song);
 
+            console.log('always', this.state.alwaysOnColor);
+            console.log('alarm', this.state.alarmColor);
+
             if (this.state.song !== null) 
             {
+                axios.post('http://192.168.43.196:8081/ambi-light-off');
+
                 const res   = await axios.post('http://192.168.43.196:8081/blink', { 
-                    led_color: 'green',
+                    led_color: this.state.alarmColor,
                     audio: 'true',
                     sound: this.state.song
                 });
-
-                console.log(res.data);
 
                 // this.setState({ alarmIsPlaying: true });
 
@@ -113,6 +122,9 @@ class Alarm extends React.Component {
                 {
                     this.times_snoozed  = 0;
                     this.setState({ alarmIsPlaying: false, snoozed: false })
+                    axios.post('http://192.168.43.196:8081/ambi-light', {
+                        led_color: this.state.alwaysOnColor,
+                    })
                 }
     
                 if (res.data === 'SNOOZE')

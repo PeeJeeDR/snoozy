@@ -7,6 +7,7 @@ import Overlay from '../overlay/Overlay';
 import GoogleMapsHandler from '../handlers/GoogleMapsHandler';
 import LocationHandler from '../handlers/LocationHandler';
 import GoogleCalendarHandler from '../handlers/GoogleCalendarHandler';
+import AmbiLightHandler from '../handlers/AmbiLightHandler';
 
 class App extends Component {
 	constructor (props) {
@@ -21,6 +22,7 @@ class App extends Component {
 		GoogleCalendarHandler();
 		LocationHandler();
 		GoogleMapsHandler();
+		AmbiLightHandler();
 	}
 	
 	render() {

@@ -57,6 +57,7 @@ class LedColors extends React.Component {
                         <option value="red">Rood</option>
                         <option value="green">Groen</option>
                         <option value="blue">Blauw</option>
+                        <option value="white">Wit</option>
                     </select>
                 </div>
 
@@ -67,6 +68,7 @@ class LedColors extends React.Component {
                         <option value="red">Rood</option>
                         <option value="green">Groen</option>
                         <option value="blue">Blauw</option>
+                        <option value="white">Wit</option>
                     </select>
                 </div>
             </div>
