@@ -17,30 +17,28 @@ class Dashboard extends React.Component {
             autoMode: false,
             timeOnSubmit: '',
             apiLoaded: false,
-            powerStatus: false,
         };
+
+        this.autoMode   = false;
+        this.power      = false;
     }
 
     componentWillMount = () => {
-        console.log(this.state.apiLoaded);
         this.getAutoClock();
         this.getSnoozyStatus();
     }
 
-    componentDidMount = () => {
-        console.log(this.state.apiLoaded);        
-    }
-
     getAutoClock = () => {
-        snoozyRef.onSnapshot(snap => {
-            this.setState({ autoMode: snap.data().autoMode });
-        })
+        snoozyRef.get().then(res => {
+            this.autoMode   = true;
+        });
     }
 
     getSnoozyStatus = () => {
-        snoozyRef.onSnapshot(res => {
-            this.setState({ powerStatus: res.data().power_status })
-        }, () => { this.setState({ apiLoaded: true })})
+        snoozyRef.get().then(res => {
+            this.power   = res.data().power_status;
+            this.setState({ apiLoaded: true, autoMode: this.autoMode });
+        });
     }
 
     timeOnSubmit = (time) => {
@@ -48,23 +46,60 @@ class Dashboard extends React.Component {
     }
 
     renderManual = () => {
-        if (this.state.autoMode)
+        if (!this.state.autoMode && this.state.apiLoaded) return <ManualBox onSubmit={ this.timeOnSubmit } timeAfterSubmit={ this.state.timeOnSubmit }/>
+    }
+
+    // AUTO SWITCH
+    toggleAutoSnoozy = () => {
+        snoozyRef.update({
+            auto_mode: this.state.autoMode
+        }).then(() => { 
+            this.setState({ autoMode: !this.state.autoMode}) 
+        })
+    }
+
+    renderAutoSwitch = () => {
+        if (this.state.apiLoaded)
         {
             return (
-                <ManualBox 
-                    onSubmit={ this.timeOnSubmit }
-                    timeAfterSubmit={ this.state.timeOnSubmit }     
+                <SwitchButton 
+                    onClick={() => { this.setState({ autoMode: !this.state.autoMode }) }}
+                    labelName='Automatische wekker' 
+                    defaultOn={ this.autoMode }
                 />
             )
         }
     }
 
+    // POWER SWITCH
     togglePowerSnoozy = () => {
         snoozyRef.update({
             power_status: this.state.powerStatus
         }).then(() => { 
             this.setState({ powerStatus: !this.state.powerStatus}) 
         })
+    }
+
+    renderPowerSwitch = () => {
+        if (this.state.apiLoaded)
+        {
+            return (
+                <SwitchButton 
+                    onClick={ this.togglePowerSnoozy } 
+                    labelName='Schakel je Snoozy in' 
+                    defaultOn={ this.power }
+                />
+            )
+        }
+        else 
+        {
+            return <h1>Loading...</h1>
+        }
+    }
+
+    // WARNING
+    renderWarning = () => {
+        if (this.apiLoaded && !this.state.showWarningBox) return <WarningBox />
     }
     
     render = () => {
@@ -73,36 +108,14 @@ class Dashboard extends React.Component {
 				<Header />
                 <SideNavigation />
 
-                { this.state.apiLoaded && !this.state.showWarningBox ? <WarningBox /> : '' }
+                { this.renderWarning() }
 
                 <div className="page_wrapper">
                     <Appointment />
 
-                    {
-                        this.state.apiLoaded
-                        ?
-                        <SwitchButton 
-                            onClick={() => this.setState({ setToManual: !this.state.setToManual })}
-                            labelName='Automatische wekker'
-                            defaultOn={ this.state.autoMode }
-                        />
-                        : 
-                        <p>Loading...</p>
-                    }
-
+                    { this.renderAutoSwitch() }
                     { this.renderManual() }
-
-                    {
-                        this.state.apiLoaded
-                        ?
-                        <SwitchButton 
-                            onClick={ this.togglePowerSnoozy }
-                            labelName='Schakel je Snoozy in'
-                            defaultOn={ this.state.powerStatus }
-                        />
-                        :
-                        ''
-                    }
+                    { this.renderPowerSwitch() }
                 </div>
             </div>
         )
