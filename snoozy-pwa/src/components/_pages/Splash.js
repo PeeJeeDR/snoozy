@@ -32,6 +32,20 @@ class Splash extends React.Component {
 
         return <h1>{ `${ date.getHours() }:${ date.getMinutes() }` }</h1>
     }
+
+    renderAlarmDate = () => {
+        const date  = new Date(0);
+        date.setSeconds(this.state.alarm_seconds);
+
+        let dateStr     = date.toString();
+
+        let weekday     = dateStr.substring(0,3);
+        let month       = dateStr.substring(4,7);
+        let day         = dateStr.substring(8,10);
+        let year        = dateStr.substring(11,15);
+
+        return <p>{weekday} {day} {month}</p>
+    }
     
     render = () => {
         return (
@@ -41,6 +55,7 @@ class Splash extends React.Component {
                 <div className="clock">
                     <p>Your alarm will ring at</p>
                     { this.renderAlarm() }
+                    { this.renderAlarmDate() }
                 </div>
 
                 <div className="buttons">

@@ -36,6 +36,20 @@ class Appointment extends React.Component {
 
         return <p>{ start_time } - { end_time }</p>
     }
+
+    renderDate = (calendarData) => {
+        let start_date      = new Date(0);
+
+        start_date.setSeconds(calendarData.start_date.seconds);
+
+        let dateStr     = start_date.toString();
+        let weekday     = dateStr.substring(0,3);
+        let month       = dateStr.substring(4,7);
+        let day         = dateStr.substring(8,10);
+        let year        = dateStr.substring(11,15);
+
+        return <p>{weekday} {day} {month}</p>
+    }
     
     render = () => {
         const { calendarData }  = this.state;
@@ -46,13 +60,22 @@ class Appointment extends React.Component {
                 <div className="content">
                     <div className="top">
                         <h2>Eerst volgende afspraak</h2>
-                        { 
-                            this.state.calendarData < 1 
-                            ? 
-                            <BarLoader width={ 70 } color={ '#72BFA5' }/> 
-                            :  
-                            this.renderTime(calendarData)
-                        }
+                        <div>
+                            { 
+                                this.state.calendarData < 1 
+                                ? 
+                                <BarLoader width={ 70 } color={ '#72BFA5' }/> 
+                                :  
+                                this.renderDate(calendarData)
+                            }
+                            { 
+                                this.state.calendarData < 1 
+                                ? 
+                                <BarLoader width={ 70 } color={ '#72BFA5' }/> 
+                                :  
+                                this.renderTime(calendarData)
+                            }
+                        </div>
                     </div>
 
                     <div className="info">
