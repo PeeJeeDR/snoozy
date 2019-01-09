@@ -1,7 +1,6 @@
 .WarningBox 
 {
     background-color: $warning;
-    padding: 1rem;
 
     h2
     {
@@ -16,4 +15,30 @@
         font-size: 14px;
         margin-top: 0.5rem;
     }
+
+        // Phone
+        @media only screen and (max-width: 768px) 
+        {
+            padding: 1.5rem;
+        }
+    
+        // Tablet
+        @media only screen and (min-width: 768px) 
+        {
+            
+            padding: 1.5rem;
+        }
+    
+        // Desktop
+        @media only screen and (min-width: 992px) 
+        {
+            
+            padding: 2rem;
+        }
+    
+        // Large desktop
+        @media only screen and (min-width: 1200px) 
+        {
+            padding: 3rem;
+        }
 }

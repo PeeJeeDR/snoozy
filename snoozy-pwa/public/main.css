@@ -12,6 +12,21 @@ h1, h2, p {
   width: 95%;
   margin: 0 auto;
   z-index: 100; }
+  @media only screen and (max-width: 768px) {
+    .page_wrapper {
+      width: 95%; } }
+  @media only screen and (min-width: 768px) {
+    .page_wrapper {
+      width: 90%;
+      padding: 2rem 0 3rem 0; } }
+  @media only screen and (min-width: 992px) {
+    .page_wrapper {
+      width: 992px;
+      padding: 4rem 0 3rem 0; } }
+  @media only screen and (min-width: 1200px) {
+    .page_wrapper {
+      width: 900px;
+      padding: 4rem 0 3rem 0; } }
 
 .content_wrapper {
   width: 85%;
@@ -223,8 +238,7 @@ h1, h2, p {
     width: 100%; }
 
 .WarningBox {
-  background-color: #FFE066;
-  padding: 1rem; }
+  background-color: #FFE066; }
   .WarningBox h2 {
     color: #838383;
     font-size: 18px;
@@ -233,6 +247,18 @@ h1, h2, p {
     color: #A2A2A2;
     font-size: 14px;
     margin-top: 0.5rem; }
+  @media only screen and (max-width: 768px) {
+    .WarningBox {
+      padding: 1.5rem; } }
+  @media only screen and (min-width: 768px) {
+    .WarningBox {
+      padding: 1.5rem; } }
+  @media only screen and (min-width: 992px) {
+    .WarningBox {
+      padding: 2rem; } }
+  @media only screen and (min-width: 1200px) {
+    .WarningBox {
+      padding: 3rem; } }
 
 .ManualBox {
   padding: 1rem; }

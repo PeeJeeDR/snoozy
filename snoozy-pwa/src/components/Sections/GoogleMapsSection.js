@@ -5,7 +5,6 @@ import SwitchButton from '../Buttons/SwitchButton';
 import { db } from '../../firebase/firebase';
 import Paragraph from '../Paragraphs/Paragraph';
 
-const mapsRef   = db.collection('api-data').doc('maps-data');
 const snoozyRef = db.collection('snoozy').doc('status');
 
 class GoogleMapsSection extends React.Component {

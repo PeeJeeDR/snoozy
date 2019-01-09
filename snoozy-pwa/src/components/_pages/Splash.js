@@ -4,7 +4,6 @@ import GhostButton from '../Buttons/GhostButton';
 import { db } from '../../firebase/firebase';
 import { formatTime } from '../../global_functions/GlobalFunctions';
 
-const notificationsRef  = db.collection('notifications');
 const snoozyRef         = db.collection('snoozy').doc('status');
 
 class Splash extends React.Component {
@@ -16,12 +15,6 @@ class Splash extends React.Component {
     }
     
     componentWillMount = () => {
-        notificationsRef.get().then(res => {
-            res.forEach(doc => {
-                console.log(doc.id, doc.data());
-            })
-        });
-
         snoozyRef.onSnapshot(snap => {
             this.setState({ alarm_seconds: snap.data().alarm.seconds });
         });

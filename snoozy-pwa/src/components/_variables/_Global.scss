@@ -17,6 +17,33 @@ h1, h2, p
     width: 95%;
     margin: 0 auto;
     z-index: 100;
+
+    // Phone
+    @media only screen and (max-width: 768px) 
+    {
+        width: 95%;
+    }
+
+    // Tablet
+    @media only screen and (min-width: 768px) 
+    {
+        width: 90%;
+        padding: 2rem 0 3rem 0
+    }
+
+    // Desktop
+    @media only screen and (min-width: 992px) 
+    {
+        width: 992px;
+        padding: 4rem 0 3rem 0
+    }
+
+    // Large desktop
+    @media only screen and (min-width: 1200px) 
+    {
+        width: 900px;
+        padding: 4rem 0 3rem 0
+    }
 }
 
 .content_wrapper 

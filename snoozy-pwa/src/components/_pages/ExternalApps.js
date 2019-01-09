@@ -5,7 +5,7 @@ import Sectionheading from '../Titles/Sectionheading';
 import GoogleCalendarSection from '../Sections/GoogleCalendarSection';
 import GoogleMapsSection from '../Sections/GoogleMapsSection';
 import SpotifySection from '../Sections/SpotifySection';
-import FacebookSection from '../Sections/FacebookSection';
+// import FacebookSection from '../Sections/FacebookSection';
 import OutlookSection from '../Sections/OutlookSection';
 import TwitterSection from '../Sections/TwitterSection';
 

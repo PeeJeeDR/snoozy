@@ -1,11 +1,10 @@
 import React from 'react';
-import queryString from 'query-string';
+// import queryString from 'query-string';
 import SmallSectionTitle from '../Titles/SmallSectionTitle';
 import Paragraph from '../Paragraphs/Paragraph';
 import SwitchButton from '../Buttons/SwitchButton';
 import { BounceLoader } from 'react-spinners';
 import { db } from '../../firebase/firebase';
-
 
 class TwitterSection extends React.Component {
     constructor (props) {
@@ -32,8 +31,8 @@ class TwitterSection extends React.Component {
     	}
 
 	checkEnabledStatus = () => {
-		let parsed  = queryString.parse(window.location.search);
-        let token   = parsed.access_token;
+		// let parsed  = queryString.parse(window.location.search);
+        // let token   = parsed.access_token;
 		
         this.setState({ apiLoaded: true })
     }

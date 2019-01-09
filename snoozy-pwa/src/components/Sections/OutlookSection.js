@@ -15,7 +15,7 @@ http://localhost:3000/external-apps?code=Mc763cf92-fecf-31ec-4633-f30c082ac480&s
 */
 
 import React from 'react';
-import queryString from 'query-string';
+// import queryString from 'query-string';
 import SmallSectionTitle from '../Titles/SmallSectionTitle';
 import Paragraph from '../Paragraphs/Paragraph';
 import SwitchButton from '../Buttons/SwitchButton';
@@ -51,8 +51,8 @@ class OutlookSection extends React.Component {
     	}
 
 	checkEnabledStatus = () => {
-		let parsed  = queryString.parse(window.location.search);
-        let token   = parsed.access_token;
+		// let parsed  = queryString.parse(window.location.search);
+        // let token   = parsed.access_token;
 
         this.setState({ apiLoaded: true })
     }
