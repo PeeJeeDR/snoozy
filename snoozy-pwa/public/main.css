@@ -43,6 +43,11 @@ h1, h2, p {
   color: #fff;
   background-size: 250% 250%;
   animation: Gradient 8s ease infinite; }
+  .Splash .splash_container {
+    width: 50%;
+    margin: 0 auto; }
+    .Splash .splash_container p {
+      line-height: 1.5rem; }
   .Splash img {
     width: 15rem; }
   .Splash .clock {

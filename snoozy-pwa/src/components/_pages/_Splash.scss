@@ -11,6 +11,17 @@
     background-size: 250% 250%;
     animation: Gradient 8s ease infinite;
 
+    .splash_container 
+    {
+        width: 50%;
+        margin: 0 auto;
+
+        p 
+        {
+            line-height: 1.5rem;
+        }
+    }
+
     img 
     {
         width: 15rem;

@@ -11,28 +11,31 @@ class Splash extends React.Component {
         super(props);
         this.state = {
             alarm_seconds: 0,
+            power_status: false,
         };
     }
-    
-    componentWillMount = () => {
-        snoozyRef.onSnapshot(snap => {
-            this.setState({ alarm_seconds: snap.data().alarm.seconds });
+
+    componentDidMount = () => {
+        this.checkPowerStatus();
+    }
+
+    checkPowerStatus = async () => {
+        await snoozyRef.onSnapshot(snap => {
+            this.setState({ 
+                alarm_seconds: snap.data().alarm.seconds,
+                power_status: snap.data().power_status
+            });
         });
     }
 
     renderAlarm = () => {
+        const time  = new Date(0);
         const date  = new Date(0);
+        time.setSeconds(this.state.alarm_seconds);
         date.setSeconds(this.state.alarm_seconds);
 
-        const hours     = formatTime(date.getHours());
-        const minutes   = formatTime(date.getMinutes())
-
-        return <h1>{ `${ hours }:${ minutes }` }</h1>
-    }
-
-    renderAlarmDate = () => {
-        const date  = new Date(0);
-        date.setSeconds(this.state.alarm_seconds);
+        const hours     = formatTime(time.getHours());
+        const minutes   = formatTime(time.getMinutes());
 
         let dateStr     = date.toString();
 
@@ -41,7 +44,29 @@ class Splash extends React.Component {
         let day         = dateStr.substring(8,10);
         let year        = dateStr.substring(11,15);
 
-        return <p>{weekday} {day} {month}</p>
+        console.log(this.state.power_status);
+
+        if (this.state.power_status)
+        {
+            return (
+                <div>
+                    <p>Your alarm will ring at</p>
+                    <h1>{ `${ hours }:${ minutes }` }</h1>
+                    <p>{weekday} {day} {month}</p>
+                </div>
+            )
+        }
+        else 
+        {
+            return (
+                <div className='splash_container'>
+                    <p>
+                        Je snoozy is uitgeschakeld. 
+                        Ga naar het dashboard om hem terug in te schakelen.
+                    </p>
+                </div> 
+            )
+        }
     }
     
     render = () => {
@@ -50,9 +75,7 @@ class Splash extends React.Component {
                 <img src={ Logo } alt="White Snoozy logo."/>
 
                 <div className="clock">
-                    <p>Your alarm will ring at</p>
                     { this.renderAlarm() }
-                    { this.renderAlarmDate() }
                 </div>
 
                 <div className="buttons">
