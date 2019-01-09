@@ -24,12 +24,23 @@ class Purchase extends Component {
 					Desktop: https://drive.google.com/open?id=1KL7o6ixZDz3TBGVEYp6A4XjxQKVFjEQO
 					Mobile: https://drive.google.com/open?id=1GLwH_q7mqfLWNaCbZIR_kgc2PwTeWiOz
 	    		*/}
-	        	<div className="main">
-		            <h1>PURCHASE</h1>
-			        <span className="underline"></span>
-		        </div>
-		        
-		      	<Footer />
+				<div className="main">
+					<h1 className="page-title">PURCHASE</h1>
+					<span className="underline"></span>
+					<div className="purchase-card">
+						<div className="card-product" />
+						<div className="card-info">
+							<div className="card-about">
+								<h3 className="card-title">Buy a Snoozy</h3>
+								<p className="card-text">Make your alarm go off at your own pace</p>
+							</div>
+							<div className="card-right">
+								<Link to={`purchase`}><PrimaryButton title='Buy Now'/></Link>
+							</div>
+						</div>
+					</div>
+				</div>
+			<Footer />
 		    </div>
         );
 	}
