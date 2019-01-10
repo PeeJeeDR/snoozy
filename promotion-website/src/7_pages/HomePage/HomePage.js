@@ -22,7 +22,8 @@ class HomePage extends Component {
 	    		<Header discover={this.state.discover} home={this.state.home} purchase={this.state.purchase} />
 	            <div className="main">
 	            	<div className='title-header'>
-	            		<h1>Snoozy</h1>
+	            		<h1>SNOOZY</h1>
+	            		<span className="underline"></span>
 	            		<h5>The alarm clock that will never let you down</h5>
 	            	</div>
 	            	{/*
@@ -35,7 +36,7 @@ class HomePage extends Component {
 	                <Link to={`discover`}><PrimaryButton title='Discover'/></Link>
 	            </div>
 
-		      	<Footer />
+		      	
 		    </div>
         );
 	}

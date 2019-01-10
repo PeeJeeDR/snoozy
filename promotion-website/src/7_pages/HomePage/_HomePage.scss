@@ -5,25 +5,20 @@
     
     .main
     {   
+        background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url("/img/banner-snoozy-large.jpeg");
         
-        background-image: url("/img/banner-snoozy-large.jpeg");  /*linear-gradient(
-            to top, 
-            #fcd0a2, 
-            #f8d5a6, 
-            #f4dbab, 
-            #f0dfb0, 
-            #ece4b7
-        );*/
-        /*min-height: calc(100vh - 75px - 8.4rem);*/
-        /*border-radius: 10px;*/
-        background-size: cover;
-        background-position: 55%;
+        background-position: 45% 95%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        padding: 1rem;
-        height: 100vh;
+        justify-content: flex-start;
+        padding: 1rem 0;
+        
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-repeat: no-repeat;
         
     
         .title-header {
@@ -31,21 +26,28 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin-bottom: 250px;
             color: $orange_yellow;
+            margin-top: 100px;
+
 
             h1 {
-                font-size: 7em;
                 color: white;
+                margin-bottom: 40px;
+            }
+
+            .underline {
+                width: 100px;
+                height: 4px;
+                background-color: $snoozy_green;
             }
 
             h5 {
-                font-size: 2em;
-                margin-top: 0;
                 color: white;
                 text-shadow: 1px 1px 5px #2d2d2d;
                 text-align: center;
-                margin: 0 75px;
+                margin: 53px 75px 0 75px;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 500;
             }
         }
     }
@@ -59,4 +61,34 @@
         margin-top: 0 !important;
     }
 
+}
+
+@media screen and (max-width: 800px) {
+    .title-header {
+        margin-bottom: 50px;
+
+        h1 {
+            font-size: 4em;
+        }
+
+        h5 {
+            font-size: 1.5em;
+        }
+    }
+    
+}
+
+@media screen and (min-width: 801px) {
+    .title-header {
+        margin-bottom: 150px;
+
+        h1 {
+            font-size: 5em;
+        }
+
+        h5 {
+            font-size: 2em;
+        }
+    }
+    
 }
