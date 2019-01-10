@@ -71,7 +71,7 @@ class TwitterSection extends React.Component {
             <div className='SpotifySection'>
                 <div className='titleSection'>
                     <div>
-                        <img src="/images/icons/twitter.png" alt="Email icon."/>
+                        <img src="/images/icons/twitter.png" alt="Twitter logo."/>
                         <SmallSectionTitle title='Twitter'/>
                     </div>
 

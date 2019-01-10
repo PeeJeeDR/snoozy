@@ -1,0 +1,14 @@
+.TimeNeededSection
+{
+    @extend .SelectSongSection;
+
+    .ManualBox 
+    {   
+        padding: 0;
+        
+        input[type='time']
+        {
+            width: 80%;
+        }
+    }
+}
