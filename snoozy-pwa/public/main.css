@@ -389,7 +389,7 @@ h1, h2, p {
 .TimeNeededSection .ManualBox {
   padding: 0; }
   .TimeNeededSection .ManualBox input[type='time'] {
-    width: 80%; }
+    width: 100%; }
 
 .Paragraph {
   color: #A2A2A2;

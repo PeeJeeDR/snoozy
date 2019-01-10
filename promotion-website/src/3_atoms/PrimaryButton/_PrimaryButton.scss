@@ -1,5 +1,6 @@
 .PrimaryButton 
 {
+    text-align: center;
     margin-bottom: 33.5px;
     color: white;
     border: 2px solid $snoozy-green;
@@ -42,7 +43,10 @@
         font-family: 'Roboto', sans-serif;
         font-size: 1.6rem;
     }
+}
 
-    
-    
+@media screen and (max-width: 800px) {
+    .PrimaryButton {
+        padding: 25px 100px;
+    }
 }

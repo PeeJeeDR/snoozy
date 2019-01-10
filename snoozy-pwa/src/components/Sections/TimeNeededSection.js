@@ -2,7 +2,11 @@ import React from 'react';
 import Paragraph from '../Paragraphs/Paragraph';
 import SmallSectionTitle from '../Titles/SmallSectionTitle';
 import OkButton from '../Buttons/OkButton';
+import * as ApiConfig from '../../config/ApiConfig';
+import { db } from '../../firebase/firebase';
 
+
+const snoozyRef = db.collection('snoozy').doc('user-data');
 
 class TimeNeededSection extends React.Component {
     constructor (props) {
@@ -10,6 +14,19 @@ class TimeNeededSection extends React.Component {
         this.state = {
             
         };
+    }
+
+    getTime = () => {
+        snoozyRef.get().then(snap => {
+            const time = snap.data().time_needed
+            console.log(time);
+        }, err => {
+            console.log('Something went wrong...', err);
+        });
+    }
+
+    timeChanged = () => {
+        return;
     }
     
     render = () => {
@@ -27,14 +44,15 @@ class TimeNeededSection extends React.Component {
                 </Paragraph>
 
                 <div className='ManualBox'>
-                    <form className='inputContainer' onSubmit=''>
+                    <form className='inputContainer'>
                         <input 
                             name='time' 
                             type='time' 
                             min='00:00' 
                             max='23:59'
+                            value={ this.getTime() }
+                            onChange={ this.timeChanged }
                         />
-                        <OkButton/>
                     </form>
                 </div>
             </div>

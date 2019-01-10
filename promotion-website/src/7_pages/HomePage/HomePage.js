@@ -23,6 +23,7 @@ class HomePage extends Component {
 	            <div className="main">
 	            	<div className='title-header'>
 	            		<h1>SNOOZY</h1>
+	            		<span className="underline"></span>
 	            		<h5>The alarm clock that will never let you down</h5>
 	            	</div>
 	            	{/*
@@ -35,7 +36,7 @@ class HomePage extends Component {
 	                <Link to={`discover`}><PrimaryButton title='Discover'/></Link>
 	            </div>
 
-		      	<Footer />
+		      	
 		    </div>
         );
 	}
