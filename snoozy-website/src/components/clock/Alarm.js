@@ -141,11 +141,15 @@ class Alarm extends React.Component {
 
                     axios.post(`http://${ config.RASPBERRY_PI_IP }/ambi-light`, {
                         led_color: this.state.alwaysOnColor,
-                    })
+                    });
                 }
     
                 if (res.data === 'SNOOZE')
                 {
+                    snoozyRef.update({
+                        alarm: null,
+                    })
+
                     this.snooze_counter     = 0;
                     this.times_snoozed++;
                     this.setState({ snoozed: true, alarmIsPlaying: false });
@@ -226,7 +230,7 @@ class Alarm extends React.Component {
         }
         else
         {
-            if (this.state.noAlarmSet)
+            if (this.state.alarm === null)
             {
                 return <h5>Er is momenteel geen wekker ingesteld</h5>
             }

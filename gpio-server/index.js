@@ -38,7 +38,7 @@ const led_green     = new Gpio(6, { mode: Gpio.OUTPUT });
 const led_red       = new Gpio(1, { mode: Gpio.OUTPUT }); 
 
 // BUTTONS
-const power_button        = new Gpio_1(20, 'in', 'both');
+const power_button      = new Gpio_1(20, 'in', 'both');
 const snooze_button     = new Gpio_1(21, 'in', 'both');
 
 // CONFIGS

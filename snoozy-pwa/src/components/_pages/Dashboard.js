@@ -6,7 +6,6 @@ import WarningBox from '../Boxes/WarningBox';
 import ManualBox from '../Boxes/ManualBox';
 import SideNavigation from '../SidebarNavigation/SideNavigation';
 import { db } from '../../firebase/firebase';
-import { getDateOfWeek } from '../../global_functions/GlobalFunctions';
 
 const snoozyRef     = db.collection('snoozy').doc('status');
 
@@ -20,6 +19,8 @@ class Dashboard extends React.Component {
             auto_switch_loaded: false,
             auto_calculate: false,
         };
+
+        this.auto_on    = localStorage.getItem('auto_mode')
     }
 
     componentDidMount = () => {
@@ -71,7 +72,6 @@ class Dashboard extends React.Component {
     // TOGGLE POWER SWITCH
     togglePowerSnoozy = () => {
         this.setState({ power_status: !this.state.power_status });
-        
     }
 
     // LOAD POWER SWITCH
@@ -98,7 +98,9 @@ class Dashboard extends React.Component {
 
     // TOGGLE AUTO SWITCH
     toggleAutoSnoozy = () => {
+        localStorage.setItem('auto_mode', !localStorage.getItem('auto_mode'));
 
+        console.log(!localStorage.getItem('auto_mode'));
     }
 
     // LOAD AUTO SWITCH 
@@ -116,7 +118,7 @@ class Dashboard extends React.Component {
         if (this.state.auto_switch_loaded)
         {
             return <SwitchButton 
-                onClick={() => { this.setState({ auto_calculate: !this.state.auto_calculate }) }}
+                onClick={ this.toggleAutoSnoozy }
                 labelName='Automatische wekker' 
                 defaultOn={ this.state.auto_calculate }
             />

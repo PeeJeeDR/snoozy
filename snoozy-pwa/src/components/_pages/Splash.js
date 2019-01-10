@@ -22,7 +22,7 @@ class Splash extends React.Component {
     checkPowerStatus = async () => {
         await snoozyRef.onSnapshot(snap => {
             this.setState({ 
-                alarm_seconds: snap.data().alarm.seconds,
+                alarm_seconds: snap.data.alarm !== undefined ? snap.data().alarm.seconds : '',
                 power_status: snap.data().power_status
             });
         });
@@ -52,8 +52,13 @@ class Splash extends React.Component {
 
         console.log(this.state.power_status);
 
-        if (this.state.power_status)
+        console.log('WHAT?', this.state.alarm_seconds !== 0);
+
+        if (this.state.power_status && this.state.alarm_seconds !== 0 && this.state.alarm_seconds !== '')
         {
+            console.log('HOW?');
+            console.log(this.state.alarm_seconds);
+            
             return (
                 <div>
                     <p>Your alarm will ring at</p>
@@ -64,6 +69,9 @@ class Splash extends React.Component {
         }
         else 
         {
+            console.log('THIS?');
+        console.log(this.state.alarm_seconds);
+
             return (
                 <div className='splash_container'>
                     <p>

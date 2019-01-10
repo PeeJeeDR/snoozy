@@ -55,7 +55,8 @@ class ManualBox extends React.Component {
                         type='time' 
                         min='00:00' 
                         max='23:59'
-                        value={ this.state.timeAfterSubmit }
+                        defaultValue={ localStorage.getItem(this.props.type === 'time_needed' ? 'time_needed' : '') }
+                        value={ this.state.data }
                         onChange={ this.timeChanged }
                     />
 
