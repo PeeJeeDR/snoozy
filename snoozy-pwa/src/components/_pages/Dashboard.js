@@ -34,11 +34,28 @@ class Dashboard extends React.Component {
 
     // MANUAL TIME ON SUBMIT
     timeOnSubmit = (time, day) => {
-        let date    = new Date();
+        let dateAlarm       = new Date();
 
-        console.log(date.getDate());
-    
-        this.setState({ timeOnSubmit: time });
+        dateAlarm.setHours(time.split(':')[0]);
+        dateAlarm.setMinutes(time.split(':')[1]);
+        dateAlarm.setSeconds(0);
+
+        console.log(dateAlarm);
+
+        if (dateAlarm - new Date() > 0)
+        {
+            console.log('Later today, no changes needed!');
+        }
+        else 
+        {
+            console.log('Tomorrow, changing date to tomorrow');
+            dateAlarm.setDate(dateAlarm.getDate() + 1);
+        }
+
+        snoozyRef.update({
+            auto_mode: false,
+            alarm: dateAlarm
+        })
     }
 
     // MANUAL BOX

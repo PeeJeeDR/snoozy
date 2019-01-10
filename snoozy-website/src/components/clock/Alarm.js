@@ -13,6 +13,7 @@ class Alarm extends React.Component {
         super(props);
         this.state = {
             powerStatus: false,
+            auto_mode: false,
             timeNeeded: null,
             alarm: null,
             apiLoaded: false,
@@ -30,6 +31,7 @@ class Alarm extends React.Component {
     }
 
     componentDidMount = () => {
+        this.getAutoMode();
         const test_alarm    = new Date();
         test_alarm.setSeconds(test_alarm.getSeconds() + 4);
 
@@ -97,6 +99,12 @@ class Alarm extends React.Component {
         })
     }
 
+    getAutoMode = async () => {
+        await snoozyRef.onSnapshot(snap => {
+            this.setState({ auto_mode: snap.data().auto_mode })
+        })
+    }
+
     ringAlarm = async () => {
         if (this.counter === 0)
         {
@@ -149,11 +157,14 @@ class Alarm extends React.Component {
     saveAlarm = (date) => {
         this.setState({ alarm: date, apiLoaded: true })
         
-        snoozyRef.update({
-            alarm: date
-        }).catch(err => {
-            console.log('Something went wrong...', err);
-        })
+        if (this.state.auto_mode)
+        {   
+            snoozyRef.update({
+                alarm: date
+            }).catch(err => {
+                console.log('Something went wrong...', err);
+            })
+        }
     }
 
     returnHours = () => {

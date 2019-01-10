@@ -62,9 +62,9 @@ class ManualBox extends React.Component {
                     <OkButton />
                 </form>
 
-                <div className="days">
+                {/* <div className="days">
                     { this.renderDays() }
-                </div>
+                </div> */}
             </div>
         )
     }
