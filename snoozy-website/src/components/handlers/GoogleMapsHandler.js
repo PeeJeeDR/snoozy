@@ -1,4 +1,5 @@
 import { db } from '../../firebase/firebase';
+import { convertToLocale } from '../../global_functions/GlobalFunctions';
 
 const google  			= window.google;
 const calendarRef       = db.collection('api-data').doc('calendar-data');
@@ -46,18 +47,20 @@ const calculateTraffic = (location, start_date, snoozy_location) => {
             trafficModel: 'bestguess'
         }
     }, (res, status) => {
+        console.log(res.rows[0].elements[0]);
         if (res.rows[0].elements[0].status !== 'ZERO_RESULTS')
         {
+            
+
             const origin                = 'Flierenbos 20, 2370 Arendonk';
-            // const destination           = res.destinationAddresses[0];
-            const destination           = res.destinationAddresses[0];
+            const destination           = convertToLocale(res.destinationAddresses[0], 'Belgium', 'België', 'BY_SPACE');
             const arrival_date          = start_date;
-            const duration              = res.rows[0].elements[0].duration.text;
-            const duration_in_traffic   = res.rows[0].elements[0].duration_in_traffic.text;
+            const duration              = convertToLocale(res.rows[0].elements[0].duration.text, 's', '.', 'BY_CHAR');
+            const duration_in_traffic   = convertToLocale(res.rows[0].elements[0].duration_in_traffic.text, 's', '.', 'BY_CHAR');
             const traffic_data          = duration_in_traffic.split(' ');
-            const distance              = res.rows[0].elements[0].distance.text;
+            const distance              = convertToLocale(res.rows[0].elements[0].distance.text, '.', ',', 'BY_CHAR');
             const departure_date        = new Date(0);
-    
+
             let date_changed    = false;
             let total_seconds   = 0;
 
