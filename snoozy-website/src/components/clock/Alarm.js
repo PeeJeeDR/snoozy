@@ -152,7 +152,7 @@ class Alarm extends React.Component {
         snoozyRef.update({
             alarm: date
         }).catch(err => {
-            //console.log('Something went wrong...', err);
+            console.log('Something went wrong...', err);
         })
     }
 
@@ -179,13 +179,13 @@ class Alarm extends React.Component {
     }
 
     returnDate = () => {
-        const date      = this.state.alarm;
+        let date        = new Date(0);
         let result      = '';
 
         //console.log(this.state.alarm);
 
-        if (date) {
-            date.setSeconds(this.state.alarm_seconds);
+        /* if (date) {
+            date.setSeconds(this.state.alarm.getTime() / 1000);
 
             let dateStr     = date.toString();
 
@@ -200,9 +200,9 @@ class Alarm extends React.Component {
             }
 
             result          = {weekday} + ' ' + {day} + ' ' + {month} + {year};
-        }
+        }*/
 
-        return <p>{ result }}</p>
+        return <h3>{ result }}</h3>
     }
 
     renderClock = () => {
