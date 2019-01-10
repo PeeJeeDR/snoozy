@@ -182,9 +182,8 @@ class Alarm extends React.Component {
         let date        = new Date(0);
         let result      = '';
 
-        //console.log(this.state.alarm);
-
-        /* if (date) {
+        if (date) 
+        {
             date.setSeconds(this.state.alarm.getTime() / 1000);
 
             let dateStr     = date.toString();
@@ -199,10 +198,10 @@ class Alarm extends React.Component {
                 year        = ' ' + dateStr.substring(11,15); 
             }
 
-            result          = {weekday} + ' ' + {day} + ' ' + {month} + {year};
-        }*/
+            result          = weekday + ' ' + day + ' ' + month + year;
+        }
 
-        return <h3>{ result }}</h3>
+        return <h3>{ result }</h3>
     }
 
     renderClock = () => {
@@ -220,8 +219,7 @@ class Alarm extends React.Component {
                     <div className={ `${ playing }` }>
                         <img src={ AlarmClock } alt='Clock icon.'/>
                         <h3>{ `${ this.returnHours() }:${ this.returnMinutes() }` }</h3>
-                        { this.returnDate() }
-                        
+                        { this.returnDate() }                        
                     </div>
                 )
             }
