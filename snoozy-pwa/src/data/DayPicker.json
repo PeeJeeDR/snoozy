@@ -2,31 +2,38 @@
     "days": [
         {
             "name": "monday",
-            "slug": "m"
+            "slug": "m",
+            "id": 1
         },
         {
             "name": "tuesday",
-            "slug": "d"
+            "slug": "d",
+            "id": 2
         },
         {
             "name": "wednesday",
-            "slug": "w"
+            "slug": "w",
+            "id": 3
         },
         {
             "name": "thursday",
-            "slug": "d"
+            "slug": "d",
+            "id": 4
         },
         {
             "name": "friday",
-            "slug": "v"
+            "slug": "v",
+            "id": 5
         },
         {
             "name": "saturday",
-            "slug": "z"
+            "slug": "z",
+            "id": 6
         },
         {
             "name": "sunday",
-            "slug": "z"
+            "slug": "z",
+            "id": 7
         }
     ]
 }

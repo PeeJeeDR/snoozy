@@ -22,8 +22,8 @@ class ManualBox extends React.Component {
         return this.state.days.map((day, i) => (
             <p 
                 key={ i } 
-                onClick={ () => this.setState({ dayActive: day.name }) }
-                className={ this.state.dayActive === day.name ? 'active' : '' }
+                onClick={ () => this.setState({ dayActive: day.id }) }
+                className={ this.state.dayActive === day.id ? 'active' : '' }
             >
                 { day.slug }
             </p>
@@ -32,8 +32,11 @@ class ManualBox extends React.Component {
 
     getTime = (e) => {
         e.preventDefault();
+
         let time    = e.target.time.value;
-        this.props.onSubmit(time);
+        let day     = this.state.dayActive;
+
+        this.props.onSubmit(time, day);
     }
 
     timeChanged = (e) => {

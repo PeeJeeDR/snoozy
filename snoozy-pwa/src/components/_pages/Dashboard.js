@@ -6,6 +6,7 @@ import WarningBox from '../Boxes/WarningBox';
 import ManualBox from '../Boxes/ManualBox';
 import SideNavigation from '../SidebarNavigation/SideNavigation';
 import { db } from '../../firebase/firebase';
+import { getDateOfWeek } from '../../global_functions/GlobalFunctions';
 
 const snoozyRef     = db.collection('snoozy').doc('status');
 
@@ -32,7 +33,11 @@ class Dashboard extends React.Component {
     }
 
     // MANUAL TIME ON SUBMIT
-    timeOnSubmit = (time) => {
+    timeOnSubmit = (time, day) => {
+        let date    = new Date();
+
+        console.log(date.getDate());
+    
         this.setState({ timeOnSubmit: time });
     }
 
