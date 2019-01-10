@@ -2,6 +2,8 @@ import React from 'react';
 import AlarmClock from '../../assets/svg/alarm-clock.svg';
 import { db } from '../../firebase/firebase';
 import axios from 'axios';
+import * as config from '../../config/IpConfig';
+import { formatTime, returnAlarmDate } from '../../global_functions/GlobalFunctions';
 
 const snoozyRef             = db.collection('snoozy').doc('status');
 const snoozySettingsRef     = db.collection('snoozy').doc('settings');
@@ -23,6 +25,7 @@ class Alarm extends React.Component {
             song: null,
             alwaysOnColor: null,
             alarmColor: null,
+            noAlarmSet: false,
         };
 
         this.counter        = 0;
@@ -66,8 +69,13 @@ class Alarm extends React.Component {
                     this.ringAlarm();
                 } */
 
+                let date    = new Date(0);
+                date.setSeconds(alarm_seconds);
+                console.log('ALARM', date);
+
                 if (cur_seconds === alarm_seconds)
                 {
+                    console.log('EXECUTED?');
                     this.setState({ alarmIsPlaying: true });
                     this.ringAlarm();
                 }
@@ -110,9 +118,9 @@ class Alarm extends React.Component {
         {
             if (this.state.song !== null) 
             {
-                axios.post('http://192.168.43.196:8081/ambi-light-off');
+                axios.post(`http://${ config.RASPBERRY_PI_IP }/ambi-light-off`);
 
-                const res   = await axios.post('http://192.168.43.196:8081/blink', { 
+                const res   = await axios.post(`http://${ config.RASPBERRY_PI_IP }/blink`, { 
                     led_color: this.state.alarmColor,
                     audio: 'true',
                     sound: this.state.song
@@ -125,8 +133,13 @@ class Alarm extends React.Component {
                 if (res.data === 'POWER_OFF')
                 {
                     this.times_snoozed  = 0;
-                    this.setState({ alarmIsPlaying: false, snoozed: false })
-                    axios.post('http://192.168.43.196:8081/ambi-light', {
+                    this.setState({ alarmIsPlaying: false, snoozed: false });
+
+                    snoozyRef.update({
+                        alarm: null,
+                    })
+
+                    axios.post(`http://${ config.RASPBERRY_PI_IP }/ambi-light`, {
                         led_color: this.state.alwaysOnColor,
                     })
                 }
@@ -149,8 +162,16 @@ class Alarm extends React.Component {
 
         mapsRef.onSnapshot(snap => {
             const date  = new Date(0);
-            date.setSeconds(snap.data().departure_date.seconds - time_needed_to_seconds);
-            this.saveAlarm(date);
+
+            if (snap.data().alarm !== null)
+            {
+                date.setSeconds(snap.data().departure_date.seconds - time_needed_to_seconds);
+                this.saveAlarm(date);
+            }
+            else 
+            {
+                this.setState({ noAlarmSet: true })
+            }
         })
     }
 
@@ -168,60 +189,15 @@ class Alarm extends React.Component {
         else 
         {
             snoozyRef.onSnapshot(snap => {
-                let date = new Date(0);
-                date.setSeconds(snap.data().alarm.seconds)
-                
-                this.setState({ alarm: date, apiLoaded: true })
+                if (snap.data().alarm !== null) 
+                {
+                    let date = new Date(0);
+                    date.setSeconds(snap.data().alarm.seconds)
+                    
+                    this.setState({ alarm: date, apiLoaded: true })
+                }
             })
         }
-    }
-
-    returnHours = () => {
-        if (this.state.alarm.getHours() >= 0 && this.state.alarm.getHours() < 10)
-        {
-            return `0${ this.state.alarm.getHours() }`
-        }
-        else 
-        {
-            return this.state.alarm.getHours();
-        }
-    }
-
-    returnMinutes = () => {
-        if (this.state.alarm.getMinutes() >= 0 && this.state.alarm.getMinutes() < 10)
-        {
-            return `0${ this.state.alarm.getMinutes() }`
-        }
-        else 
-        {
-            return this.state.alarm.getMinutes();
-        }
-    }
-
-    returnDate = () => {
-        let date        = new Date(0);
-        let result      = '';
-
-        if (date) 
-        {
-            date.setSeconds(this.state.alarm.getTime() / 1000);
-
-            let dateStr     = date.toString();
-
-            let weekday     = dateStr.substring(0,3);
-            let month       = dateStr.substring(4,7);
-            let day         = dateStr.substring(8,10);
-            let year        = '';
-
-            //if current year is NOT same as alarm year, add year to return
-            if ( date.getFullYear() != dateStr.substring(11,15) ){
-                year        = ' ' + dateStr.substring(11,15); 
-            }
-
-            result          = weekday + ' ' + day + ' ' + month + year;
-        }
-
-        return <h3>{ result }</h3>
     }
 
     renderClock = () => {
@@ -238,8 +214,8 @@ class Alarm extends React.Component {
                 return (
                     <div className={ `${ playing }` }>
                         <img src={ AlarmClock } alt='Clock icon.'/>
-                        <h3>{ `${ this.returnHours() }:${ this.returnMinutes() }` }</h3>
-                        { this.returnDate() }                        
+                        <h3>{ `${ formatTime(this.state.alarm.getHours()) }:${ formatTime(this.state.alarm.getMinutes()) }` }</h3>
+                        <h3>{ returnAlarmDate(this.state.alarm) }</h3>                      
                     </div>
                 )
             }
@@ -250,6 +226,11 @@ class Alarm extends React.Component {
         }
         else
         {
+            if (this.state.noAlarmSet)
+            {
+                return <h5>Er is momenteel geen wekker ingesteld</h5>
+            }
+
             return <h5>Snoozy is uitgeschakeld</h5>
         }
     }
