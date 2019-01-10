@@ -16,13 +16,16 @@ class TimeNeededSection extends React.Component {
         };
     }
 
-    timeChanged = (e) => {
-        const time = e.target.value;
-
-        return;
+    getTime = () => {
+        snoozyRef.get().then(snap => {
+            const time = snap.data().time_needed
+            console.log(time);
+        }, err => {
+            console.log('Something went wrong...', err);
+        });
     }
 
-    timeSet = () => {
+    timeChanged = () => {
         return;
     }
     
@@ -47,7 +50,7 @@ class TimeNeededSection extends React.Component {
                             type='time' 
                             min='00:00' 
                             max='23:59'
-                            value={ this.state.timeSet }
+                            value={ this.getTime() }
                             onChange={ this.timeChanged }
                         />
                     </form>
