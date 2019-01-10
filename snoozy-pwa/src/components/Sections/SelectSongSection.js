@@ -13,8 +13,8 @@ class SelectSongSection extends React.Component {
             <div className='SelectSongSection'>
                 <div className='titleSection'>
                     <div>
-                        <img src="/images/icons/alarm-bell.png" alt="Google calendar icon."/>
-                        <SmallSectionTitle title='Alarm muziek'/>
+                        <img src="/images/icons/alarm-bell.png" alt="Select Song icon."/>
+                        <SmallSectionTitle title='Alarm Geluid'/>
                     </div>
                 </div>
 

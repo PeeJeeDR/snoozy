@@ -326,18 +326,18 @@ h1, h2, p {
   padding: 2rem;
   font-size: 1.3rem; }
 
-.GoogleCalendarSection .titleSection, .GoogleMapsSection .titleSection, .SpotifySection .titleSection, .OutlookSection .titleSection, .FacebookSection .titleSection, .TwitterSection .titleSection, .SelectSongSection .titleSection, .LedColors .titleSection {
+.GoogleCalendarSection .titleSection, .GoogleMapsSection .titleSection, .SpotifySection .titleSection, .OutlookSection .titleSection, .FacebookSection .titleSection, .TwitterSection .titleSection, .SelectSongSection .titleSection, .LedColors .titleSection, .TimeNeededSection .titleSection {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0; }
-  .GoogleCalendarSection .titleSection img, .GoogleMapsSection .titleSection img, .SpotifySection .titleSection img, .OutlookSection .titleSection img, .FacebookSection .titleSection img, .TwitterSection .titleSection img, .SelectSongSection .titleSection img, .LedColors .titleSection img {
+  .GoogleCalendarSection .titleSection img, .GoogleMapsSection .titleSection img, .SpotifySection .titleSection img, .OutlookSection .titleSection img, .FacebookSection .titleSection img, .TwitterSection .titleSection img, .SelectSongSection .titleSection img, .LedColors .titleSection img, .TimeNeededSection .titleSection img {
     width: 1.4rem;
     margin-right: 1rem; }
-  .GoogleCalendarSection .titleSection div, .GoogleMapsSection .titleSection div, .SpotifySection .titleSection div, .OutlookSection .titleSection div, .FacebookSection .titleSection div, .TwitterSection .titleSection div, .SelectSongSection .titleSection div, .LedColors .titleSection div {
+  .GoogleCalendarSection .titleSection div, .GoogleMapsSection .titleSection div, .SpotifySection .titleSection div, .OutlookSection .titleSection div, .FacebookSection .titleSection div, .TwitterSection .titleSection div, .SelectSongSection .titleSection div, .LedColors .titleSection div, .TimeNeededSection .titleSection div {
     display: flex;
     align-items: center; }
-  .GoogleCalendarSection .titleSection label, .GoogleMapsSection .titleSection label, .SpotifySection .titleSection label, .OutlookSection .titleSection label, .FacebookSection .titleSection label, .TwitterSection .titleSection label, .SelectSongSection .titleSection label, .LedColors .titleSection label {
+  .GoogleCalendarSection .titleSection label, .GoogleMapsSection .titleSection label, .SpotifySection .titleSection label, .OutlookSection .titleSection label, .FacebookSection .titleSection label, .TwitterSection .titleSection label, .SelectSongSection .titleSection label, .LedColors .titleSection label, .TimeNeededSection .titleSection label {
     padding: 0; }
 
 .GoogleMapsSection {
@@ -355,20 +355,22 @@ h1, h2, p {
 .TwitterSection {
   margin-top: 2rem; }
 
-.SelectSongSection select, .LedColors select {
-  width: 100%;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 2px solid #72BFA5;
-  background: none;
-  margin-top: 1rem;
-  border-radius: 0;
-  padding: 0.5rem 0 0.5rem 0.6rem;
-  color: #A2A2A2;
-  font-weight: bold;
-  font-size: 12px;
-  outline: none; }
+.SelectSongSection, .LedColors, .TimeNeededSection {
+  margin-top: 2rem; }
+  .SelectSongSection select, .LedColors select, .TimeNeededSection select {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #72BFA5;
+    background: none;
+    margin-top: 1rem;
+    border-radius: 0;
+    padding: 0.5rem 0 0.5rem 0.6rem;
+    color: #A2A2A2;
+    font-weight: bold;
+    font-size: 12px;
+    outline: none; }
 
 .LedColors {
   margin-top: 2rem; }
@@ -383,6 +385,11 @@ h1, h2, p {
     color: #72BFA5; }
   .LedColors select {
     margin: 0; }
+
+.TimeNeededSection .ManualBox {
+  padding: 0; }
+  .TimeNeededSection .ManualBox input[type='time'] {
+    width: 80%; }
 
 .Paragraph {
   color: #A2A2A2;

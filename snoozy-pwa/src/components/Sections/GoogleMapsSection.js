@@ -56,8 +56,8 @@ class GoogleMapsSection extends React.Component {
             <div className='GoogleMapsSection'>
                 <div className='titleSection'>
                     <div>
-                        <img src="/images/icons/travel.png" alt="Google calendar icon."/>
-                        <SmallSectionTitle title='Reistijd berkenen'/>
+                        <img src="/images/icons/travel.png" alt="Travel icon."/>
+                        <SmallSectionTitle title='Reistijd Berekenen'/>
                     </div>
 
                     { this.renderSwitch() }

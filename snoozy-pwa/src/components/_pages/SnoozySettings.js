@@ -6,6 +6,7 @@ import SideNavigation from '../SidebarNavigation/SideNavigation';
 import SelectSongSection from '../Sections/SelectSongSection';
 import posed from 'react-pose';
 import LedColors from '../Sections/LedColors';
+import TimeNeeded from '../Sections/TimeNeededSection';
 
 const OK    = posed.div({
     hidden: { 
@@ -93,6 +94,7 @@ class SnoozySettings extends React.Component {
 
                 <div className="page_wrapper">
                     <div className="content_wrapper">
+                        <TimeNeeded/>
                         <SelectSongSection 
                             onClick={ this.onSoundSelect } 
                             defaultSong={ localStorage.getItem('SelectedSong') }

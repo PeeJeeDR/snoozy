@@ -41,7 +41,7 @@ class LedColors extends React.Component {
             <div className='LedColors'>
                 <div className='titleSection'>
                     <div>
-                        <img src="/images/icons/light-bulb.png" alt="Google calendar icon."/>
+                        <img src="/images/icons/light-bulb.png" alt="Ambilight icon."/>
                         <SmallSectionTitle title='Ambilight'/>
                     </div>
                 </div>
