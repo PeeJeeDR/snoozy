@@ -42,7 +42,12 @@ class Splash extends React.Component {
         let weekday     = dateStr.substring(0,3);
         let month       = dateStr.substring(4,7);
         let day         = dateStr.substring(8,10);
-        let year        = dateStr.substring(11,15);
+        let year        = '';
+
+        //if current year is NOT same as alarm year, add year to return
+        if ( date.getFullYear() != dateStr.substring(11,15) ){
+            year        = ' ' + dateStr.substring(11,15); 
+        }       
 
         console.log(this.state.power_status);
 
@@ -52,7 +57,7 @@ class Splash extends React.Component {
                 <div>
                     <p>Your alarm will ring at</p>
                     <h1>{ `${ hours }:${ minutes }` }</h1>
-                    <p>{weekday} {day} {month}</p>
+                    <p>{weekday} {day} {month}{year}</p>
                 </div>
             )
         }

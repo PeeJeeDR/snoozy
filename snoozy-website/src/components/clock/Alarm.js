@@ -192,9 +192,14 @@ class Alarm extends React.Component {
             let weekday     = dateStr.substring(0,3);
             let month       = dateStr.substring(4,7);
             let day         = dateStr.substring(8,10);
-            let year        = dateStr.substring(11,15);
+            let year        = '';
 
-            result          = {weekday} + ' ' + {day} + ' ' + {month};
+            //if current year is NOT same as alarm year, add year to return
+            if ( start_date.getFullYear() != dateStr.substring(11,15) ){
+                year        = ' ' + dateStr.substring(11,15); 
+            }
+
+            result          = {weekday} + ' ' + {day} + ' ' + {month} + {year};
         }
 
         return <p>{ result }}</p>
