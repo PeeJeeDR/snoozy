@@ -22,7 +22,7 @@ class HomePage extends Component {
 	    		<Header discover={this.state.discover} home={this.state.home} purchase={this.state.purchase} />
 	            <div className="main">
 	            	<div className='title-header'>
-	            		<h1>SNOOZY</h1>
+	            		<h1>Snoozy</h1>
 	            		<h5>The alarm clock that will never let you down</h5>
 	            	</div>
 	            	{/*

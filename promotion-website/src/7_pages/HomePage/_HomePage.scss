@@ -6,7 +6,7 @@
     .main
     {   
         
-        background-image: url("/img/snoozy_banner-min.jpg");  /*linear-gradient(
+        background-image: url("/img/banner-snoozy-large.jpeg");  /*linear-gradient(
             to top, 
             #fcd0a2, 
             #f8d5a6, 
@@ -17,24 +17,35 @@
         /*min-height: calc(100vh - 75px - 8.4rem);*/
         /*border-radius: 10px;*/
         background-size: cover;
-        background-position: 50%;
+        background-position: 55%;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
         flex-direction: column;
-        /*padding: 3rem;*/
-        height: 680px;
-        padding: 3rem;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        height: 100vh;
+        
     
         .title-header {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin-bottom: 150px;
+            margin-bottom: 250px;
+            color: $orange_yellow;
+
+            h1 {
+                font-size: 7em;
+                color: white;
+            }
 
             h5 {
+                font-size: 2em;
                 margin-top: 0;
+                color: white;
+                text-shadow: 1px 1px 5px #2d2d2d;
+                text-align: center;
+                margin: 0 75px;
             }
         }
     }
@@ -44,5 +55,8 @@
         text-align: center;
     }
     
+    .footer {
+        margin-top: 0 !important;
+    }
 
 }

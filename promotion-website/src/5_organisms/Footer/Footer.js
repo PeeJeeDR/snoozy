@@ -13,7 +13,6 @@ const Footer = (props) => {
                 <div className="footer-list">
                     <h6 className="footer-list-title">Socials</h6>
                     <a href="https://www.facebook.com/SnoozyInc" className="f-link">Facebook</a>
-                    <a href="#" className="f-link">Twitter</a>
                 </div>
                 <div className="footer-list">
                     <h6 className="footer-list-title">Contact</h6>
