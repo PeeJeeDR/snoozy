@@ -57,16 +57,22 @@ class GoogleMapsSection extends React.Component {
                 <div className='titleSection'>
                     <div>
                         <img src="/images/icons/travel.png" alt="Travel icon."/>
-                        <SmallSectionTitle title='Reistijd Berekenen'/>
+                        <SmallSectionTitle title='Reistijd Voorspellen'/>
                     </div>
 
                     { this.renderSwitch() }
                 </div>
 
                 <Paragraph>
-                    Door dit in te schakelen zal je Snoozy de tijd berekenen die er nodig is om 
-                    je te verplaatsen van jou thuis naar het werk. Deze functie werkt enkel na 
-                    het verbinden met je Google Calendar.
+                    Door dit in te schakelen zal je Snoozy de reisijd tussen je huis en de afspraak
+                    voorspellen op basis van de drukte van het verkeer. 
+                </Paragraph>
+                <Paragraph>
+                    <strong>LET OP:</strong> Als je besluit om dit uit te schakelen, moet je zelf extra tijd rekenen onder de Snoozy instellingen.
+                </Paragraph>
+                <Paragraph>
+                    <strong>LET OP:</strong> Deze functie werkt enkel na het verbinden met je Google Calendar.
+                    
                 </Paragraph>
             </div>
         )

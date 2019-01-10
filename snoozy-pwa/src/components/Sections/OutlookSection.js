@@ -99,7 +99,7 @@ class OutlookSection extends React.Component {
                 </div>
 
                 <Paragraph>
-                	Laat het aantal ongelezen emails zien op je eigen Snoozy!           
+                	Laat het aantal ongelezen emails zien op je de Snoozy!           
                 </Paragraph>
             </div>
         )
