@@ -47,11 +47,8 @@ const calculateTraffic = (location, start_date, snoozy_location) => {
             trafficModel: 'bestguess'
         }
     }, (res, status) => {
-        console.log(res.rows[0].elements[0]);
         if (res.rows[0].elements[0].status !== 'ZERO_RESULTS')
         {
-            
-
             const origin                = 'Flierenbos 20, 2370 Arendonk';
             const destination           = convertToLocale(res.destinationAddresses[0], 'Belgium', 'België', 'BY_SPACE');
             const arrival_date          = start_date;
