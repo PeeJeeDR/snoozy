@@ -179,13 +179,12 @@ class Alarm extends React.Component {
     }
 
     returnDate = () => {
-        console.log(this.state.alarm);
+        let date        = new Date(0);
         let result      = '';
 
-        //console.log(this.state.alarm);
-
-        /* if (date) {
-            date.setSeconds(this.state.alarm_seconds);
+        if (date) 
+        {
+            date.setSeconds(this.state.alarm.getTime() / 1000);
 
             let dateStr     = date.toString();
 
@@ -194,10 +193,10 @@ class Alarm extends React.Component {
             let day         = dateStr.substring(8,10);
             let year        = dateStr.substring(11,15);
 
-            result          = {weekday} + ' ' + {day} + ' ' + {month};
-        } */
+            result          = weekday + ' ' + day + ' ' + month;
+        }
 
-        return <p>{ result }}</p>
+        return <h3>{ result }</h3>
     }
 
     renderClock = () => {
@@ -216,7 +215,6 @@ class Alarm extends React.Component {
                         <img src={ AlarmClock } alt='Clock icon.'/>
                         <h3>{ `${ this.returnHours() }:${ this.returnMinutes() }` }</h3>
                         { this.returnDate() }
-                        
                     </div>
                 )
             }
