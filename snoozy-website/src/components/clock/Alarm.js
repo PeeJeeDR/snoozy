@@ -195,7 +195,7 @@ class Alarm extends React.Component {
             let year        = '';
 
             //if current year is NOT same as alarm year, add year to return
-            if ( start_date.getFullYear() != dateStr.substring(11,15) ){
+            if ( date.getFullYear() != dateStr.substring(11,15) ){
                 year        = ' ' + dateStr.substring(11,15); 
             }
 
