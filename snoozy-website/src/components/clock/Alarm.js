@@ -61,16 +61,16 @@ class Alarm extends React.Component {
                 const alarm_seconds = Math.floor(this.state.alarm.getTime() / 1000);
                 
                 // For test purposes. Comment next if when uncommenting this one.
-                if (cur_seconds === (Math.floor(test_alarm.getTime() / 1000) + 2))
+                /* if (cur_seconds === (Math.floor(test_alarm.getTime() / 1000) + 2))
                 {
                     this.ringAlarm();
-                }
+                } */
 
-                /* if (cur_seconds === alarm_seconds)
+                if (cur_seconds === alarm_seconds)
                 {
                     this.setState({ alarmIsPlaying: true });
                     this.ringAlarm();
-                } */
+                }
             }
         }, 1000)
     }
@@ -155,14 +155,23 @@ class Alarm extends React.Component {
     }
 
     saveAlarm = (date) => {
-        this.setState({ alarm: date, apiLoaded: true })
-        
         if (this.state.auto_mode)
-        {   
+        {
+            this.setState({ alarm: date, apiLoaded: true })
+            
             snoozyRef.update({
                 alarm: date
             }).catch(err => {
                 console.log('Something went wrong...', err);
+            })
+        }
+        else 
+        {
+            snoozyRef.onSnapshot(snap => {
+                let date = new Date(0);
+                date.setSeconds(snap.data().alarm.seconds)
+                
+                this.setState({ alarm: date, apiLoaded: true })
             })
         }
     }
