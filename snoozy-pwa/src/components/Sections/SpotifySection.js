@@ -106,7 +106,7 @@ class SpotifySection extends React.Component {
 
                 <Paragraph>
                     Laat je s'ochtends wakker maken door een willekeurig liedje uit 
-                    je spotify lijst! Leuk wakker worden toch? :-)
+                    je spotify lijst! Leuk wakker worden toch?
                 </Paragraph>
             </div>
         )
