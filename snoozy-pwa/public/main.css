@@ -390,6 +390,8 @@ h1, h2, p {
   padding: 0; }
   .TimeNeededSection .ManualBox input[type='time'] {
     width: 100%; }
+  .TimeNeededSection .ManualBox .SubTitle {
+    display: none; }
 
 .Paragraph {
   color: #A2A2A2;

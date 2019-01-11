@@ -64,11 +64,11 @@ class GoogleMapsSection extends React.Component {
                 </div>
 
                 <Paragraph>
-                    Door dit in te schakelen zal je Snoozy de reisijd tussen je huis en de afspraak
-                    voorspellen op basis van de drukte van het verkeer. 
+                    Door dit in te schakelen zal je Snoozy de locatie van je eerste afspraak 
+                    opvragen en de reisijd voorspellen op basis van de drukte van het verkeer. 
                 </Paragraph>
                 <Paragraph>
-                    <strong>LET OP:</strong> Als je besluit om dit uit te schakelen, moet je zelf extra tijd rekenen onder de Snoozy instellingen.
+                    <strong>LET OP:</strong> Als je besluit om dit uit te schakelen, moet je zelf de reistijd optellen bij de Extra Tijd onder de Snoozy instellingen.
                 </Paragraph>
                 <Paragraph>
                     <strong>LET OP:</strong> Deze functie werkt enkel na het verbinden met je Google Calendar.
