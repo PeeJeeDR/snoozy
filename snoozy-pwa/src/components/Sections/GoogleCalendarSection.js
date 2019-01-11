@@ -97,6 +97,7 @@ class GoogleCalendarSection extends React.Component {
                 </div>
 
                 <Paragraph>
+                    Door Google Calendar in te schakelen kan Snoozy je afspraken bekijken. 
                     Zo kan Snoozy bepalen hoe laat je ergens moet zijn en berekenen hoe laat je op moet staan.
                 </Paragraph>
             </div>
