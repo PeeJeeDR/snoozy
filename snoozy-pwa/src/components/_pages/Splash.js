@@ -21,8 +21,12 @@ class Splash extends React.Component {
 
     checkPowerStatus = async () => {
         await snoozyRef.onSnapshot(snap => {
+            if (snap.data().alarm)
+            {
+                this.setState({ alarm_seconds: snap.data().alarm.seconds, })
+            }
+
             this.setState({ 
-                alarm_seconds: snap.data().alarm.seconds,
                 power_status: snap.data().power_status
             });
         });

@@ -1,5 +1,6 @@
 import { db } from '../../firebase/firebase';
 import axios from 'axios';
+import * as config from '../../config/IpConfig';
 
 const snoozyRef     = db.collection('snoozy').doc('settings');
 
@@ -10,7 +11,7 @@ const AmbiLightHandler = () => {
 }
 
 const turnOnAmbiLight = async (color) => {
-    const res   = await axios.post('http://192.168.43.196:8081/ambi-light', { 
+    const res   = await axios.post(`http://${ config.RASPBERRY_PI_IP }/ambi-light`, { 
         led_color: color,
     });
 

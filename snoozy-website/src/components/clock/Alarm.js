@@ -88,7 +88,20 @@ class Alarm extends React.Component {
     getFireStoreData = async () => {
         await snoozyRef.onSnapshot(snap => {
             const alarm_date  = new Date(0);
-            alarm_date.setSeconds(snap.data().alarm.seconds);
+
+            if (snap.data().alarm !== null) 
+            {  
+                alarm_date.setSeconds(snap.data().alarm.seconds);
+            }
+
+            if (snap.data().auto_mode)
+            {
+                userRef.get().then(snap => {
+                    console.log(snap.data().time_needed);
+                    this.calculateAlarm(snap.data().time_needed);
+                })
+                
+            }
 
             this.setState({ 
                 alarm: alarm_date,
@@ -104,6 +117,20 @@ class Alarm extends React.Component {
                 alarmColor: res.data().alarm_color
             })
         });
+    }
+
+    calculateAlarm = (time_needed) => {
+        const hours     = parseInt(time_needed.split(':')[0]);
+        const minutes   = parseInt(time_needed.split(':')[1]);
+
+        const time_needed_to_seconds  = ((Math.floor(parseInt(hours) * 3600)) + (Math.floor(parseInt(minutes) * 60)));
+
+        mapsRef.get().then(snap => {
+            const date  = new Date(0);
+            date.setSeconds(snap.data().departure_date.seconds - time_needed_to_seconds);
+            
+            this.setState({ alarm: date })
+        })
     }
 
     ringAlarm = async () => {
@@ -129,7 +156,7 @@ class Alarm extends React.Component {
                     this.setState({ alarmIsPlaying: false, snoozed: false });
 
                     snoozyRef.update({
-                        alarm: null,
+                        alarm: this.state.alarm.setDate(this.state.alarm.getDate() + 1)
                     })
 
                     axios.post(`http://${ config.RASPBERRY_PI_IP }/ambi-light`, {
@@ -139,10 +166,6 @@ class Alarm extends React.Component {
     
                 if (res.data === 'SNOOZE')
                 {
-                    snoozyRef.update({
-                        alarm: null,
-                    })
-
                     this.snooze_counter     = 0;
                     this.times_snoozed++;
                     this.setState({ snoozed: true, alarmIsPlaying: false });
@@ -162,7 +185,7 @@ class Alarm extends React.Component {
                 console.log('Something went wrong...', err);
             })
         }
-        else 
+/*         else 
         {
             snoozyRef.onSnapshot(snap => {
                 if (snap.data().alarm !== null) 
@@ -173,7 +196,7 @@ class Alarm extends React.Component {
                     this.setState({ alarm: date })
                 }
             })
-        }
+        } */
     }
 
     renderClock = () => {

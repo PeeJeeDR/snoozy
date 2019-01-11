@@ -126,6 +126,8 @@ class Dashboard extends React.Component {
                 auto_mode: this.state.auto_calculate,
                 power_status: this.state.power_status,
             });
+
+            
         }
     }
     
