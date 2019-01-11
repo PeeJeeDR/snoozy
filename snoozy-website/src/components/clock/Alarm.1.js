@@ -24,6 +24,7 @@ class Alarm extends React.Component {
             song: null,
             alwaysOnColor: null,
             alarmColor: null,
+            noAlarmSet: false,
         };
 
         this.counter        = 0;
@@ -34,8 +35,47 @@ class Alarm extends React.Component {
     componentDidMount = () => {
         this.getFireStoreData();
 
+
+        const test_alarm    = new Date();
+        test_alarm.setSeconds(test_alarm.getSeconds() + 4);
+
         this.secondsInterval    = setInterval(() => {
-            this.checkButtonsPressed();
+            if (this.state.snoozed)
+            {
+                // SET HOW MANY TIMES SNOOZED
+                this.snooze_counter++;
+
+                // SHUT ALARM AFTER 3 TIMES SNOOZED
+                if (this.times_snoozed === 3)
+                {
+                    console.log('END OF SNOOZE');
+                    this.setState({ alarmIsPlaying: false, snoozed: false })
+                }
+                
+                // IF 5 MINUTES ARE OVER
+                if (this.snooze_counter === 5) 
+                {
+                    this.ringAlarm();
+                }
+            }
+
+            if (this.state.alarm !== null && this.state.powerStatus)
+            {
+                const cur_seconds   = Math.floor(new Date().getTime() / 1000);
+                const alarm_seconds = Math.floor(this.state.alarm.getTime() / 1000);
+                
+                // For test purposes. Comment next if when uncommenting this one.
+                /* if (cur_seconds === (Math.floor(test_alarm.getTime() / 1000) + 2))
+                {
+                    this.ringAlarm();
+                } */
+
+                if (cur_seconds === alarm_seconds)
+                {
+                    this.setState({ alarmIsPlaying: true });
+                    this.ringAlarm();
+                }
+            }
         }, 1000)
     }
 
@@ -43,55 +83,10 @@ class Alarm extends React.Component {
         clearInterval(this.secondsInterval)
     }
 
-    checkButtonsPressed = () => {
-        const test_alarm    = new Date();
-        test_alarm.setSeconds(test_alarm.getSeconds() + 4);
-
-        if (this.state.snoozed)
-        {
-            // SET HOW MANY TIMES SNOOZED
-            this.snooze_counter++;
-
-            // SHUT ALARM AFTER 3 TIMES SNOOZED
-            if (this.times_snoozed === 3)
-            {
-                console.log('END OF SNOOZE');
-                this.setState({ alarmIsPlaying: false, snoozed: false })
-            }
-            
-            // IF 5 MINUTES ARE OVER
-            if (this.snooze_counter === 5) 
-            {
-                this.ringAlarm();
-            }
-        }
-
-        if (this.state.alarm !== null && this.state.powerStatus)
-        {
-            const cur_seconds   = Math.floor(new Date().getTime() / 1000);
-            const alarm_seconds = Math.floor(this.state.alarm.getTime() / 1000);
-            
-            // For test purposes. Comment next if when uncommenting this one.
-            /* if (cur_seconds === (Math.floor(test_alarm.getTime() / 1000) + 2))
-            {
-                this.ringAlarm();
-            } */
-
-            if (cur_seconds === alarm_seconds)
-            {
-                this.setState({ alarmIsPlaying: true });
-                this.ringAlarm();
-            }
-        }
-    }
-
     getFireStoreData = async () => {
         await snoozyRef.onSnapshot(snap => {
-            const alarm_date  = new Date(0);
-            alarm_date.setSeconds(snap.data().alarm.seconds);
-
             this.setState({ 
-                alarm: alarm_date,
+                alarm: snap.data().alarm.seconds,
                 powerStatus: snap.data().power_status,
                 auto_mode: snap.data().auto_mode,
             });
@@ -103,6 +98,12 @@ class Alarm extends React.Component {
                 alwaysOnColor: res.data().always_on_color,
                 alarmColor: res.data().alarm_color
             })
+        });
+
+        await userRef.onSnapshot(snap => {
+            this.calculateAlarm(snap.data().time_needed)
+        }, err => {
+            console.log('Something went wrong...', err);
         });
     }
 
@@ -151,6 +152,35 @@ class Alarm extends React.Component {
         }
     }
 
+    calculateAlarm = (time_needed) => {
+        const hours     = parseInt(time_needed.split(':')[0]);
+        const minutes   = parseInt(time_needed.split(':')[1]);
+
+        const time_needed_to_seconds  = ((Math.floor(parseInt(hours) * 3600)) + (Math.floor(parseInt(minutes) * 60)));
+
+        
+
+        if (this.state.alarm !== null)
+        {
+            console.log(this.state.alarm);
+        }
+
+        mapsRef.onSnapshot(snap => {
+            const date  = new Date(0);
+
+            if (this.state.alarm !== null)
+            {
+                console.log('AND NOW?');
+                date.setSeconds(snap.data().departure_date.seconds - time_needed_to_seconds);
+                this.saveAlarm(date);
+            }
+            else 
+            {
+                this.setState({ noAlarmSet: true })
+            }
+        })
+    }
+
     saveAlarm = (date) => {
         if (this.state.auto_mode)
         {
@@ -179,6 +209,10 @@ class Alarm extends React.Component {
     renderClock = () => {
         let playing     = false;
 
+        let alarmDate   = new Date(0);
+
+        alarmDate.setSeconds(this.state.alarm);
+
         if (this.state.powerStatus && !this.state.alarmIsPlaying)
         {
             if (this.state.snoozed)
@@ -190,8 +224,8 @@ class Alarm extends React.Component {
                 return (
                     <div className={ `${ playing }` }>
                         <img src={ AlarmClock } alt='Clock icon.'/>
-                        <h3>{ `${ formatTime(this.state.alarm.getHours()) }:${ formatTime(this.state.alarm.getMinutes()) }` }</h3>
-                        <h3>{ returnAlarmDate(this.state.alarm) }</h3>                     
+                        <h3>{ `${ formatTime(alarmDate.getHours()) }:${ formatTime(alarmDate.getMinutes()) }` }</h3>
+                        <h3>{ returnAlarmDate(alarmDate) }</h3>                     
                     </div>
                 )
             }

@@ -6,7 +6,6 @@ const snoozyRef     = db.collection('snoozy').doc('settings');
 const AmbiLightHandler = () => {
     snoozyRef.onSnapshot(snap => {
         const color     = snap.data().always_on_color;
-        turnOnAmbiLight(color);
     });
 }
 

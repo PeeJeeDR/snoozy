@@ -22,7 +22,7 @@ class Splash extends React.Component {
     checkPowerStatus = async () => {
         await snoozyRef.onSnapshot(snap => {
             this.setState({ 
-                alarm_seconds: snap.data.alarm !== undefined ? snap.data().alarm.seconds : '',
+                alarm_seconds: snap.data().alarm.seconds,
                 power_status: snap.data().power_status
             });
         });
@@ -31,6 +31,7 @@ class Splash extends React.Component {
     renderAlarm = () => {
         const time  = new Date(0);
         const date  = new Date(0);
+
         time.setSeconds(this.state.alarm_seconds);
         date.setSeconds(this.state.alarm_seconds);
 
@@ -38,7 +39,6 @@ class Splash extends React.Component {
         const minutes   = formatTime(time.getMinutes());
 
         let dateStr     = date.toString();
-
         let weekday     = dateStr.substring(0,3);
         let month       = dateStr.substring(4,7);
         let day         = dateStr.substring(8,10);
@@ -50,15 +50,8 @@ class Splash extends React.Component {
             year        = ' ' + dateStr.substring(11,15); 
         }       
 
-        console.log(this.state.power_status);
-
-        console.log('WHAT?', this.state.alarm_seconds !== 0);
-
         if (this.state.power_status && this.state.alarm_seconds !== 0 && this.state.alarm_seconds !== '')
-        {
-            console.log('HOW?');
-            console.log(this.state.alarm_seconds);
-            
+        {    
             return (
                 <div>
                     <p>Your alarm will ring at</p>
@@ -69,9 +62,6 @@ class Splash extends React.Component {
         }
         else 
         {
-            console.log('THIS?');
-        console.log(this.state.alarm_seconds);
-
             return (
                 <div className='splash_container'>
                     <p>

@@ -96,13 +96,6 @@ class Dashboard extends React.Component {
         }
     }
 
-    // TOGGLE AUTO SWITCH
-    toggleAutoSnoozy = () => {
-        localStorage.setItem('auto_mode', !localStorage.getItem('auto_mode'));
-
-        console.log(!localStorage.getItem('auto_mode'));
-    }
-
     // LOAD AUTO SWITCH 
     loadAutoSwitch = async () => {
         snoozyRef.get().then(snap => {
@@ -118,10 +111,21 @@ class Dashboard extends React.Component {
         if (this.state.auto_switch_loaded)
         {
             return <SwitchButton 
-                onClick={ this.toggleAutoSnoozy }
+                onClick={ () => { this.setState({ auto_calculate: !this.state.auto_calculate }) } }
                 labelName='Automatische wekker' 
                 defaultOn={ this.state.auto_calculate }
             />
+        }
+    }
+
+    // SET TO FIRESTORE
+    setFireStoreValues = () => {
+        if (this.state.power_switch_loaded && this.state.auto_switch_loaded)
+        {
+            snoozyRef.update({
+                auto_mode: this.state.auto_calculate,
+                power_status: this.state.power_status,
+            });
         }
     }
     
@@ -141,6 +145,8 @@ class Dashboard extends React.Component {
                     { this.renderManualBox() }
 
                     { this.renderPowerSwitch() }
+
+                    { this.setFireStoreValues() }
 
                 </div>
             </div>

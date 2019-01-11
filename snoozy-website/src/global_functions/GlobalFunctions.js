@@ -30,14 +30,11 @@ export const formatTime = (number) => {
 }
 
 export const returnAlarmDate = (alarm_date) => {
-    let date        = new Date(0);
     let result      = '';
 
-    if (date) 
+    if (alarm_date) 
     {
-        date.setSeconds(alarm_date.getTime() / 1000);
-
-        let dateStr     = date.toString();
+        let dateStr     = alarm_date.toString();
 
         let weekday     = dateStr.substring(0,3);
         let month       = dateStr.substring(4,7);
@@ -45,7 +42,7 @@ export const returnAlarmDate = (alarm_date) => {
         let year        = '';
 
         //if current year is NOT same as alarm year, add year to return
-        if ( date.getFullYear() != dateStr.substring(11,15) ){
+        if ( alarm_date.getFullYear() != dateStr.substring(11,15) ){
             year        = ' ' + dateStr.substring(11,15); 
         }
 
